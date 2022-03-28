@@ -1,0 +1,5 @@
+bookdown::bs4_book:
+  css: style.css
+  theme:
+    primary: "#80214a"
+  repo: https://github.com/iSSA-guild/book
