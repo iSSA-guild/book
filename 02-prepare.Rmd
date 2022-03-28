@@ -1,0 +1,5 @@
+# Preparing your data for an iSSA
+
+## Cleaning data
+
+## Random steps
