@@ -1,0 +1,10 @@
+# Resources
+
+
+
+## Packages
+
+`targets`
+
+	- https://books.ropensci.org/targets
+
