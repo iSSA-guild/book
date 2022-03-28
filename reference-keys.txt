@@ -1,7 +1,6 @@
-index
 introduction
 packages
-preparing-your-data-for-an-issa
+preparing-data
 cleaning-data
 random-steps
 modelling
