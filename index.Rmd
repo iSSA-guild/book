@@ -10,5 +10,3 @@ description: |
   TODO: description
 biblio-style: apalike
 ---
-
-# Index

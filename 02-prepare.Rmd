@@ -1,4 +1,4 @@
-# Preparing your data for an iSSA
+# Preparing data
 
 ## Cleaning data
 

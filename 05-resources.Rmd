@@ -4,7 +4,7 @@
 
 ## Packages
 
-`targets`
+targets
 
 	- https://books.ropensci.org/targets
 
