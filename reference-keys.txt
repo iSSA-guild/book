@@ -1,0 +1,11 @@
+index
+introduction
+packages
+preparing-your-data-for-an-issa
+cleaning-data
+random-steps
+modelling
+global-models-vs-candidate-models
+interpreting-results
+resources
+packages-1
