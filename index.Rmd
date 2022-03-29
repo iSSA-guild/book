@@ -18,4 +18,12 @@ nocite: '@*'
 # Introduction
 
 
-## Packages
+## Acknowledgements
+
+Thank you to iSSA club alumni Katrien Kingdon, Levi Newediuk, Quinn Webber, Emilie Debedan, Eric Vander Wal for the motivation to solve problems and seek answers.
+
+Note: Everyone learns differently and reading a document may not be the most helpful. Working with a group or discussing issues with a peer is immensely helpful, even for the most experienced practitioners. Every new analysis is an opportunity to learn and rethink our current ideas.
+
+<!-- TODO: thanks to package authors/R developers -->
+
+
