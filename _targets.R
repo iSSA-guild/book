@@ -18,6 +18,7 @@ lapply(dir('R', '*.R', full.names = TRUE), source)
 # TODO: license
 # TODO: contributing md
 # TODO: spelling
+# TODO: fix refs
 
 c(
 	tar_target(
