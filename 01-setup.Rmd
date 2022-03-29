@@ -1,0 +1,41 @@
+# Setup
+
+## Packages
+
+![](https://badgen.net/badge/status/WIP/orange)
+
+
+### `amt`
+
+(Signer et al. 2019)
+
+### `glmmTMB`
+
+There were some issues with the installing the packages for Macs, here are the steps that resolved it.
+
+1. remove old versions of `TMB`, `glmmTMB`, and `broom.mixed`
+2. install xcode from app store and do all updates for my OS (takes a while)
+3. restart computer
+4. install `TMB`
+5. restart R and computer because I am superstitious at this point
+6. install `glmmTMB` from source (there was a repeated warning as posted in the link but it was ok)
+7. install `broom.mixed` 0.2.7 using `remotes::install_github('bbolker/broom.mixed')`
+8. restart R
+
+### `tidyverse`
+
+‘tidyverse’ is a meta package made up of the tidyverse pacakges. ‘amt’ relies
+heavily on the tidy packages and use their coding practices frequently. There
+are pros and cons to this that are discussed elsewhere. All this is to say that
+you may not want to install the entire ‘tidyverse’ package but just the ones
+necessary for your analyses. These may include ‘dplyr’, ‘tidyr’, ‘ggplot’,
+‘lubridate’, etc.
+
+
+### `data.table`
+
+Some issues with the compiler for mac users. This is actually an issue for every packaged that needs a compiler. Some helpful sites to for set up:
+https://github.com/Rdatatable/data.table/wiki/Installation
+https://stackoverflow.com/questions/65860439/installing-data-table-on-macos
+https://www.santoshsrinivas.com/installing-data-table-on-mac-osx/
+
