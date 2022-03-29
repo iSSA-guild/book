@@ -3,3 +3,8 @@ bookdown::bs4_book:
   theme:
     primary: "#80214a"
   repo: https://github.com/iSSA-guild/book
+  config:
+    toc:
+      # TODO: fix
+      before: |
+        <li class="toc-logo"><a href="./"><img src="images/group.png" style="border-radius: 50%;" ></a></li>
