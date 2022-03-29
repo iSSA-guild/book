@@ -1,5 +1,0 @@
-# Preparing data
-
-## Cleaning data
-
-## Random steps
