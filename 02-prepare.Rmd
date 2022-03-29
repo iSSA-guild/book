@@ -129,3 +129,128 @@ Using 10 steps for each used step to have a strata of 11 steps is common, but in
 
 Researchers should consider the resolution of the habitat covariate and the step length of the animal to determine the number of steps required to estimate what is accessible to the animal. 
 
+## Exploring data
+
+### Guiding Questions
+
+- What is the sample size of the data going into the model? 
+- What are the data layer resolution and extent? 
+- How does this relate to your location data? 
+- How does movement vary within and between biological/ecological divisions?
+
+The purpose of exploring your data is to brainstorm the potential options for your models and identify potential limitations. Proper exploration of used (case = 1) and available (case = 0) domains by individual, population, season, year etc. will help inform downstream decisions and troubleshoot convergence issues. 
+
+```{r guide_qs}
+# > table or figure sample size - # individuals and points per individual
+# > locations spread per season, year, individual: counts across categories
+# > density or histogram or boxplot of covariates for used and available by any division that might be used in the model individual, year, season 
+# > temporal extent and resolution 
+# > spatial extent and resolution
+# > movement rates and turn angles by individual, season, time of day: mean, range, plots
+```
+
+## Attribute steps
+
+- End-point = selection processes
+- Start-point = movement processes
+
+Attributes extracted at the start-point do not vary within a cluster, but can be used as interactions with movement covariates or habitat-selection covariates (at the end point)
+
+
+## Choosing covariates
+
+### Guiding questions
+
+- What are your research objectives and hypotheses? 
+- What are the data layers you need to meet these objectives and test these hypotheses?
+- What are the data layer resolution and extent? How does this relate to your location data?
+- Will continuous or categorical covariates best help your answer your research questions (and are there computational limitations to one or the other)?
+
+
+## Availability threshold
+
+Dickie et al. (2020) used 0.01 as the "threshold" of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%. 
+
+
+```{r avail_thresh}
+# > Julie’s code
+```
+
+Depending on how many covariates you have in your model, having many habitat classes (and any associated interactions) can really eat up your data. It's worthwhile doing a habitat point extraction for your GPS locations to see which habitat types are relevant and available to your individuals. Then you can start to combine some habitat types. For example, open vs closed, deciduous vs coniferous vs mixed, etc.
+
+
+## Selection
+
+Selection is represented by the end-point of a step, i.e., where an animal selects to be. The covariate of interest at the end point can be interacted with any other habitat metric from the preceding step or one that is also at the end-point.
+
+- Data types: continuous, categorical, Boolean 
+
+Important: discrete variable must be coded as factors.
+
+- Transforming and scaling covariates (GLMM TMB, same scale is critical for
+mixed model, still helpful in clogit models but less necessary)
+
+
+```{r selection}
+# > attributing habitat to end points of steps
+# > example scaling
+```
+
+Scaling covariates 
+
+- will influence magnitude of coefficients, ideally scale of covariates will be
+within an order of magnitude. 
+- distance from features, likely should follow decay function (i.e.,
+log-transformed). Note `log()` in R is the natural logarithm, not log base 10.
+ 
+
+## Movement
+
+To look at the influences of habitat on movement interact the covariate at the start of step with turn angle or step length. Possible movement covariates include step length, ln[step length], [step length]2, ln[step length]2,cos[turn angle].
+
+### Cos[TA]
+
+Cos(Turn Angle) converts the circular measure to linear where -1 is backwards, 0
+is random walk, 1 is moving forwards. Kappa is the concentration parameter of
+the von-Mises distribution and indicates directionality (increasing kappa is
+more forward movement)
+
+### Ln[SL]
+
+Step Length included in the model is the scale of the gamma distribution Natural
+logarithm of the step length, ln[Step Length+1],  is the shape of the gamma
+distribution. If there are any step length estimates of 0 then one should be
+added, the natural log of 0 is undefined.
+
+
+## Other Covariate Notes
+### Time of Day
+
+Time of day will not vary between clusters. In our experience, ‘time of day’ has
+narrow in the definition of twilight periods in amt package. `amt::time_of_day`
+which is a wrapped around `maptools::crepuscule`. The potential underestimation
+comes from default solarDep / solar.dep, which can be adjusted. This matters
+especially for fix rates that are longer than the crepuscule period because
+there may be a fix during that period or only 1, leading to the underestimation.
+Identifying crepuscule movements may not matter to your analysis, in which case,
+don’t include it when calculating time of day (`crepuscule = FALSE`). If you
+need to include crepuscular movement, adjust the default `solarDep` or create
+your own calculation (can link to Katrien’s or mine for wolves).
+
+```{r time_of_day}
+# > time of day
+```
+
+### Interactions
+If you included interactions, then the model has an estimate for both terms
+independently and as well as the interaction. So interaction I:J will have betas
+for I, J, and I:J. If J is a category there will be estimates for each category.
+If there is a three way interact I:J:K, you get estimates for I,J,K, I:J, I:K,
+J:K, and I:J:K.
+
+Before Running your Model: Check correlation between covariates
+
+*EXERCISE*: Create a table of with each covariate and the corresponding
+prediction or biological significance?
+
+Example Table: prediction and covariates.
