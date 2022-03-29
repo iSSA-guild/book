@@ -1,1 +1,224 @@
 # Interpreting results
+
+## What’s in a beta?
+
+- In iSSA they can pertain to either selection or movement behaviour. They
+indicate directionality but the ecological significance and effect size of the
+behaviour is not clear without predicting the model
+
+## Selection
+- Coefficient for covariate indicates selection (+) or avoidance (-)
+- "Distance-to a feature" covariate can be tricky, a positive coefficient
+indicates selection for areas farther from the feature, which means the feature
+itself is avoided.
+
+## Movement
+- Coefficient for log(Step Length) modifies shape parameter indicating more (+) or fewer long steps (-)
+- Coefficient for Step Length modifies the scale parameter indicating longer (+) or shorter steps (-)
+- Coefficient for cos(Turn Angle) indicates the directionality of movement, concentration parameter of the Von Mises
+
+
+### Table
+A table with coefficient and error is standard for reporting results. This is
+not recommended for presentations or the sole means of presenting results.
+
+
+```{r interpret_table}
+# > making a nice table from the output code?
+```
+
+
+### Box plots
+
+Boxplots can be useful to look at general results and variation between
+categories - time of day, seasons. It is useful to take note of outlying
+individuals here then investigate their movement and availability
+
+```{r interpret_box_plot}
+# > ggplot code
+```
+
+### Effect Sizes
+We strongly advocate for going beyond presenting the coefficients and errors to demonstrate the effect sizes of response across the environmental variation.
+
+
+### Relative Selection Strength
+Calculated for an animal selecting one spatial location (x1) over another (x2) when these two locations are the same except for one habitat covariate
+
+<!-- TODO: need RSS formula --> 
+
+- Common RSS expressions in Avgar et al. 2017, formulation depends on the covariates of interest in model
+- Can use the `predict` function: https://rdrr.io/cran/amt/man/log_rss.htm in amt or JWT code
+- Fieberg ‘How-to’ goes through the RSS maths
+    
+```{r rss}
+# > predict methods
+# > example plot
+```
+
+#### Guiding Questions
+- If you present individuals and there are drastic differences in their response - can you find a reason for this?
+- Take your beta values and interpret them before running your RSS, sketch out a
+predictive figure for what you would expect the relationships to look like. Do
+they match up?
+- What h values will you choose for your two locations at t2 (x1 and x2)? Will
+ you value h at x2 or ∆h?: look at the distribution of your availability of h
+ and make sure there is biological justification.
+- What values do you choose for your interaction? When you are looking at an
+interaction try to keep your RSSs on a similar scale for easy comparison. If
+they are wildly different perhaps you should choose less extreme values - again
+consider biological realism.
+
+
+## Movement
+Available steps are drawn from a gamma distribution of step lengths (shape, scale) and a von-Mises distribution of turn angles (kappa, mu)
+
+### Speed/Step Length
+
+Extract basal parameters: 
+
+```{r basal_params, eval = FALSE}
+sl_distr_params(mod)
+ta_distr_params(mod)
+```
+
+The calculation for Mean Step Length is shape multiplied by scale:\
+
+<!-- TODO: step length formula --> 
+
+```{r mean_sl}
+# > code for this calculation
+# > example plot
+```
+
+
+#### Negative Speed Estimates
+
+Negative speed estimates or predictions can come from some models
+
+1. First check that your data is ok (clean). Are there some erroneous locations, step lengths, or turn angle? Trust the observed (used) input data.
+2. Try another step-length distribution
+3. Include an interaction between step length and turn angle
+4. Remove ‘non-movement’ steps, short steps below a certain distance. Plot data to determine non-movement behavioural modes
+5. Resample data to a coarser resolution that has longer steps and less non-movement steps.
+
+How do we calculate speed from an exponential or other distribution?
+
+The shapescale (kappatheta) is the mean expectation of a gamma. The exponential
+distribution, which is a special case of the gamma, only has a rate parameter
+(lambda). The mean for the exponential is 1/lambda, so that is how we could get
+a mean speed from the tentative or modified estimates. The scale parameter is
+the inverse of rate, for gamma and other distributions. Exponential is a special
+case where shape = 1, so using a modifier log SL turns it into a gamma. Thus,
+rate is inverse scale, and shape is one. The equations work out to be the same.
+
+```{r calc_speed}
+# > Julie’s snail code
+```
+
+See other distributions in the iSSA webinar files (Avgar and Smith 2022)
+
+
+## Directionality
+
+Kappa is the concentration parameter of the von-Mises distribution and indicates directionality (increasing kappa is more forward movement)
+
+
+<!-- TODO: kappa formula --> 
+
+
+### Negative Von Mises Estimates
+
+A negative von Mises concentration parameter means the adjusted turn angle distribution is centred at 𝜋 (180°) rather than 0 (negative directional autocorrelation; behaviourally the animal is more likely to turn back). This can happen with high resolution data.  A fix is to multiply by -1 to recenter the distribution and assumption around 0 and not 𝜋.
+
+
+```{r ta_plot}
+# > turn angle plot
+```
+
+
+## Model Validation and Evaluation
+
+Often researchers want to determine the performance and reproducibility of their models.
+
+### Model Selection
+
+#### AIC/likelihood
+
+It is common to create multiple candidate models and select the top performing
+one. Performance can be evaluated using a variety of measures, we will discuss
+some common ones and make our own recommendations.
+
+Competition between candidate models works off a bias-variance trade-off. This
+trade-off can be superseded by large data sets which then favours complex
+models. Please read (Fieberg and Johnson 2015, Northrup et al. 2021) for in
+depth discussion of building and evaluating models.
+
+Likelihood ratios can be used when required.
+
+```{r aic}
+# > example
+```
+
+### Model Prediction
+#### K-fold ‘Validation’
+
+There are both philosophical and analytical points to be made about validation.
+
+First and foremost, we can’t expect our models to do everything. Some models are
+built to understand the magnitude of ecological effects and responses, some are
+built to predict future ecological patterns (regardless of the underlying
+ecological mechanism). In Habitat Selection Analysis some work is done with the
+purpose of predicting areas to conserve and identifying important habitat for
+other populations. Ideally, to test this you would run an HSA, then test it on
+another population or in a different time period. So, the question was how do we
+predict and validate models when we don’t have out of sample data? There are
+many options but k-fold really took hold (Boyce et al. 2002).
+
+In this method you partition the data into ‘k’ number of folds, withhold a fold,
+run the model and then see how well it predicts the left-out fold. You bin the
+RSF predictions from the area and rank them, the highest being the most
+selected, and then take the frequency of used points in each of the bins. The
+higher your correlation between bin rank and frequency, the better your model
+
+Now, because iSSAs and some other HSAs use conditional logistic regression you
+can’t make a predictive map easily (but this is coming soon), Instead, an option
+is to rank within your strata/cluster of used and random points (Fortin et al.
+2009). Arguably, this is not ideal because you are restricted to the strata and
+you actually want a validation of the extent of your study area.
+
+```{r qw_social_issa}
+# > link to QW social-issa repo
+```
+
+If the k-fold procedure is used it is critical to mention that as it is done for SSF is not a validation it is an out of sample discrimination test. It is important to accurately state that it is not a predictive validation, this method attempts to discriminate between a used step and an available step.
+
+Two alternative and recommended options are discrimination or habitat calibration.
+
+
+#### Discrimination analyses
+A correct discrimination index for case-control models is concordance (Brentnall et al. 2015)
+
+With an r package! https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf
+
+Concordance is ranked between 0 and 1 and you calculate discrimination either within or out of sample.
+
+1. Cluster - predict all steps (Can also renormalize, divide predictions by sum of predictions across cluster)
+2. Take difference between used and available steps
+3. Collect those differences across all steps. Is the distribution different from zero? If you have a poor model then it would be zero, if not it would be close to 1 or statistically different from 0.
+
+Another approach that is closer to Fortin 2009. 
+
+1. Predict cluster step, divide each prediction by within cluster sum, same scale.
+2. Keep value for used step, then you get the distribution of normalized kernels
+3. Bin into equal range bins (no zeros in bins)
+4. Then you do frequency in each of those bins and do the correlation.
+    
+#### Habitat calibration
+
+Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)
+
+```{r hab_calib}
+# > code for this?
+```
+
