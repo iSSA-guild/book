@@ -1,5 +1,14 @@
 # Resources
 
+## Links
+- Matthiopoulos, Fieberg and Aarts. 2020. Species-Habitat Associations 
+https://bookdown.org/jfieberg/SHABook/
+
+- Avgar and Smith. 2022. iSSA. Statistical Methods Seminar Series. https://github.com/eco4cast/Statistical-Methods-Seminar-Series/tree/main/avgar-smith_issa
+
+- Grurarie 2019. Making Predictive Maps from RSFs. https://terpconnect.umd.edu/~egurarie/research/NWT/Step09_RSF_PartIV.html
+
+- Grurarie and Palm. 2018. Modern Tools for Spatial Modeling and Animal Movement Analysis. AKTWS. https://terpconnect.umd.edu/~egurarie/teaching/SpatialModelling_AKTWS2018/index.html
 
 
 ## Packages
