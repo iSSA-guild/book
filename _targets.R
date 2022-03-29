@@ -17,7 +17,7 @@ lapply(dir('R', '*.R', full.names = TRUE), source)
 # TODO: [ALR] https://docs.ropensci.org/targets/reference/tar_github_actions.html?q=action#ref-examples
 # TODO: license
 # TODO: contributing md
-
+# TODO: spelling
 
 c(
 	tar_target(
