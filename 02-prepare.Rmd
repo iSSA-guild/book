@@ -1,0 +1,31 @@
+# Preparing data
+
+## Cleaning data
+
+### Erroneous locations
+
+The `amt` package includes code and guidelines for data cleaning, as does
+(Bjørneraas et al. 2010)
+
+The major GPS cleaning considerations are:
+
+- censor locations pre- and post- animal capture and collaring 
+- low quality data (based on the available measure of precision, 2D/3D, DPOP, etc.)
+- unreachable habitats to occupy
+- unrealistic step lengths
+- immediate round trips
+- drop offs/ mortalities
+
+### Rarefication and Autocorrelation 
+
+In early GPS and RSF studies, autocorrelation was viewed as an issue to directly
+eliminate. Over the last two decades, however, the discourse around
+autocorrelation has become more nuanced (Fieberg et al. 2021, Northrup et al.
+2021). To summarize our current understanding, locations are indeed ‘serially
+dependent’ – points closer in time will be closer in space (Fleming et al.
+2014). However, if these locations are taken at regular intervals, they should
+be representative of space use (Fieberg et al 2021). Sampling locations at
+regular intervals is the best practice for habitat selection analyses. Further,
+autocorrelation bias will reduce estimate of uncertainty (SE). To address
+concern, using a robust calculation for confidence intervals can be completed.
+
