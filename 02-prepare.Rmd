@@ -29,3 +29,103 @@ regular intervals is the best practice for habitat selection analyses. Further,
 autocorrelation bias will reduce estimate of uncertainty (SE). To address
 concern, using a robust calculation for confidence intervals can be completed.
 
+## Random steps
+
+The main assumption is that the availability distribution defines what is accessible to the animal at a given location or time. For SSF specifically this assumption addresses what is accessible to the animal and can be selected as it makes its next step. 
+
+iSSA builds on this and uses empirical observations of movements to inform probability distributions, which can then be modified by including corresponding covariates in the model. 
+
+The unit of replication in iSSA analysis are clusters (or strata) made of a used step matches with a set of available steps. Available steps are sampled from tentative distributions of step length and turn angle.
+
+
+## Distributions
+
+Be aware what distribution you are drawing from when you generate random steps. 
+
+
+### Step Length Distribution
+
+There are four possible step length distributions: 
+
+1. Exponential (step length)
+2. Half-Normal ([step-length]2)
+3. Log-Normal (log[step length]2 and log[step length]
+4. Gamma (step length and log[step length])
+
+Here we will focus on the Gamma, as it has been commonly used in the literature,
+but will provide some exponential examples. The Gamma distribution has a shape
+(k) and a scale parameter ($\theta$, ‘shape’ and ‘scale’ in the `amt` package. The
+exponential distribution, which is a special case of the gamma, only has a rate
+parameter (lambda).
+
+
+```{r sl_dist}
+# > figure of each distribution
+# > extract params, save for later
+```
+
+Plot the observed data against these fitted distributions to assess the
+agreement between them. Do the distributions misclassify some observations
+(normally will miss extreme values)? There should not be negative speeds at this
+point, calculate the mean to check. These plots and calculations should be done
+at the level you estimated distributions, calculated random steps, and model the
+behaviour. Check which distribution seems to fit best.
+
+### Turn Angle Distribution
+
+Prokopenko et al. 2016 used a uniform ta and included cos(TA) to adjust for more
+realistic variation in directionality. If a Von Mises is fit from observed
+points, including cos(TA) in the model might not be informative. The
+concentration parameter (k) ‘kappa’ in amt, and the location parameter ($\mu$, mu in `amt`.
+
+
+```{r ta_dist}
+# > figure of von mises distribution
+# > extract params, save for later
+```
+
+
+
+### Individual vs. Population Distributions
+
+When generating random steps for multiple animals, you can do so at either the
+individual or population level distribution. When you generate random steps by
+individuals, the `amt` package is fitting a parametric distribution to the step
+length and turn angle distributions of a given individual and then randomly
+selecting new steps from it.
+
+As an alternative, the population level distribution can be used, which informs
+random steps for all individuals using this population probability distribution.
+You could also split movement distributions by time of day, or season, even by
+habitat.
+
+How you generate random distributions changes your comparisons of used to
+available. For example, if you generate distributions from the population and
+run individual models. Then the results will say how individuals differ from the
+population movement behaviour. Let’s consider a fast individual, if a population
+SL distribution was used then their `ln(SL)` covariate will be more positive to
+adjust for this different. If you want to compare individuals to each other,
+then starting with a baseline that is the same allows you to do so, the
+population mean distribution is recommended.
+
+In summary, movement variation can be accounted for at the random step
+generation stage and/or in the model parameterization stage. There are reasons
+for either, but the awareness of which one you choose and possible downstream
+patterns that could result is critical.
+
+These decisions can be informed once you explore your data.
+
+
+## Number of steps
+
+
+The availability distribution is defined by the randomly sampled steps from the step length and turn angle probability distributions.
+
+Using 10 steps for each used step to have a strata of 11 steps is common, but intensity of sampling varies across the literature. Sensitivity analysis can be conducted to determine the influence of availability sample on selection (Northrup et al. 2013, 2016). A general piece of advice is “at least one, the more the merrier” (Avgar and Smith 2022)
+
+```{r n_steps}
+# > number of steps, making random steps
+```
+
+Researchers should consider the resolution of the habitat covariate and the step length of the animal to determine the number of steps required to estimate what is accessible to the animal. 
+
