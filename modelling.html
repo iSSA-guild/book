@@ -88,9 +88,11 @@ interpretation of spurious results.</p>
 <h2>
 <span class="header-section-number">4.3</span> Two-step approach<a class="anchor" aria-label="anchor" href="#two-step-approach"><i class="fas fa-link"></i></a>
 </h2>
-<div class="inline-figure">
-<img src="https://badgen.net/badge/status/WIP/orange">
-### Step 1</div>
+<div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
+<div id="step-1" class="section level3">
+<h3>
+<span class="header-section-number">4.3.1</span> Step 1<a class="anchor" aria-label="anchor" href="#step-1"><i class="fas fa-link"></i></a>
+</h3>
 <p>Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.</p>
 <p>The global or alternative models can be composed of core or interest variables.</p>
 <p>The concept of a core model is to identify key features of animal movement that are important but perhaps not the covariates of interest to the particular study or hypotheses. – Prokopenko et al 2017</p>
@@ -98,16 +100,17 @@ interpretation of spurious results.</p>
 <code class="sourceCode R"><span class="co"># &gt; code</span></code></pre></div>
 <div id="troubleshooting" class="section level4">
 <h4>
-<span class="header-section-number">4.3.0.1</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.1.1</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
 </h4>
 <p>Starting with simpler models could help to identify covariates that might be
 causing problems</p>
 <p>If there are no observations for certain categories or
 interactions the model will likely not converge.</p>
 </div>
+</div>
 <div id="step-2" class="section level3">
 <h3>
-<span class="header-section-number">4.3.1</span> Step 2<a class="anchor" aria-label="anchor" href="#step-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.2</span> Step 2<a class="anchor" aria-label="anchor" href="#step-2"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: lower-alpha">
 <li><p>Bootstrap individual models to get population mean and CIs (Prokopenko et al.
@@ -192,7 +195,10 @@ you have other errors with it.</p>
 <li><a class="nav-link" href="#guiding-questions-2"><span class="header-section-number">4.1</span> Guiding Questions</a></li>
 <li><a class="nav-link" href="#model-building"><span class="header-section-number">4.2</span> Model Building</a></li>
 <li>
-<a class="nav-link" href="#two-step-approach"><span class="header-section-number">4.3</span> Two-step approach</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#step-2"><span class="header-section-number">4.3.1</span> Step 2</a></li></ul>
+<a class="nav-link" href="#two-step-approach"><span class="header-section-number">4.3</span> Two-step approach</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-1"><span class="header-section-number">4.3.1</span> Step 1</a></li>
+<li><a class="nav-link" href="#step-2"><span class="header-section-number">4.3.2</span> Step 2</a></li>
+</ul>
 </li>
 <li><a class="nav-link" href="#mixed-model-approach"><span class="header-section-number">4.4</span> Mixed Model Approach</a></li>
 <li>
