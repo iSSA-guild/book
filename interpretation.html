@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 5 Interpreting results | How-To iSSA</title>
+<title>Chapter 5 Interpretation | How-To iSSA</title>
 <meta name="description" content="5.1 What’s in a beta? In iSSA they can pertain to either selection or movement behaviour. They indicate directionality but the ecological significance and effect size of the behaviour is not clear...">
 <meta name="generator" content="bookdown 0.24.1 with bs4_book()">
-<meta property="og:title" content="Chapter 5 Interpreting results | How-To iSSA">
+<meta property="og:title" content="Chapter 5 Interpretation | How-To iSSA">
 <meta property="og:type" content="book">
-<meta property="og:url" content="https://issa-guild.github.io/book/interpreting-results.html">
+<meta property="og:url" content="https://issa-guild.github.io/book/interpretation.html">
 <meta property="og:image" content="https://issa-guild.github.io/book/images/group.png">
 <meta property="og:description" content="5.1 What’s in a beta? In iSSA they can pertain to either selection or movement behaviour. They indicate directionality but the ecological significance and effect size of the behaviour is not clear...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 5 Interpreting results | How-To iSSA">
+<meta name="twitter:title" content="Chapter 5 Interpretation | How-To iSSA">
 <meta name="twitter:description" content="5.1 What’s in a beta? In iSSA they can pertain to either selection or movement behaviour. They indicate directionality but the ecological significance and effect size of the behaviour is not clear...">
 <meta name="twitter:image" content="https://issa-guild.github.io/book/images/group.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,7 +45,7 @@
 <li><a class="" href="setup.html"><span class="header-section-number">2</span> Setup</a></li>
 <li><a class="" href="preparation.html"><span class="header-section-number">3</span> Preparation</a></li>
 <li><a class="" href="modelling.html"><span class="header-section-number">4</span> Modelling</a></li>
-<li><a class="active" href="interpreting-results.html"><span class="header-section-number">5</span> Interpreting results</a></li>
+<li><a class="active" href="interpretation.html"><span class="header-section-number">5</span> Interpretation</a></li>
 <li><a class="" href="resources.html"><span class="header-section-number">6</span> Resources</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -55,9 +55,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="interpreting-results" class="section level1">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="interpretation" class="section level1">
 <h1>
-<span class="header-section-number">5</span> Interpreting results<a class="anchor" aria-label="anchor" href="#interpreting-results"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5</span> Interpretation<a class="anchor" aria-label="anchor" href="#interpretation"><i class="fas fa-link"></i></a>
 </h1>
 <div id="whats-in-a-beta" class="section level2">
 <h2>
@@ -68,11 +68,10 @@
 indicate directionality but the ecological significance and effect size of the
 behaviour is not clear without predicting the model</li>
 </ul>
-</div>
-<div id="selection-1" class="section level2">
-<h2>
-<span class="header-section-number">5.2</span> Selection<a class="anchor" aria-label="anchor" href="#selection-1"><i class="fas fa-link"></i></a>
-</h2>
+<div id="selection-1" class="section level3">
+<h3>
+<span class="header-section-number">5.1.1</span> Selection<a class="anchor" aria-label="anchor" href="#selection-1"><i class="fas fa-link"></i></a>
+</h3>
 <ul>
 <li>Coefficient for covariate indicates selection (+) or avoidance (-)</li>
 <li>“Distance-to a feature” covariate can be tricky, a positive coefficient
@@ -80,43 +79,49 @@ indicates selection for areas farther from the feature, which means the feature
 itself is avoided.</li>
 </ul>
 </div>
-<div id="movement-1" class="section level2">
-<h2>
-<span class="header-section-number">5.3</span> Movement<a class="anchor" aria-label="anchor" href="#movement-1"><i class="fas fa-link"></i></a>
-</h2>
+<div id="movement-1" class="section level3">
+<h3>
+<span class="header-section-number">5.1.2</span> Movement<a class="anchor" aria-label="anchor" href="#movement-1"><i class="fas fa-link"></i></a>
+</h3>
 <ul>
 <li>Coefficient for log(Step Length) modifies shape parameter indicating more (+) or fewer long steps (-)</li>
 <li>Coefficient for Step Length modifies the scale parameter indicating longer (+) or shorter steps (-)</li>
 <li>Coefficient for cos(Turn Angle) indicates the directionality of movement, concentration parameter of the Von Mises</li>
 </ul>
-<div id="table" class="section level3">
+</div>
+<div id="presenting-coefficients" class="section level3">
 <h3>
-<span class="header-section-number">5.3.1</span> Table<a class="anchor" aria-label="anchor" href="#table"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1.3</span> Presenting coefficients<a class="anchor" aria-label="anchor" href="#presenting-coefficients"><i class="fas fa-link"></i></a>
 </h3>
+<div id="table" class="section level4">
+<h4>
+<span class="header-section-number">5.1.3.1</span> Table<a class="anchor" aria-label="anchor" href="#table"><i class="fas fa-link"></i></a>
+</h4>
 <p>A table with coefficient and error is standard for reporting results. This is
 not recommended for presentations or the sole means of presenting results.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; making a nice table from the output code?</span></code></pre></div>
 </div>
-<div id="box-plots" class="section level3">
-<h3>
-<span class="header-section-number">5.3.2</span> Box plots<a class="anchor" aria-label="anchor" href="#box-plots"><i class="fas fa-link"></i></a>
-</h3>
+<div id="box-plots" class="section level4">
+<h4>
+<span class="header-section-number">5.1.3.2</span> Box plots<a class="anchor" aria-label="anchor" href="#box-plots"><i class="fas fa-link"></i></a>
+</h4>
 <p>Boxplots can be useful to look at general results and variation between
 categories - time of day, seasons. It is useful to take note of outlying
 individuals here then investigate their movement and availability</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; ggplot code</span></code></pre></div>
 </div>
-<div id="effect-sizes" class="section level3">
-<h3>
-<span class="header-section-number">5.3.3</span> Effect Sizes<a class="anchor" aria-label="anchor" href="#effect-sizes"><i class="fas fa-link"></i></a>
-</h3>
-<p>We strongly advocate for going beyond presenting the coefficients and errors to demonstrate the effect sizes of response across the environmental variation.</p>
 </div>
+</div>
+<div id="effect-sizes" class="section level2">
+<h2>
+<span class="header-section-number">5.2</span> Effect Sizes<a class="anchor" aria-label="anchor" href="#effect-sizes"><i class="fas fa-link"></i></a>
+</h2>
+<p>We strongly advocate for going beyond presenting the coefficients and errors to demonstrate the effect sizes of response across the environmental variation.</p>
 <div id="relative-selection-strength" class="section level3">
 <h3>
-<span class="header-section-number">5.3.4</span> Relative Selection Strength<a class="anchor" aria-label="anchor" href="#relative-selection-strength"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2.1</span> Relative Selection Strength<a class="anchor" aria-label="anchor" href="#relative-selection-strength"><i class="fas fa-link"></i></a>
 </h3>
 <p>Calculated for an animal selecting one spatial location (x1) over another (x2) when these two locations are the same except for one habitat covariate</p>
 <!-- TODO: need RSS formula -->
@@ -130,7 +135,7 @@ individuals here then investigate their movement and availability</p>
 <span class="co"># &gt; example plot</span></code></pre></div>
 <div id="guiding-questions-3" class="section level4">
 <h4>
-<span class="header-section-number">5.3.4.1</span> Guiding Questions<a class="anchor" aria-label="anchor" href="#guiding-questions-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2.1.1</span> Guiding Questions<a class="anchor" aria-label="anchor" href="#guiding-questions-3"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>If you present individuals and there are drastic differences in their response - can you find a reason for this?</li>
@@ -147,16 +152,15 @@ consider biological realism.</li>
 </ul>
 </div>
 </div>
-</div>
-<div id="movement-2" class="section level2">
-<h2>
-<span class="header-section-number">5.4</span> Movement<a class="anchor" aria-label="anchor" href="#movement-2"><i class="fas fa-link"></i></a>
-</h2>
-<p>Available steps are drawn from a gamma distribution of step lengths (shape, scale) and a von-Mises distribution of turn angles (kappa, mu)</p>
-<div id="speedstep-length" class="section level3">
+<div id="movement-2" class="section level3">
 <h3>
-<span class="header-section-number">5.4.1</span> Speed/Step Length<a class="anchor" aria-label="anchor" href="#speedstep-length"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2.2</span> Movement<a class="anchor" aria-label="anchor" href="#movement-2"><i class="fas fa-link"></i></a>
 </h3>
+<p>Available steps are drawn from a gamma distribution of step lengths (shape, scale) and a von-Mises distribution of turn angles (kappa, mu)</p>
+<div id="speedstep-length" class="section level4">
+<h4>
+<span class="header-section-number">5.2.2.1</span> Speed/Step Length<a class="anchor" aria-label="anchor" href="#speedstep-length"><i class="fas fa-link"></i></a>
+</h4>
 <p>Extract basal parameters:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">sl_distr_params</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
@@ -166,10 +170,10 @@ consider biological realism.</li>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code for this calculation</span>
 <span class="co"># &gt; example plot</span></code></pre></div>
-<div id="negative-speed-estimates" class="section level4">
-<h4>
-<span class="header-section-number">5.4.1.1</span> Negative Speed Estimates<a class="anchor" aria-label="anchor" href="#negative-speed-estimates"><i class="fas fa-link"></i></a>
-</h4>
+<div id="negative-speed-estimates" class="section level5">
+<h5>
+<span class="header-section-number">5.2.2.1.1</span> Negative Speed Estimates<a class="anchor" aria-label="anchor" href="#negative-speed-estimates"><i class="fas fa-link"></i></a>
+</h5>
 <p>Negative speed estimates or predictions can come from some models</p>
 <ol style="list-style-type: decimal">
 <li>First check that your data is ok (clean). Are there some erroneous locations, step lengths, or turn angle? Trust the observed (used) input data.</li>
@@ -192,33 +196,34 @@ rate is inverse scale, and shape is one. The equations work out to be the same.<
 </div>
 </div>
 </div>
-<div id="directionality" class="section level2">
-<h2>
-<span class="header-section-number">5.5</span> Directionality<a class="anchor" aria-label="anchor" href="#directionality"><i class="fas fa-link"></i></a>
-</h2>
+<div id="directionality" class="section level3">
+<h3>
+<span class="header-section-number">5.2.3</span> Directionality<a class="anchor" aria-label="anchor" href="#directionality"><i class="fas fa-link"></i></a>
+</h3>
 <p>Kappa is the concentration parameter of the von-Mises distribution and indicates directionality (increasing kappa is more forward movement)</p>
 <!-- TODO: kappa formula -->
-<div id="negative-von-mises-estimates" class="section level3">
-<h3>
-<span class="header-section-number">5.5.1</span> Negative Von Mises Estimates<a class="anchor" aria-label="anchor" href="#negative-von-mises-estimates"><i class="fas fa-link"></i></a>
-</h3>
+<div id="negative-von-mises-estimates" class="section level5">
+<h5>
+<span class="header-section-number">5.2.3.0.1</span> Negative Von Mises Estimates<a class="anchor" aria-label="anchor" href="#negative-von-mises-estimates"><i class="fas fa-link"></i></a>
+</h5>
 <p>A negative von Mises concentration parameter means the adjusted turn angle distribution is centred at 𝜋 (180°) rather than 0 (negative directional autocorrelation; behaviourally the animal is more likely to turn back). This can happen with high resolution data. A fix is to multiply by -1 to recenter the distribution and assumption around 0 and not 𝜋.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; turn angle plot</span></code></pre></div>
 </div>
 </div>
+</div>
 <div id="model-validation-and-evaluation" class="section level2">
 <h2>
-<span class="header-section-number">5.6</span> Model Validation and Evaluation<a class="anchor" aria-label="anchor" href="#model-validation-and-evaluation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> Model Validation and Evaluation<a class="anchor" aria-label="anchor" href="#model-validation-and-evaluation"><i class="fas fa-link"></i></a>
 </h2>
 <p>Often researchers want to determine the performance and reproducibility of their models.</p>
 <div id="model-selection" class="section level3">
 <h3>
-<span class="header-section-number">5.6.1</span> Model Selection<a class="anchor" aria-label="anchor" href="#model-selection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1</span> Model Selection<a class="anchor" aria-label="anchor" href="#model-selection"><i class="fas fa-link"></i></a>
 </h3>
 <div id="aiclikelihood" class="section level4">
 <h4>
-<span class="header-section-number">5.6.1.1</span> AIC/likelihood<a class="anchor" aria-label="anchor" href="#aiclikelihood"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1.1</span> AIC/likelihood<a class="anchor" aria-label="anchor" href="#aiclikelihood"><i class="fas fa-link"></i></a>
 </h4>
 <p>It is common to create multiple candidate models and select the top performing
 one. Performance can be evaluated using a variety of measures, we will discuss
@@ -234,11 +239,11 @@ depth discussion of building and evaluating models.</p>
 </div>
 <div id="model-prediction" class="section level3">
 <h3>
-<span class="header-section-number">5.6.2</span> Model Prediction<a class="anchor" aria-label="anchor" href="#model-prediction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2</span> Model Prediction<a class="anchor" aria-label="anchor" href="#model-prediction"><i class="fas fa-link"></i></a>
 </h3>
 <div id="k-fold-validation" class="section level4">
 <h4>
-<span class="header-section-number">5.6.2.1</span> K-fold ‘Validation’<a class="anchor" aria-label="anchor" href="#k-fold-validation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2.1</span> K-fold ‘Validation’<a class="anchor" aria-label="anchor" href="#k-fold-validation"><i class="fas fa-link"></i></a>
 </h4>
 <p>There are both philosophical and analytical points to be made about validation.</p>
 <p>First and foremost, we can’t expect our models to do everything. Some models are
@@ -267,9 +272,11 @@ you actually want a validation of the extent of your study area.</p>
 </div>
 <div id="discrimination-analyses" class="section level4">
 <h4>
-<span class="header-section-number">5.6.2.2</span> Discrimination analyses<a class="anchor" aria-label="anchor" href="#discrimination-analyses"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2.2</span> Discrimination analyses<a class="anchor" aria-label="anchor" href="#discrimination-analyses"><i class="fas fa-link"></i></a>
 </h4>
-<p>A correct discrimination index for case-control models is concordance (Brentnall et al. 2015)</p>
+<div class="inline-figure">
+<img src="https://badgen.net/badge/status/WIP/orange">
+A correct discrimination index for case-control models is concordance (Brentnall et al. 2015)</div>
 <p>With an r package! <a href="https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf" class="uri">https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf</a></p>
 <p>Concordance is ranked between 0 and 1 and you calculate discrimination either within or out of sample.</p>
 <ol style="list-style-type: decimal">
@@ -287,9 +294,11 @@ you actually want a validation of the extent of your study area.</p>
 </div>
 <div id="habitat-calibration" class="section level4">
 <h4>
-<span class="header-section-number">5.6.2.3</span> Habitat calibration<a class="anchor" aria-label="anchor" href="#habitat-calibration"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2.3</span> Habitat calibration<a class="anchor" aria-label="anchor" href="#habitat-calibration"><i class="fas fa-link"></i></a>
 </h4>
-<p>Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)</p>
+<div class="inline-figure">
+<img src="https://badgen.net/badge/status/WIP/orange">
+Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)</div>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code for this?</span></code></pre></div>
 
@@ -303,27 +312,25 @@ you actually want a validation of the extent of your study area.</p>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#interpreting-results"><span class="header-section-number">5</span> Interpreting results</a></li>
-<li><a class="nav-link" href="#whats-in-a-beta"><span class="header-section-number">5.1</span> What’s in a beta?</a></li>
-<li><a class="nav-link" href="#selection-1"><span class="header-section-number">5.2</span> Selection</a></li>
+<li><a class="nav-link" href="#interpretation"><span class="header-section-number">5</span> Interpretation</a></li>
 <li>
-<a class="nav-link" href="#movement-1"><span class="header-section-number">5.3</span> Movement</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#table"><span class="header-section-number">5.3.1</span> Table</a></li>
-<li><a class="nav-link" href="#box-plots"><span class="header-section-number">5.3.2</span> Box plots</a></li>
-<li><a class="nav-link" href="#effect-sizes"><span class="header-section-number">5.3.3</span> Effect Sizes</a></li>
-<li><a class="nav-link" href="#relative-selection-strength"><span class="header-section-number">5.3.4</span> Relative Selection Strength</a></li>
+<a class="nav-link" href="#whats-in-a-beta"><span class="header-section-number">5.1</span> What’s in a beta?</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#selection-1"><span class="header-section-number">5.1.1</span> Selection</a></li>
+<li><a class="nav-link" href="#movement-1"><span class="header-section-number">5.1.2</span> Movement</a></li>
+<li><a class="nav-link" href="#presenting-coefficients"><span class="header-section-number">5.1.3</span> Presenting coefficients</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#movement-2"><span class="header-section-number">5.4</span> Movement</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#speedstep-length"><span class="header-section-number">5.4.1</span> Speed/Step Length</a></li></ul>
+<a class="nav-link" href="#effect-sizes"><span class="header-section-number">5.2</span> Effect Sizes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#relative-selection-strength"><span class="header-section-number">5.2.1</span> Relative Selection Strength</a></li>
+<li><a class="nav-link" href="#movement-2"><span class="header-section-number">5.2.2</span> Movement</a></li>
+<li><a class="nav-link" href="#directionality"><span class="header-section-number">5.2.3</span> Directionality</a></li>
+</ul>
 </li>
 <li>
-<a class="nav-link" href="#directionality"><span class="header-section-number">5.5</span> Directionality</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#negative-von-mises-estimates"><span class="header-section-number">5.5.1</span> Negative Von Mises Estimates</a></li></ul>
-</li>
-<li>
-<a class="nav-link" href="#model-validation-and-evaluation"><span class="header-section-number">5.6</span> Model Validation and Evaluation</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#model-selection"><span class="header-section-number">5.6.1</span> Model Selection</a></li>
-<li><a class="nav-link" href="#model-prediction"><span class="header-section-number">5.6.2</span> Model Prediction</a></li>
+<a class="nav-link" href="#model-validation-and-evaluation"><span class="header-section-number">5.3</span> Model Validation and Evaluation</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#model-selection"><span class="header-section-number">5.3.1</span> Model Selection</a></li>
+<li><a class="nav-link" href="#model-prediction"><span class="header-section-number">5.3.2</span> Model Prediction</a></li>
 </ul>
 </li>
 </ul>

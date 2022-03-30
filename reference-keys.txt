@@ -40,10 +40,11 @@ output
 coefficients
 std.-errorcis
 troubleshooting-1
-interpreting-results
+interpretation
 whats-in-a-beta
 selection-1
 movement-1
+presenting-coefficients
 table
 box-plots
 effect-sizes
