@@ -23,7 +23,8 @@ interpretation of spurious results.
 
 ## Two-step approach
 
-### Step 1 ![](https://badgen.net/badge/status/WIP/orange)
+### Step 1 
+![](https://badgen.net/badge/status/WIP/orange)
 
 Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.
 
