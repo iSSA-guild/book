@@ -23,9 +23,7 @@ interpretation of spurious results.
 
 ## Two-step approach
 
-![](https://badgen.net/badge/status/WIP/orange)
-
-### Step 1 
+### Step 1 ![](https://badgen.net/badge/status/WIP/orange)
 
 Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.
 
@@ -118,8 +116,7 @@ matrix error very liberally. Generally, you don't have to worry about it unless
 you have other errors with it.
 
 
-*EXERCISE*: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs
-![](https://badgen.net/badge/status/WIP/orange)
+*EXERCISE*: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs![](https://badgen.net/badge/status/WIP/orange)
 
 ```{r plot_coef}
 # > plot coefficient by sample size – is there a relationship?
