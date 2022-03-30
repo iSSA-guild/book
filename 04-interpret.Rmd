@@ -119,7 +119,7 @@ rate is inverse scale, and shape is one. The equations work out to be the same.
 See other distributions in the iSSA webinar files (Avgar and Smith 2022)
 
 
-### Directionality
+#### Directionality
 
 Kappa is the concentration parameter of the von-Mises distribution and indicates directionality (increasing kappa is more forward movement)
 
@@ -197,10 +197,10 @@ Two alternative and recommended options are discrimination or habitat calibratio
 
 
 #### Discrimination analyses
-![](https://badgen.net/badge/status/WIP/orange)
-A correct discrimination index for case-control models is concordance (Brentnall et al. 2015)
 
-With an r package! https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf
+![](https://badgen.net/badge/status/WIP/orange)
+
+A correct discrimination index for case-control models is concordance (Brentnall et al. 2015). With an r package! https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf
 
 Concordance is ranked between 0 and 1 and you calculate discrimination either within or out of sample.
 
@@ -216,8 +216,10 @@ Another approach that is closer to Fortin 2009.
 4. Then you do frequency in each of those bins and do the correlation.
     
 #### Habitat calibration
-![](https://badgen.net/badge/status/WIP/orange)
+
 Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)
+
+![](https://badgen.net/badge/status/WIP/orange)
 
 ```{r hab_calib}
 # > code for this?
