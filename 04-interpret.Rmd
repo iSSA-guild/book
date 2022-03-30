@@ -1,4 +1,4 @@
-# Interpreting results
+# Interpretation
 
 ## What’s in a beta?
 
@@ -6,19 +6,20 @@
 indicate directionality but the ecological significance and effect size of the
 behaviour is not clear without predicting the model
 
-## Selection
+### Selection
 - Coefficient for covariate indicates selection (+) or avoidance (-)
 - "Distance-to a feature" covariate can be tricky, a positive coefficient
 indicates selection for areas farther from the feature, which means the feature
 itself is avoided.
 
-## Movement
+### Movement
 - Coefficient for log(Step Length) modifies shape parameter indicating more (+) or fewer long steps (-)
 - Coefficient for Step Length modifies the scale parameter indicating longer (+) or shorter steps (-)
 - Coefficient for cos(Turn Angle) indicates the directionality of movement, concentration parameter of the Von Mises
 
 
-### Table
+### Presenting coefficients
+#### Table
 A table with coefficient and error is standard for reporting results. This is
 not recommended for presentations or the sole means of presenting results.
 
@@ -27,8 +28,7 @@ not recommended for presentations or the sole means of presenting results.
 # > making a nice table from the output code?
 ```
 
-
-### Box plots
+#### Box plots
 
 Boxplots can be useful to look at general results and variation between
 categories - time of day, seasons. It is useful to take note of outlying
@@ -38,7 +38,7 @@ individuals here then investigate their movement and availability
 # > ggplot code
 ```
 
-### Effect Sizes
+## Effect Sizes
 We strongly advocate for going beyond presenting the coefficients and errors to demonstrate the effect sizes of response across the environmental variation.
 
 
@@ -70,10 +70,10 @@ they are wildly different perhaps you should choose less extreme values - again
 consider biological realism.
 
 
-## Movement
+### Movement
 Available steps are drawn from a gamma distribution of step lengths (shape, scale) and a von-Mises distribution of turn angles (kappa, mu)
 
-### Speed/Step Length
+#### Speed/Step Length
 
 Extract basal parameters: 
 
@@ -92,7 +92,7 @@ The calculation for Mean Step Length is shape multiplied by scale:\
 ```
 
 
-#### Negative Speed Estimates
+##### Negative Speed Estimates
 
 Negative speed estimates or predictions can come from some models
 
@@ -119,7 +119,7 @@ rate is inverse scale, and shape is one. The equations work out to be the same.
 See other distributions in the iSSA webinar files (Avgar and Smith 2022)
 
 
-## Directionality
+### Directionality
 
 Kappa is the concentration parameter of the von-Mises distribution and indicates directionality (increasing kappa is more forward movement)
 
@@ -127,7 +127,7 @@ Kappa is the concentration parameter of the von-Mises distribution and indicates
 <!-- TODO: kappa formula --> 
 
 
-### Negative Von Mises Estimates
+##### Negative Von Mises Estimates
 
 A negative von Mises concentration parameter means the adjusted turn angle distribution is centred at 𝜋 (180°) rather than 0 (negative directional autocorrelation; behaviourally the animal is more likely to turn back). This can happen with high resolution data.  A fix is to multiply by -1 to recenter the distribution and assumption around 0 and not 𝜋.
 
@@ -197,6 +197,7 @@ Two alternative and recommended options are discrimination or habitat calibratio
 
 
 #### Discrimination analyses
+![](https://badgen.net/badge/status/WIP/orange)
 A correct discrimination index for case-control models is concordance (Brentnall et al. 2015)
 
 With an r package! https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf
@@ -215,7 +216,7 @@ Another approach that is closer to Fortin 2009.
 4. Then you do frequency in each of those bins and do the correlation.
     
 #### Habitat calibration
-
+![](https://badgen.net/badge/status/WIP/orange)
 Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)
 
 ```{r hab_calib}
