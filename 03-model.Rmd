@@ -12,7 +12,7 @@ clusters from each individual in a single model. An equal sampling intensity
 helps address potential bias.
 
 
-## Global models vs candidate models
+## Model Building
 
 The model or model sets require justification. We direct to (Fieberg and Johnson
 2015, Northrup et al. 2021) for detailed discussion and reference regarding
@@ -22,6 +22,7 @@ approach, or large candidate model sets, as it often results in the
 interpretation of spurious results.
 
 ## Two-step approach
+![](https://badgen.net/badge/status/WIP/orange)
 ### Step 1 
 
 Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.
@@ -34,7 +35,7 @@ The concept of a core model is to identify key features of animal movement that 
 # > code
 ```
 
-### Troubleshooting
+#### Troubleshooting
 
 Starting with simpler models could help to identify covariates that might be
 causing problems 
@@ -116,6 +117,7 @@ you have other errors with it.
 
 
 *EXERCISE*: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs
+![](https://badgen.net/badge/status/WIP/orange)
 
 ```{r plot_coef}
 # > plot coefficient by sample size – is there a relationship?
