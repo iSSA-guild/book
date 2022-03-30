@@ -73,9 +73,9 @@
 clusters from each individual in a single model. An equal sampling intensity
 helps address potential bias.</p>
 </div>
-<div id="global-models-vs-candidate-models" class="section level2">
+<div id="model-building" class="section level2">
 <h2>
-<span class="header-section-number">4.2</span> Global models vs candidate models<a class="anchor" aria-label="anchor" href="#global-models-vs-candidate-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.2</span> Model Building<a class="anchor" aria-label="anchor" href="#model-building"><i class="fas fa-link"></i></a>
 </h2>
 <p>The model or model sets require justification. We direct to (Fieberg and Johnson
 2015, Northrup et al. 2021) for detailed discussion and reference regarding
@@ -88,20 +88,18 @@ interpretation of spurious results.</p>
 <h2>
 <span class="header-section-number">4.3</span> Two-step approach<a class="anchor" aria-label="anchor" href="#two-step-approach"><i class="fas fa-link"></i></a>
 </h2>
-<div id="step-1" class="section level3">
-<h3>
-<span class="header-section-number">4.3.1</span> Step 1<a class="anchor" aria-label="anchor" href="#step-1"><i class="fas fa-link"></i></a>
-</h3>
+<div class="inline-figure">
+<img src="https://badgen.net/badge/status/WIP/orange">
+### Step 1</div>
 <p>Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.</p>
 <p>The global or alternative models can be composed of core or interest variables.</p>
 <p>The concept of a core model is to identify key features of animal movement that are important but perhaps not the covariates of interest to the particular study or hypotheses. – Prokopenko et al 2017</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code</span></code></pre></div>
-</div>
-<div id="troubleshooting" class="section level3">
-<h3>
-<span class="header-section-number">4.3.2</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
-</h3>
+<div id="troubleshooting" class="section level4">
+<h4>
+<span class="header-section-number">4.3.0.1</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
+</h4>
 <p>Starting with simpler models could help to identify covariates that might be
 causing problems</p>
 <p>If there are no observations for certain categories or
@@ -109,7 +107,7 @@ interactions the model will likely not converge.</p>
 </div>
 <div id="step-2" class="section level3">
 <h3>
-<span class="header-section-number">4.3.3</span> Step 2<a class="anchor" aria-label="anchor" href="#step-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.1</span> Step 2<a class="anchor" aria-label="anchor" href="#step-2"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: lower-alpha">
 <li><p>Bootstrap individual models to get population mean and CIs (Prokopenko et al.
@@ -176,7 +174,8 @@ high VIF, then you will get NAs.</p>
 <p><code>glmmTMB</code> gives the Model convergence problem; non-positive-definite Hessian
 matrix error very liberally. Generally, you don’t have to worry about it unless
 you have other errors with it.</p>
-<p><em>EXERCISE</em>: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs</p>
+<p><em>EXERCISE</em>: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs
+<img src="https://badgen.net/badge/status/WIP/orange"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; plot coefficient by sample size – is there a relationship?</span></code></pre></div>
 
@@ -191,13 +190,9 @@ you have other errors with it.</p>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#modelling"><span class="header-section-number">4</span> Modelling</a></li>
 <li><a class="nav-link" href="#guiding-questions-2"><span class="header-section-number">4.1</span> Guiding Questions</a></li>
-<li><a class="nav-link" href="#global-models-vs-candidate-models"><span class="header-section-number">4.2</span> Global models vs candidate models</a></li>
+<li><a class="nav-link" href="#model-building"><span class="header-section-number">4.2</span> Model Building</a></li>
 <li>
-<a class="nav-link" href="#two-step-approach"><span class="header-section-number">4.3</span> Two-step approach</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#step-1"><span class="header-section-number">4.3.1</span> Step 1</a></li>
-<li><a class="nav-link" href="#troubleshooting"><span class="header-section-number">4.3.2</span> Troubleshooting</a></li>
-<li><a class="nav-link" href="#step-2"><span class="header-section-number">4.3.3</span> Step 2</a></li>
-</ul>
+<a class="nav-link" href="#two-step-approach"><span class="header-section-number">4.3</span> Two-step approach</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#step-2"><span class="header-section-number">4.3.1</span> Step 2</a></li></ul>
 </li>
 <li><a class="nav-link" href="#mixed-model-approach"><span class="header-section-number">4.4</span> Mixed Model Approach</a></li>
 <li>

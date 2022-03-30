@@ -31,9 +31,8 @@ time-of-day
 interactions
 modelling
 guiding-questions-2
-global-models-vs-candidate-models
+model-building
 two-step-approach
-step-1
 troubleshooting
 step-2
 mixed-model-approach
