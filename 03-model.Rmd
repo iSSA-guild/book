@@ -22,7 +22,9 @@ approach, or large candidate model sets, as it often results in the
 interpretation of spurious results.
 
 ## Two-step approach
+
 ![](https://badgen.net/badge/status/WIP/orange)
+
 ### Step 1 
 
 Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.
