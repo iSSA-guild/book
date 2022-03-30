@@ -6,7 +6,7 @@ amt
 glmmtmb
 tidyverse
 data.table
-prepare-data
+preparation
 clean-data
 erroneous-locations
 rarefication-and-autocorrelation
