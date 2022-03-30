@@ -195,20 +195,20 @@ rate is inverse scale, and shape is one. The equations work out to be the same.<
 <p>See other distributions in the iSSA webinar files (Avgar and Smith 2022)</p>
 </div>
 </div>
-</div>
-<div id="directionality" class="section level3">
-<h3>
-<span class="header-section-number">5.2.3</span> Directionality<a class="anchor" aria-label="anchor" href="#directionality"><i class="fas fa-link"></i></a>
-</h3>
+<div id="directionality" class="section level4">
+<h4>
+<span class="header-section-number">5.2.2.2</span> Directionality<a class="anchor" aria-label="anchor" href="#directionality"><i class="fas fa-link"></i></a>
+</h4>
 <p>Kappa is the concentration parameter of the von-Mises distribution and indicates directionality (increasing kappa is more forward movement)</p>
 <!-- TODO: kappa formula -->
 <div id="negative-von-mises-estimates" class="section level5">
 <h5>
-<span class="header-section-number">5.2.3.0.1</span> Negative Von Mises Estimates<a class="anchor" aria-label="anchor" href="#negative-von-mises-estimates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2.2.2.1</span> Negative Von Mises Estimates<a class="anchor" aria-label="anchor" href="#negative-von-mises-estimates"><i class="fas fa-link"></i></a>
 </h5>
 <p>A negative von Mises concentration parameter means the adjusted turn angle distribution is centred at 𝜋 (180°) rather than 0 (negative directional autocorrelation; behaviourally the animal is more likely to turn back). This can happen with high resolution data. A fix is to multiply by -1 to recenter the distribution and assumption around 0 and not 𝜋.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; turn angle plot</span></code></pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -274,10 +274,8 @@ you actually want a validation of the extent of your study area.</p>
 <h4>
 <span class="header-section-number">5.3.2.2</span> Discrimination analyses<a class="anchor" aria-label="anchor" href="#discrimination-analyses"><i class="fas fa-link"></i></a>
 </h4>
-<div class="inline-figure">
-<img src="https://badgen.net/badge/status/WIP/orange">
-A correct discrimination index for case-control models is concordance (Brentnall et al. 2015)</div>
-<p>With an r package! <a href="https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf" class="uri">https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf</a></p>
+<div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
+<p>A correct discrimination index for case-control models is concordance (Brentnall et al. 2015). With an r package! <a href="https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf" class="uri">https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf</a></p>
 <p>Concordance is ranked between 0 and 1 and you calculate discrimination either within or out of sample.</p>
 <ol style="list-style-type: decimal">
 <li>Cluster - predict all steps (Can also renormalize, divide predictions by sum of predictions across cluster)</li>
@@ -296,9 +294,8 @@ A correct discrimination index for case-control models is concordance (Brentnall
 <h4>
 <span class="header-section-number">5.3.2.3</span> Habitat calibration<a class="anchor" aria-label="anchor" href="#habitat-calibration"><i class="fas fa-link"></i></a>
 </h4>
-<div class="inline-figure">
-<img src="https://badgen.net/badge/status/WIP/orange">
-Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)</div>
+<p>Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)</p>
+<div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code for this?</span></code></pre></div>
 
@@ -324,7 +321,6 @@ Habitat calibration plots are a way to find the most predictive model, it can be
 <a class="nav-link" href="#effect-sizes"><span class="header-section-number">5.2</span> Effect Sizes</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#relative-selection-strength"><span class="header-section-number">5.2.1</span> Relative Selection Strength</a></li>
 <li><a class="nav-link" href="#movement-2"><span class="header-section-number">5.2.2</span> Movement</a></li>
-<li><a class="nav-link" href="#directionality"><span class="header-section-number">5.2.3</span> Directionality</a></li>
 </ul>
 </li>
 <li>
