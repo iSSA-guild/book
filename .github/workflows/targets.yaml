@@ -47,10 +47,6 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - uses: r-lib/actions/setup-pandoc@master
 
-      - name: Install Mac system dependencies
-        if: runner.os == 'macOS'
-        run: brew install zeromq
-
       - name: Install Linux system dependencies
         if: runner.os == 'Linux'
         run: |
