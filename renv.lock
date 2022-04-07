@@ -391,6 +391,17 @@
       "Hash": "bb4341986bc8b914f0f0acf2e4a3f2f7",
       "Requirements": []
     },
+    "conflicted": {
+      "Package": "conflicted",
+      "Version": "1.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c6bb5e1ef58f2f1c84f238f55bd2e56a",
+      "Requirements": [
+        "memoise",
+        "rlang"
+      ]
+    },
     "cpp11": {
       "Package": "cpp11",
       "Version": "0.4.2",
@@ -451,7 +462,8 @@
       "RemoteUsername": "rdatatable",
       "RemoteRef": "HEAD",
       "RemoteSha": "e9a323de01a17af70d5316016606fa8d35b25023",
-      "Hash": "b2313792ccb4ab1fd69ac900b01d9634"
+      "Hash": "b2313792ccb4ab1fd69ac900b01d9634",
+      "Requirements": []
     },
     "desc": {
       "Package": "desc",
