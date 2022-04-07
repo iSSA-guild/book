@@ -3,7 +3,8 @@ grab_functions <- function(raw_repo_path) {
 
 	paths <- sapply(z, `[`, 'path')
 
-	lapply(paste0(raw_repo_path, 'main/', grep('.R', paths, value = TRUE)),
-				 source)
+	sub_paths <- grep('.R', paths, value = TRUE)
+
+	lapply(paste0(raw_repo_path, 'main/', sub_paths), source)
 }
 
