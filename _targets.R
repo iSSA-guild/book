@@ -13,11 +13,13 @@ lapply(dir('R', '*.R', full.names = TRUE), source)
 
 # Variables ---------------------------------------------------------------
 
-# TODO: [ALR] auto copy targets issa example to here
 # TODO: license
 # TODO: contributing md
 # TODO: spelling
 # TODO: fix refs
+
+
+source('https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R')
 
 c(
 	tar_target(
