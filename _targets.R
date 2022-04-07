@@ -31,7 +31,7 @@ targets_book <- c(
 			'docs/index.html'
 		}),
 		format = 'file',
-		deps = tar_knitr_deps(dir('.', '.Rmd'))
+		deps = c(dir('.', '.Rmd'), tar_knitr_deps(dir('.', '.Rmd')))
 	)
 
 	# tar_knit(
