@@ -1,0 +1,124 @@
+# Modelling
+
+## Guiding Questions
+
+- What decisions did you make when creating your iSSAs and why?
+- What is the biological or statistical justification for these decisions?
+- How might your decisions impact your inferences?
+
+Often practitioners need to combine data from multiple individuals. If only
+‘population-level’ inference is the goal, then include the same number of
+clusters from each individual in a single model. An equal sampling intensity
+helps address potential bias.
+
+
+## Model Building
+
+The model or model sets require justification. We direct to (Fieberg and Johnson
+2015, Northrup et al. 2021) for detailed discussion and reference regarding
+model building. We advocate for global models or distinct competing candidates
+representing ecological processes. We do not recommend using a dredging
+approach, or large candidate model sets, as it often results in the
+interpretation of spurious results.
+
+## Two-step approach
+
+### Step 1 
+![](https://badgen.net/badge/status/WIP/orange)
+
+Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.
+
+The global or alternative models can be composed of core or interest variables. 
+
+The concept of a core model is to identify key features of animal movement that are important but perhaps not the covariates of interest to the particular study or hypotheses. – Prokopenko et al 2017
+
+```{r two_step}
+# > code
+```
+
+#### Troubleshooting
+
+Starting with simpler models could help to identify covariates that might be
+causing problems 
+
+If there are no observations for certain categories or
+interactions the model will likely not converge.
+
+### Step 2
+
+a. Bootstrap individual models to get population mean and CIs (Prokopenko et al.
+2017, Scrafford et al. 2018)
+
+b. Calculate a population level average by modelling each variable as a function
+of anything that interacted with that variable and the availability as an
+explanatory factor, with inverse variance as a weighting (Dickie et al. 2020) -
+See Supplementary information.
+
+
+## Mixed Model Approach
+
+(Muff et al. 2020)
+
+Regarding our discussion of nesting random effects:
+https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified
+nested is notated as:
+
+```{r, eval = FALSE}
+(1|group1/group2)
+```
+
+## Output
+Here we are just describing what you will see from your output.
+
+### Coefficients
+
+The estimates are the selection or movement coefficients, either for individuals or the population depending on your input data and model structure.
+
+For a mixed model, the random effects output is relative to the fixed effect
+
+To calculate individual selection coefficients =  Fixed Effect + Random Effect
+
+### Std. Error/CIs
+
+Check the fixed and random effect standard errors to see if they are really large or NAs.
+
+```{r model_failed}
+# > example of ‘failed’ model
+```
+
+
+### Troubleshooting
+
+We have had success troubleshooting by putting the error in google and looking
+for it as a github issue with the package or `lme4` since they're built more or
+less the same. Bolker has lots of hidden tips and tricks in there. Ben Bolker is
+also very responsive.
+
+https://cran.r-project.org/web/packages/glmmTMB/vignettes/troubleshooting.html
+
+Use `set.seed()` to get the same model output, check that the output does not vary greatly with different seeds or when it is not set.
+
+Be conservative in "trusting" the model. 
+Don’t accept models with any NAs in the response. 
+
+Unlike with `clogit` in `amt`, for `glmmTMB` simpler models do not always
+improve convergence, but adding covariates with informative variation will
+improve model performance and convergence.
+
+We have found through trial and error that cos(TA) can make or break the model.
+These poisson models seem to like lots of data and a fair number of variables,
+but the optimizer is cranky. If you have too few, and they're correlated/have
+high VIF, then you will get NAs.
+
+Use the performance package and the `check_model()` or `model_performance()` commands
+
+`glmmTMB` gives the Model convergence problem; non-positive-definite Hessian
+matrix error very liberally. Generally, you don't have to worry about it unless
+you have other errors with it.
+
+
+*EXERCISE*: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs![](https://badgen.net/badge/status/WIP/orange)
+
+```{r plot_coef}
+# > plot coefficient by sample size – is there a relationship?
+```

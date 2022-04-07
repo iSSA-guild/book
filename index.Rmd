@@ -1,0 +1,29 @@
+--- 
+title: "How-To iSSA"
+date: "`r Sys.Date()`"
+# author: 
+site: bookdown::bookdown_site
+documentclass: book
+url: https://issa-guild.github.io/book/
+cover-image: images/group.png
+description: |
+  TODO: description
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+nocite: '@*'
+---
+
+
+# Introduction
+
+
+## Acknowledgements
+
+Thank you to iSSA club alumni Katrien Kingdon, Levi Newediuk, Quinn Webber, Emilie Debedan, Eric Vander Wal for the motivation to solve problems and seek answers.
+
+Note: Everyone learns differently and reading a document may not be the most helpful. Working with a group or discussing issues with a peer is immensely helpful, even for the most experienced practitioners. Every new analysis is an opportunity to learn and rethink our current ideas.
+
+<!-- TODO: thanks to package authors/R developers -->
+
+

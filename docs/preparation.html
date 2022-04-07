@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 3 Preparation | How-To iSSA</title>
+<meta name="description" content="3.1 Clean data  3.1.1 Erroneous locations The amt package includes code and guidelines for data cleaning, as does (Bjørneraas et al. 2010) The major GPS cleaning considerations are: censor...">
+<meta name="generator" content="bookdown 0.25.5 with bs4_book()">
+<meta property="og:title" content="Chapter 3 Preparation | How-To iSSA">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://issa-guild.github.io/book/preparation.html">
+<meta property="og:image" content="https://issa-guild.github.io/book/images/group.png">
+<meta property="og:description" content="3.1 Clean data  3.1.1 Erroneous locations The amt package includes code and guidelines for data cleaning, as does (Bjørneraas et al. 2010) The major GPS cleaning considerations are: censor...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3 Preparation | How-To iSSA">
+<meta name="twitter:description" content="3.1 Clean data  3.1.1 Erroneous locations The amt package includes code and guidelines for data cleaning, as does (Bjørneraas et al. 2010) The major GPS cleaning considerations are: censor...">
+<meta name="twitter:image" content="https://issa-guild.github.io/book/images/group.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">How-To iSSA</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="setup.html"><span class="header-section-number">2</span> Setup</a></li>
+<li><a class="active" href="preparation.html"><span class="header-section-number">3</span> Preparation</a></li>
+<li><a class="" href="modelling.html"><span class="header-section-number">4</span> Modelling</a></li>
+<li><a class="" href="interpretation.html"><span class="header-section-number">5</span> Interpretation</a></li>
+<li><a class="" href="resources.html"><span class="header-section-number">6</span> Resources</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/iSSA-guild/book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="preparation" class="section level1">
+<h1>
+<span class="header-section-number">3</span> Preparation<a class="anchor" aria-label="anchor" href="#preparation"><i class="fas fa-link"></i></a>
+</h1>
+<div id="clean-data" class="section level2">
+<h2>
+<span class="header-section-number">3.1</span> Clean data<a class="anchor" aria-label="anchor" href="#clean-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="erroneous-locations" class="section level3">
+<h3>
+<span class="header-section-number">3.1.1</span> Erroneous locations<a class="anchor" aria-label="anchor" href="#erroneous-locations"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>amt</code> package includes code and guidelines for data cleaning, as does
+(Bjørneraas et al. 2010)</p>
+<p>The major GPS cleaning considerations are:</p>
+<ul>
+<li>censor locations pre- and post- animal capture and collaring</li>
+<li>low quality data (based on the available measure of precision, 2D/3D, DPOP, etc.)</li>
+<li>unreachable habitats to occupy</li>
+<li>unrealistic step lengths</li>
+<li>immediate round trips</li>
+<li>drop offs/ mortalities</li>
+</ul>
+</div>
+<div id="rarefication-and-autocorrelation" class="section level3">
+<h3>
+<span class="header-section-number">3.1.2</span> Rarefication and Autocorrelation<a class="anchor" aria-label="anchor" href="#rarefication-and-autocorrelation"><i class="fas fa-link"></i></a>
+</h3>
+<p>In early GPS and RSF studies, autocorrelation was viewed as an issue to directly
+eliminate. Over the last two decades, however, the discourse around
+autocorrelation has become more nuanced (Fieberg et al. 2021, Northrup et al.
+2021). To summarize our current understanding, locations are indeed ‘serially
+dependent’ – points closer in time will be closer in space (Fleming et al.
+2014). However, if these locations are taken at regular intervals, they should
+be representative of space use (Fieberg et al 2021). Sampling locations at
+regular intervals is the best practice for habitat selection analyses. Further,
+autocorrelation bias will reduce estimate of uncertainty (SE). To address
+concern, using a robust calculation for confidence intervals can be completed.</p>
+</div>
+</div>
+<div id="sample-available-steps" class="section level2">
+<h2>
+<span class="header-section-number">3.2</span> Sample Available Steps<a class="anchor" aria-label="anchor" href="#sample-available-steps"><i class="fas fa-link"></i></a>
+</h2>
+<p>The main assumption is that the availability distribution defines what is accessible to the animal at a given location or time. For SSF specifically this assumption addresses what is accessible to the animal and can be selected as it makes its next step.</p>
+<p>iSSA builds on this and uses empirical observations of movements to inform probability distributions, which can then be modified by including corresponding covariates in the model.</p>
+<p>The unit of replication in iSSA analysis are clusters (or strata) made of a used step matches with a set of available steps. Available steps are sampled from tentative distributions of step length and turn angle.</p>
+<div id="distributions" class="section level3">
+<h3>
+<span class="header-section-number">3.2.1</span> Distributions<a class="anchor" aria-label="anchor" href="#distributions"><i class="fas fa-link"></i></a>
+</h3>
+<p>Be aware what distribution you are drawing from when you generate random steps.</p>
+<div id="step-length-distribution" class="section level4">
+<h4>
+<span class="header-section-number">3.2.1.1</span> Step Length Distribution<a class="anchor" aria-label="anchor" href="#step-length-distribution"><i class="fas fa-link"></i></a>
+</h4>
+<p>There are four possible step length distributions:</p>
+<ol style="list-style-type: decimal">
+<li>Exponential (step length)</li>
+<li>Half-Normal ([step-length]2)</li>
+<li>Log-Normal (log[step length]2 and log[step length]</li>
+<li>Gamma (step length and log[step length])</li>
+</ol>
+<p>Here we will focus on the Gamma, as it has been commonly used in the literature,
+but will provide some exponential examples. The Gamma distribution has a shape
+(k) and a scale parameter (<span class="math inline">\(\theta\)</span>, ‘shape’ and ‘scale’ in the <code>amt</code> package. The
+exponential distribution, which is a special case of the gamma, only has a rate
+parameter (lambda).</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># &gt; figure of each distribution</span>
+<span class="co"># &gt; extract params, save for later</span></code></pre></div>
+<p>Plot the observed data against these fitted distributions to assess the
+agreement between them. Do the distributions misclassify some observations
+(normally will miss extreme values)? There should not be negative speeds at this
+point, calculate the mean to check. These plots and calculations should be done
+at the level you estimated distributions, calculated random steps, and model the
+behaviour. Check which distribution seems to fit best.</p>
+</div>
+<div id="turn-angle-distribution" class="section level4">
+<h4>
+<span class="header-section-number">3.2.1.2</span> Turn Angle Distribution<a class="anchor" aria-label="anchor" href="#turn-angle-distribution"><i class="fas fa-link"></i></a>
+</h4>
+<p>Prokopenko et al. 2016 used a uniform ta and included cos(TA) to adjust for more
+realistic variation in directionality. If a Von Mises is fit from observed
+points, including cos(TA) in the model might not be informative. The
+concentration parameter (k) ‘kappa’ in amt, and the location parameter (<span class="math inline">\(\mu\)</span>, mu in <code>amt</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># &gt; figure of von mises distribution</span>
+<span class="co"># &gt; extract params, save for later</span></code></pre></div>
+</div>
+<div id="individual-vs.-population-distributions" class="section level4">
+<h4>
+<span class="header-section-number">3.2.1.3</span> Individual vs. Population Distributions<a class="anchor" aria-label="anchor" href="#individual-vs.-population-distributions"><i class="fas fa-link"></i></a>
+</h4>
+<p>When generating random steps for multiple animals, you can do so at either the
+individual or population level distribution. When you generate random steps by
+individuals, the <code>amt</code> package is fitting a parametric distribution to the step
+length and turn angle distributions of a given individual and then randomly
+selecting new steps from it.</p>
+<p>As an alternative, the population level distribution can be used, which informs
+random steps for all individuals using this population probability distribution.
+You could also split movement distributions by time of day, or season, even by
+habitat.</p>
+<p>How you generate random distributions changes your comparisons of used to
+available. For example, if you generate distributions from the population and
+run individual models. Then the results will say how individuals differ from the
+population movement behaviour. Let’s consider a fast individual, if a population
+SL distribution was used then their <code>ln(SL)</code> covariate will be more positive to
+adjust for this different. If you want to compare individuals to each other,
+then starting with a baseline that is the same allows you to do so, the
+population mean distribution is recommended.</p>
+<p>In summary, movement variation can be accounted for at the random step
+generation stage and/or in the model parameterization stage. There are reasons
+for either, but the awareness of which one you choose and possible downstream
+patterns that could result is critical.</p>
+<p>These decisions can be informed once you explore your data.</p>
+</div>
+</div>
+<div id="number-of-random-steps" class="section level3">
+<h3>
+<span class="header-section-number">3.2.2</span> Number of random steps<a class="anchor" aria-label="anchor" href="#number-of-random-steps"><i class="fas fa-link"></i></a>
+</h3>
+<p>The availability distribution is defined by the randomly sampled steps from the step length and turn angle probability distributions.</p>
+<p>Using 10 steps for each used step to have a strata of 11 steps is common, but intensity of sampling varies across the literature. Sensitivity analysis can be conducted to determine the influence of availability sample on selection (Northrup et al. 2013, 2016). A general piece of advice is “at least one, the more the merrier” (Avgar and Smith 2022)</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># &gt; number of steps, making random steps</span></code></pre></div>
+<p>Researchers should consider the resolution of the habitat covariate and the step length of the animal to determine the number of steps required to estimate what is accessible to the animal.</p>
+</div>
+</div>
+<div id="explore-data" class="section level2">
+<h2>
+<span class="header-section-number">3.3</span> Explore data<a class="anchor" aria-label="anchor" href="#explore-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="guiding-questions" class="section level3">
+<h3>
+<span class="header-section-number">3.3.1</span> Guiding Questions<a class="anchor" aria-label="anchor" href="#guiding-questions"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>What is the sample size of the data going into the model?</li>
+<li>What are the data layer resolution and extent?</li>
+<li>How does this relate to your location data?</li>
+<li>How does movement vary within and between biological/ecological divisions?</li>
+</ul>
+<p>The purpose of exploring your data is to brainstorm the potential options for your models and identify potential limitations. Proper exploration of used (case = 1) and available (case = 0) domains by individual, population, season, year etc. will help inform downstream decisions and troubleshoot convergence issues.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># &gt; table or figure sample size - # individuals and points per individual</span>
+<span class="co"># &gt; locations spread per season, year, individual: counts across categories</span>
+<span class="co"># &gt; density or histogram or boxplot of covariates for used and available by any division that might be used in the model individual, year, season </span>
+<span class="co"># &gt; temporal extent and resolution </span>
+<span class="co"># &gt; spatial extent and resolution</span>
+<span class="co"># &gt; movement rates and turn angles by individual, season, time of day: mean, range, plots</span></code></pre></div>
+</div>
+</div>
+<div id="attribute-steps" class="section level2">
+<h2>
+<span class="header-section-number">3.4</span> Attribute steps<a class="anchor" aria-label="anchor" href="#attribute-steps"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>End-point = selection processes</li>
+<li>Start-point = movement processes</li>
+</ul>
+<p>Attributes extracted at the start-point do not vary within a cluster, but can be used as interactions with movement covariates or habitat-selection covariates (at the end point)</p>
+<div id="choosing-covariates" class="section level3">
+<h3>
+<span class="header-section-number">3.4.1</span> Choosing covariates<a class="anchor" aria-label="anchor" href="#choosing-covariates"><i class="fas fa-link"></i></a>
+</h3>
+<div id="guiding-questions-1" class="section level4">
+<h4>
+<span class="header-section-number">3.4.1.1</span> Guiding questions<a class="anchor" aria-label="anchor" href="#guiding-questions-1"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>What are your research objectives and hypotheses?</li>
+<li>What are the data layers you need to meet these objectives and test these hypotheses?</li>
+<li>What are the data layer resolution and extent? How does this relate to your location data?</li>
+<li>Will continuous or categorical covariates best help your answer your research questions (and are there computational limitations to one or the other)?</li>
+</ul>
+</div>
+</div>
+<div id="availability-threshold" class="section level3">
+<h3>
+<span class="header-section-number">3.4.2</span> Availability threshold<a class="anchor" aria-label="anchor" href="#availability-threshold"><i class="fas fa-link"></i></a>
+</h3>
+<p>Dickie et al. (2020) used 0.01 as the “threshold” of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># &gt; Julie’s code</span></code></pre></div>
+<p>Depending on how many covariates you have in your model, having many habitat classes (and any associated interactions) can really eat up your data. It’s worthwhile doing a habitat point extraction for your GPS locations to see which habitat types are relevant and available to your individuals. Then you can start to combine some habitat types. For example, open vs closed, deciduous vs coniferous vs mixed, etc.</p>
+</div>
+<div id="selection" class="section level3">
+<h3>
+<span class="header-section-number">3.4.3</span> Selection<a class="anchor" aria-label="anchor" href="#selection"><i class="fas fa-link"></i></a>
+</h3>
+<p>Selection is represented by the end-point of a step, i.e., where an animal selects to be. The covariate of interest at the end point can be interacted with any other habitat metric from the preceding step or one that is also at the end-point.</p>
+<ul>
+<li>Data types: continuous, categorical, Boolean</li>
+</ul>
+<p>Important: discrete variable must be coded as factors.</p>
+<ul>
+<li>Transforming and scaling covariates (GLMM TMB, same scale is critical for
+mixed model, still helpful in clogit models but less necessary)</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># &gt; attributing habitat to end points of steps</span>
+<span class="co"># &gt; example scaling</span></code></pre></div>
+<p>Scaling covariates</p>
+<ul>
+<li>will influence magnitude of coefficients, ideally scale of covariates will be
+within an order of magnitude.</li>
+<li>distance from features, likely should follow decay function (i.e.,
+log-transformed). Note <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> in R is the natural logarithm, not log base 10.</li>
+</ul>
+</div>
+<div id="movement" class="section level3">
+<h3>
+<span class="header-section-number">3.4.4</span> Movement<a class="anchor" aria-label="anchor" href="#movement"><i class="fas fa-link"></i></a>
+</h3>
+<p>To look at the influences of habitat on movement interact the covariate at the start of step with turn angle or step length. Possible movement covariates include step length, ln[step length], [step length]2, ln[step length]2,cos[turn angle].</p>
+<div id="costa" class="section level4">
+<h4>
+<span class="header-section-number">3.4.4.1</span> Cos[TA]<a class="anchor" aria-label="anchor" href="#costa"><i class="fas fa-link"></i></a>
+</h4>
+<p>Cos(Turn Angle) converts the circular measure to linear where -1 is backwards, 0
+is random walk, 1 is moving forwards. Kappa is the concentration parameter of
+the von-Mises distribution and indicates directionality (increasing kappa is
+more forward movement)</p>
+</div>
+<div id="lnsl" class="section level4">
+<h4>
+<span class="header-section-number">3.4.4.2</span> Ln[SL]<a class="anchor" aria-label="anchor" href="#lnsl"><i class="fas fa-link"></i></a>
+</h4>
+<p>Step Length included in the model is the scale of the gamma distribution Natural
+logarithm of the step length, ln[Step Length+1], is the shape of the gamma
+distribution. If there are any step length estimates of 0 then one should be
+added, the natural log of 0 is undefined.</p>
+</div>
+</div>
+<div id="other-covariate-notes" class="section level3">
+<h3>
+<span class="header-section-number">3.4.5</span> Other Covariate Notes<a class="anchor" aria-label="anchor" href="#other-covariate-notes"><i class="fas fa-link"></i></a>
+</h3>
+<div id="time-of-day" class="section level4">
+<h4>
+<span class="header-section-number">3.4.5.1</span> Time of Day<a class="anchor" aria-label="anchor" href="#time-of-day"><i class="fas fa-link"></i></a>
+</h4>
+<p>Time of day will not vary between clusters. In our experience, ‘time of day’ has
+narrow in the definition of twilight periods in amt package. <code><a href="https://rdrr.io/pkg/amt/man/time_of_day.html">amt::time_of_day</a></code>
+which is a wrapped around <code>maptools::crepuscule</code>. The potential underestimation
+comes from default solarDep / solar.dep, which can be adjusted. This matters
+especially for fix rates that are longer than the crepuscule period because
+there may be a fix during that period or only 1, leading to the underestimation.
+Identifying crepuscule movements may not matter to your analysis, in which case,
+don’t include it when calculating time of day (<code>crepuscule = FALSE</code>). If you
+need to include crepuscular movement, adjust the default <code>solarDep</code> or create
+your own calculation (can link to Katrien’s or mine for wolves).</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># &gt; time of day</span></code></pre></div>
+</div>
+<div id="interactions" class="section level4">
+<h4>
+<span class="header-section-number">3.4.5.2</span> Interactions<a class="anchor" aria-label="anchor" href="#interactions"><i class="fas fa-link"></i></a>
+</h4>
+<p>If you included interactions, then the model has an estimate for both terms
+independently and as well as the interaction. So interaction I:J will have betas
+for I, J, and I:J. If J is a category there will be estimates for each category.
+If there is a three way interact I:J:K, you get estimates for I,J,K, I:J, I:K,
+J:K, and I:J:K.</p>
+<p>Before Running your Model: Check correlation between covariates</p>
+<p><em>EXERCISE</em>: Create a table of with each covariate and the corresponding
+prediction or biological significance?
+<img src="https://badgen.net/badge/status/WIP/orange">
+Example Table: prediction and covariates.</p>
+
+</div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="setup.html"><span class="header-section-number">2</span> Setup</a></div>
+<div class="next"><a href="modelling.html"><span class="header-section-number">4</span> Modelling</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#preparation"><span class="header-section-number">3</span> Preparation</a></li>
+<li>
+<a class="nav-link" href="#clean-data"><span class="header-section-number">3.1</span> Clean data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#erroneous-locations"><span class="header-section-number">3.1.1</span> Erroneous locations</a></li>
+<li><a class="nav-link" href="#rarefication-and-autocorrelation"><span class="header-section-number">3.1.2</span> Rarefication and Autocorrelation</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#sample-available-steps"><span class="header-section-number">3.2</span> Sample Available Steps</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#distributions"><span class="header-section-number">3.2.1</span> Distributions</a></li>
+<li><a class="nav-link" href="#number-of-random-steps"><span class="header-section-number">3.2.2</span> Number of random steps</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#explore-data"><span class="header-section-number">3.3</span> Explore data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#guiding-questions"><span class="header-section-number">3.3.1</span> Guiding Questions</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#attribute-steps"><span class="header-section-number">3.4</span> Attribute steps</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#choosing-covariates"><span class="header-section-number">3.4.1</span> Choosing covariates</a></li>
+<li><a class="nav-link" href="#availability-threshold"><span class="header-section-number">3.4.2</span> Availability threshold</a></li>
+<li><a class="nav-link" href="#selection"><span class="header-section-number">3.4.3</span> Selection</a></li>
+<li><a class="nav-link" href="#movement"><span class="header-section-number">3.4.4</span> Movement</a></li>
+<li><a class="nav-link" href="#other-covariate-notes"><span class="header-section-number">3.4.5</span> Other Covariate Notes</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/iSSA-guild/book/blob/master/02-prepare.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/iSSA-guild/book/edit/master/02-prepare.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>How-To iSSA</strong>" was written by . It was last built on 2022-04-07.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
