@@ -1,6 +1,7 @@
 # Modified by Alec L. Robitaille (2022)
 # - Uses deploy to github pages to build bookdown site
 # - Switch Restore packages to r-lib/setup-renv@v2
+# - Add libgmp3-dev, libmpfr-dev, texlive-extra-utils
 
 # MIT License
 # Copyright (c) 2021 Eli Lilly and Company
@@ -56,6 +57,10 @@ jobs:
           sudo apt-get install libcurl4-openssl-dev
           sudo apt-get install libssl-dev
           sudo apt-get install libzmq3-dev
+
+          sudo apt-get install libgmp3-dev
+          sudo apt-get install libmpfr-dev
+          sudo apt-get install texlive-extra-utils
 
       - name: Cache packages
         uses: actions/cache@v1
