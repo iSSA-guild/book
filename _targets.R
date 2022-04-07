@@ -26,7 +26,7 @@ c(
 	),
 	tar_target(
 		book,
-		{generate_bib; render_book('index.Rmd', output_dir = '_book')}
+		{generate_bib; render_book('index.Rmd', output_dir = 'docs')}
 	)
 )
 
