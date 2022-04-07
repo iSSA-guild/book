@@ -24,10 +24,21 @@ targets_book <- c(
 		generate_bib,
 		write_bib(c(.packages(), 'bookdown', 'knitr', 'rmarkdown'), 'packages.bib')
 	),
-	tar_target(
-		book,
-		{generate_bib; render_book('index.Rmd', output_dir = 'docs')}
+	tar_target_raw(
+		'book',
+		command = quote({
+			bookdown::render_book('index.Rmd', output_dir = 'docs')
+			'docs/index.html'
+		}),
+		format = 'file',
+		deps = tar_knitr_deps(dir('.', '.Rmd'))
 	)
+
+	# tar_knit(
+	# 	book,
+	# 	'index.Rmd'
+	# 	# {generate_bib; render_book('index.Rmd', output_dir = 'docs')}
+	# )
 )
 
 
