@@ -1,5 +1,6 @@
 # Modified by Alec L. Robitaille (2022)
 # - Uses deploy to github pages to build bookdown site
+# - Switch Restore packages to r-lib/setup-renv@v2
 
 # MIT License
 # Copyright (c) 2021 Eli Lilly and Company
@@ -63,11 +64,7 @@ jobs:
           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
           restore-keys: ${{ runner.os }}-renv-
 
-      - name: Restore packages
-        shell: Rscript {0}
-        run: |
-          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
+      - uses: r-lib/actions/setup-renv@v2
 
       - name: Check if previous runs exists
         id: runs-exist
