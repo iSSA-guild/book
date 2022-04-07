@@ -1,3 +1,6 @@
+# Modified by Alec L. Robitaille (2022)
+# - Uses deploy to github pages to build bookdown site
+
 # MIT License
 # Copyright (c) 2021 Eli Lilly and Company
 # Author: William Michael Landau (will.landau at gmail)
@@ -131,3 +134,8 @@ jobs:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: .
 
+      - name: Deploy to GitHub pages 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: targets-runs
+          folder: _book
