@@ -2,7 +2,7 @@
 docs/
 _targets/
 renv/
-
+_bookdown_files/
 
 
 ### R
