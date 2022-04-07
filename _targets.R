@@ -24,6 +24,10 @@ c(
 	tar_target(
 		generate_bib,
 		write_bib(c(.packages(), 'bookdown', 'knitr', 'rmarkdown'), 'packages.bib')
+	),
+	tar_target(
+		book,
+		render_book('index.Rmd', output_dir = '_book')
 	)
 )
 
