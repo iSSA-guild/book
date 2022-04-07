@@ -100,7 +100,7 @@ interpretation of spurious results.</p>
 <p>Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.</p>
 <p>The global or alternative models can be composed of core or interest variables.</p>
 <p>The concept of a core model is to identify key features of animal movement that are important but perhaps not the covariates of interest to the particular study or hypotheses. – Prokopenko et al 2017</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code</span></code></pre></div>
 <div id="troubleshooting" class="section level4">
 <h4>
@@ -134,7 +134,7 @@ See Supplementary information.</p></li>
 <p>Regarding our discussion of nesting random effects:
 <a href="https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified" class="uri">https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified</a>
 nested is notated as:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">group1</span><span class="op">/</span><span class="va">group2</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="output" class="section level2">
@@ -155,7 +155,7 @@ nested is notated as:</p>
 <span class="header-section-number">4.5.2</span> Std. Error/CIs<a class="anchor" aria-label="anchor" href="#std.-errorcis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Check the fixed and random effect standard errors to see if they are really large or NAs.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; example of ‘failed’ model</span></code></pre></div>
 </div>
 <div id="troubleshooting-1" class="section level3">
@@ -182,7 +182,7 @@ high VIF, then you will get NAs.</p>
 matrix error very liberally. Generally, you don’t have to worry about it unless
 you have other errors with it.</p>
 <p><em>EXERCISE</em>: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs<img src="https://badgen.net/badge/status/WIP/orange"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; plot coefficient by sample size – is there a relationship?</span></code></pre></div>
 
 </div>

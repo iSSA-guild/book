@@ -27,3 +27,8 @@ Note: Everyone learns differently and reading a document may not be the most hel
 <!-- TODO: thanks to package authors/R developers -->
 
 
+
+
+```{r, echo = FALSE}
+library(targets)
+```

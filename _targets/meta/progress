@@ -9,7 +9,6 @@ popdens_file|stem|popdens_file|0|skipped
 locs_raw|stem|locs_raw|0|skipped
 elev|stem|elev|0|skipped
 water|stem|water|0|skipped
-book|stem|book|0|skipped
 lc|stem|lc|0|skipped
 legend|stem|legend|0|skipped
 popdens|stem|popdens|0|skipped
@@ -51,9 +50,10 @@ dist_parameters_f2ae2168|branch|dist_parameters|0|skipped
 dist_parameters_bcf8feb4|branch|dist_parameters|0|skipped
 dist_parameters|pattern|dist_parameters|6|skipped
 tracks_extract|stem|tracks_extract|0|skipped
+book|stem|book|0|started
+book|stem|book|0|built
 model_prep|stem|model_prep|0|skipped
-avail_lc|stem|avail_lc|0|started
-avail_lc|stem|avail_lc|0|built
+avail_lc|stem|avail_lc|0|skipped
 model_forest|stem|model_forest|0|skipped
 model_lc|stem|model_lc|0|skipped
 model_check_forest|stem|model_check_forest|0|skipped

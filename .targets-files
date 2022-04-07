@@ -1,5 +1,6 @@
 .targets-files
 .targets-runs/
+_bookdown_files/book_files/figure-html/sl_dist-1.png
 _targets/.gitignore
 _targets/meta/meta
 _targets/meta/process
@@ -59,6 +60,7 @@ _targets/objects/tracks_resampled_f5a5ec5f
 _targets/objects/tracks_resampled_ff26430e
 _targets/objects/water
 docs/404.html
+docs/book_files/figure-html/sl_dist-1.png
 docs/images/group.png
 docs/index.html
 docs/interpretation.html
