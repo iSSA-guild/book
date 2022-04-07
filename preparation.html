@@ -129,7 +129,11 @@ exponential distribution, which is a special case of the gamma, only has a rate
 parameter (lambda).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; figure of each distribution</span>
-<span class="co"># &gt; extract params, save for later</span></code></pre></div>
+<span class="co"># &gt; extract params, save for later</span>
+
+<span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## $dist_plots_8ba21cb0</code></pre>
+<div class="inline-figure"><img src="book_files/figure-html/sl_dist-1.png" width="672"></div>
 <p>Plot the observed data against these fitted distributions to assess the
 agreement between them. Do the distributions misclassify some observations
 (normally will miss extreme values)? There should not be negative speeds at this
@@ -145,7 +149,7 @@ behaviour. Check which distribution seems to fit best.</p>
 realistic variation in directionality. If a Von Mises is fit from observed
 points, including cos(TA) in the model might not be informative. The
 concentration parameter (k) ‘kappa’ in amt, and the location parameter (<span class="math inline">\(\mu\)</span>, mu in <code>amt</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; figure of von mises distribution</span>
 <span class="co"># &gt; extract params, save for later</span></code></pre></div>
 </div>
@@ -183,8 +187,9 @@ patterns that could result is critical.</p>
 </h3>
 <p>The availability distribution is defined by the randomly sampled steps from the step length and turn angle probability distributions.</p>
 <p>Using 10 steps for each used step to have a strata of 11 steps is common, but intensity of sampling varies across the literature. Sensitivity analysis can be conducted to determine the influence of availability sample on selection (Northrup et al. 2013, 2016). A general piece of advice is “at least one, the more the merrier” (Avgar and Smith 2022)</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># &gt; number of steps, making random steps</span></code></pre></div>
+<pre><code>make_track(locs_prep, x_, y_, t_, all_cols = TRUE, crs = epsg)</code></pre>
+<pre><code>resample_tracks(tracks, rate = rate, tolerance = tolerance)</code></pre>
+<pre><code>random_steps(tracks_resampled, n = n_random_steps)</code></pre>
 <p>Researchers should consider the resolution of the habitat covariate and the step length of the animal to determine the number of steps required to estimate what is accessible to the animal.</p>
 </div>
 </div>
@@ -203,7 +208,7 @@ patterns that could result is critical.</p>
 <li>How does movement vary within and between biological/ecological divisions?</li>
 </ul>
 <p>The purpose of exploring your data is to brainstorm the potential options for your models and identify potential limitations. Proper exploration of used (case = 1) and available (case = 0) domains by individual, population, season, year etc. will help inform downstream decisions and troubleshoot convergence issues.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; table or figure sample size - # individuals and points per individual</span>
 <span class="co"># &gt; locations spread per season, year, individual: counts across categories</span>
 <span class="co"># &gt; density or histogram or boxplot of covariates for used and available by any division that might be used in the model individual, year, season </span>
@@ -242,7 +247,7 @@ patterns that could result is critical.</p>
 <span class="header-section-number">3.4.2</span> Availability threshold<a class="anchor" aria-label="anchor" href="#availability-threshold"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dickie et al. (2020) used 0.01 as the “threshold” of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; Julie’s code</span></code></pre></div>
 <p>Depending on how many covariates you have in your model, having many habitat classes (and any associated interactions) can really eat up your data. It’s worthwhile doing a habitat point extraction for your GPS locations to see which habitat types are relevant and available to your individuals. Then you can start to combine some habitat types. For example, open vs closed, deciduous vs coniferous vs mixed, etc.</p>
 </div>
@@ -259,7 +264,7 @@ patterns that could result is critical.</p>
 <li>Transforming and scaling covariates (GLMM TMB, same scale is critical for
 mixed model, still helpful in clogit models but less necessary)</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; attributing habitat to end points of steps</span>
 <span class="co"># &gt; example scaling</span></code></pre></div>
 <p>Scaling covariates</p>
@@ -312,7 +317,7 @@ Identifying crepuscule movements may not matter to your analysis, in which case,
 don’t include it when calculating time of day (<code>crepuscule = FALSE</code>). If you
 need to include crepuscular movement, adjust the default <code>solarDep</code> or create
 your own calculation (can link to Katrien’s or mine for wolves).</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; time of day</span></code></pre></div>
 </div>
 <div id="interactions" class="section level4">

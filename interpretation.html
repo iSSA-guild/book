@@ -103,7 +103,7 @@ itself is avoided.</li>
 </h4>
 <p>A table with coefficient and error is standard for reporting results. This is
 not recommended for presentations or the sole means of presenting results.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; making a nice table from the output code?</span></code></pre></div>
 </div>
 <div id="box-plots" class="section level4">
@@ -113,7 +113,7 @@ not recommended for presentations or the sole means of presenting results.</p>
 <p>Boxplots can be useful to look at general results and variation between
 categories - time of day, seasons. It is useful to take note of outlying
 individuals here then investigate their movement and availability</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; ggplot code</span></code></pre></div>
 </div>
 </div>
@@ -134,7 +134,7 @@ individuals here then investigate their movement and availability</p>
 <li>Can use the <code>predict</code> function: <a href="https://rdrr.io/cran/amt/man/log_rss.htm" class="uri">https://rdrr.io/cran/amt/man/log_rss.htm</a> in amt or JWT code</li>
 <li>Fieberg ‘How-to’ goes through the RSS maths</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; predict methods</span>
 <span class="co"># &gt; example plot</span></code></pre></div>
 <div id="guiding-questions-3" class="section level4">
@@ -166,12 +166,12 @@ consider biological realism.</li>
 <span class="header-section-number">5.2.2.1</span> Speed/Step Length<a class="anchor" aria-label="anchor" href="#speedstep-length"><i class="fas fa-link"></i></a>
 </h4>
 <p>Extract basal parameters:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">sl_distr_params</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
 <span class="fu">ta_distr_params</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></code></pre></div>
 <p>The calculation for Mean Step Length is shape multiplied by scale:<br></p>
 <!-- TODO: step length formula -->
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code for this calculation</span>
 <span class="co"># &gt; example plot</span></code></pre></div>
 <div id="negative-speed-estimates" class="section level5">
@@ -194,7 +194,7 @@ a mean speed from the tentative or modified estimates. The scale parameter is
 the inverse of rate, for gamma and other distributions. Exponential is a special
 case where shape = 1, so using a modifier log SL turns it into a gamma. Thus,
 rate is inverse scale, and shape is one. The equations work out to be the same.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; Julie’s snail code</span></code></pre></div>
 <p>See other distributions in the iSSA webinar files (Avgar and Smith 2022)</p>
 </div>
@@ -210,7 +210,7 @@ rate is inverse scale, and shape is one. The equations work out to be the same.<
 <span class="header-section-number">5.2.2.2.1</span> Negative Von Mises Estimates<a class="anchor" aria-label="anchor" href="#negative-von-mises-estimates"><i class="fas fa-link"></i></a>
 </h5>
 <p>A negative von Mises concentration parameter means the adjusted turn angle distribution is centred at 𝜋 (180°) rather than 0 (negative directional autocorrelation; behaviourally the animal is more likely to turn back). This can happen with high resolution data. A fix is to multiply by -1 to recenter the distribution and assumption around 0 and not 𝜋.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; turn angle plot</span></code></pre></div>
 </div>
 </div>
@@ -237,7 +237,7 @@ trade-off can be superseded by large data sets which then favours complex
 models. Please read (Fieberg and Johnson 2015, Northrup et al. 2021) for in
 depth discussion of building and evaluating models.</p>
 <p>Likelihood ratios can be used when required.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; example</span></code></pre></div>
 </div>
 </div>
@@ -269,7 +269,7 @@ can’t make a predictive map easily (but this is coming soon), Instead, an opti
 is to rank within your strata/cluster of used and random points (Fortin et al.
 2009). Arguably, this is not ideal because you are restricted to the strata and
 you actually want a validation of the extent of your study area.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; link to QW social-issa repo</span></code></pre></div>
 <p>If the k-fold procedure is used it is critical to mention that as it is done for SSF is not a validation it is an out of sample discrimination test. It is important to accurately state that it is not a predictive validation, this method attempts to discriminate between a used step and an available step.</p>
 <p>Two alternative and recommended options are discrimination or habitat calibration.</p>
@@ -300,7 +300,7 @@ you actually want a validation of the extent of your study area.</p>
 </h4>
 <p>Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)</p>
 <div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code for this?</span></code></pre></div>
 
 </div>
