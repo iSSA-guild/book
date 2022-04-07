@@ -1,8 +1,11 @@
 ### Custom
 _book/
+_targets/
+renv/
 
 
-### R 
+
+### R
 .Rproj.user
 .Rhistory
 .RData
