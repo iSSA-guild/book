@@ -58,13 +58,6 @@ jobs:
           sudo apt-get install libmpfr-dev
           sudo apt-get install texlive-extra-utils
 
-      - name: Cache packages
-        uses: actions/cache@v1
-        with:
-          path: ${{ env.RENV_PATHS_ROOT }}
-          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-          restore-keys: ${{ runner.os }}-renv-
-
       - uses: r-lib/actions/setup-renv@v2
 
       - name: Check if previous runs exists
