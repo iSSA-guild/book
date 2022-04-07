@@ -62,6 +62,7 @@ parameter (lambda).
 ```{r sl_dist}
 # > figure of each distribution
 # > extract params, save for later
+tar_read(dist_plots)
 ```
 
 Plot the observed data against these fitted distributions to assess the
