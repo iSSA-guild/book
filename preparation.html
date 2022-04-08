@@ -131,8 +131,8 @@ parameter (lambda).</p>
 <code class="sourceCode R"><span class="co"># &gt; figure of each distribution</span>
 <span class="co"># &gt; extract params, save for later</span>
 
-<span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## $dist_plots_8ba21cb0</code></pre>
+<span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_sl_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## $dist_sl_plots_8ba21cb0</code></pre>
 <div class="inline-figure"><img src="book_files/figure-html/sl_dist-1.png" width="672"></div>
 <p>Plot the observed data against these fitted distributions to assess the
 agreement between them. Do the distributions misclassify some observations
@@ -151,7 +151,10 @@ points, including cos(TA) in the model might not be informative. The
 concentration parameter (k) ‘kappa’ in amt, and the location parameter (<span class="math inline">\(\mu\)</span>, mu in <code>amt</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; figure of von mises distribution</span>
-<span class="co"># &gt; extract params, save for later</span></code></pre></div>
+<span class="co"># &gt; extract params, save for later</span>
+<span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_sl_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## $dist_sl_plots_8ba21cb0</code></pre>
+<div class="inline-figure"><img src="book_files/figure-html/ta_dist-1.png" width="672"></div>
 </div>
 <div id="individual-vs.-population-distributions" class="section level4">
 <h4>
@@ -208,7 +211,7 @@ patterns that could result is critical.</p>
 <li>How does movement vary within and between biological/ecological divisions?</li>
 </ul>
 <p>The purpose of exploring your data is to brainstorm the potential options for your models and identify potential limitations. Proper exploration of used (case = 1) and available (case = 0) domains by individual, population, season, year etc. will help inform downstream decisions and troubleshoot convergence issues.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; table or figure sample size - # individuals and points per individual</span>
 <span class="co"># &gt; locations spread per season, year, individual: counts across categories</span>
 <span class="co"># &gt; density or histogram or boxplot of covariates for used and available by any division that might be used in the model individual, year, season </span>
@@ -247,7 +250,25 @@ patterns that could result is critical.</p>
 <span class="header-section-number">3.4.2</span> Availability threshold<a class="anchor" aria-label="anchor" href="#availability-threshold"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dickie et al. (2020) used 0.01 as the “threshold” of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">avail_lc</span><span class="op">)</span><span class="op">[</span><span class="va">id</span> <span class="op">==</span> <span class="fl">1016</span><span class="op">]</span></code></pre></div>
+<pre><code>##        id  prop_pt_lc pt_lc
+##     &lt;int&gt;       &lt;num&gt; &lt;num&gt;
+##  1:  1016 0.082867992    43
+##  2:  1016 0.058074604    21
+##  3:  1016 0.354255082    41
+##  4:  1016 0.055059191    22
+##  5:  1016 0.008599509    52
+##  6:  1016 0.196225151    90
+##  7:  1016 0.034844762    23
+##  8:  1016 0.043109225    81
+##  9:  1016 0.076837168    11
+## 10:  1016 0.051262006    42
+## 11:  1016 0.014406969    24
+## 12:  1016 0.019767702    82
+## 13:  1016 0.002345321    95
+## 14:  1016 0.002345321    71</code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; Julie’s code</span></code></pre></div>
 <p>Depending on how many covariates you have in your model, having many habitat classes (and any associated interactions) can really eat up your data. It’s worthwhile doing a habitat point extraction for your GPS locations to see which habitat types are relevant and available to your individuals. Then you can start to combine some habitat types. For example, open vs closed, deciduous vs coniferous vs mixed, etc.</p>
 </div>
@@ -264,9 +285,22 @@ patterns that could result is critical.</p>
 <li>Transforming and scaling covariates (GLMM TMB, same scale is critical for
 mixed model, still helpful in clogit models but less necessary)</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; attributing habitat to end points of steps</span>
-<span class="co"># &gt; example scaling</span></code></pre></div>
+<span class="co"># &gt; example scaling</span>
+<span class="co"># R/extract_layers()</span>
+<span class="va">extract_layers</span></code></pre></div>
+<pre><code>## function (DT, crs, lc, legend, elev, popdens, water) 
+## {
+##     setDT(DT)
+##     start &lt;- c("x1_", "y1_")
+##     end &lt;- c("x2_", "y2_")
+##     extract_pt(DT, lc, end)
+##     DT[legend, `:=`(lc_description, description), on = .(pt_lc = Value)]
+##     extract_pt(DT, elev, end)
+##     extract_pt(DT, popdens, end)
+##     extract_distance_to(DT, water, end, crs)
+## }</code></pre>
 <p>Scaling covariates</p>
 <ul>
 <li>will influence magnitude of coefficients, ideally scale of covariates will be
@@ -317,7 +351,7 @@ Identifying crepuscule movements may not matter to your analysis, in which case,
 don’t include it when calculating time of day (<code>crepuscule = FALSE</code>). If you
 need to include crepuscular movement, adjust the default <code>solarDep</code> or create
 your own calculation (can link to Katrien’s or mine for wolves).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; time of day</span></code></pre></div>
 </div>
 <div id="interactions" class="section level4">
@@ -387,7 +421,7 @@ Example Table: prediction and covariates.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by . It was last built on 2022-04-07.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by . It was last built on 2022-04-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

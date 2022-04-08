@@ -100,7 +100,7 @@ interpretation of spurious results.</p>
 <p>Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.</p>
 <p>The global or alternative models can be composed of core or interest variables.</p>
 <p>The concept of a core model is to identify key features of animal movement that are important but perhaps not the covariates of interest to the particular study or hypotheses. – Prokopenko et al 2017</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code</span></code></pre></div>
 <div id="troubleshooting" class="section level4">
 <h4>
@@ -134,7 +134,7 @@ See Supplementary information.</p></li>
 <p>Regarding our discussion of nesting random effects:
 <a href="https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified" class="uri">https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified</a>
 nested is notated as:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">group1</span><span class="op">/</span><span class="va">group2</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="output" class="section level2">
@@ -155,8 +155,64 @@ nested is notated as:</p>
 <span class="header-section-number">4.5.2</span> Std. Error/CIs<a class="anchor" aria-label="anchor" href="#std.-errorcis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Check the fixed and random effect standard errors to see if they are really large or NAs.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># &gt; example of ‘failed’ model</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># &gt; example of ‘failed’ model</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_lc</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##  Family: poisson  ( log )
+## Formula:          
+## case_ ~ -1 + I(log(sl_)) + I(log(sl_)):lc_adj + lc_adj + I(log(dist_to_water +  
+##     1)) + I(log(dist_to_water + 1)):I(log(sl_)) + (1 | indiv_step_id) +  
+##     (0 + I(log(sl_)) | id) + (0 + I(log(sl_)):lc_adj | id) +  
+##     (0 + lc_adj | id) + (0 + I(log(dist_to_water + 1)) | id) +  
+##     (0 + I(log(dist_to_water + 1)):I(log(sl_)) | id)
+## Data: DT
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##       NA       NA       NA       NA    26488 
+## 
+## Random effects:
+## 
+## Conditional model:
+##  Groups        Name                                  Variance  Std.Dev.  Corr 
+##  indiv_step_id (Intercept)                           1.000e+06 1.000e+03      
+##  id            I(log(sl_))                           1.872e-90 1.368e-45      
+##  id.1          I(log(sl_)):lc_adjdisturbed           1.080e-02 1.039e-01      
+##                I(log(sl_)):lc_adjforest              2.047e-03 4.524e-02 -1.00
+##                I(log(sl_)):lc_adjopen                1.076e-01 3.280e-01  1.00
+##                I(log(sl_)):lc_adjwetlands            2.052e-03 4.530e-02 -1.00
+##  id.2          lc_adjdisturbed                       4.415e-01 6.645e-01      
+##                lc_adjforest                          3.323e-02 1.823e-01 -1.00
+##                lc_adjopen                            4.423e+00 2.103e+00  1.00
+##                lc_adjwetlands                        2.383e-26 1.544e-13 -0.27
+##  id.3          I(log(dist_to_water + 1))             1.343e-02 1.159e-01      
+##  id.4          I(log(dist_to_water + 1)):I(log(sl_)) 5.259e-90 2.293e-45      
+##              
+##              
+##              
+##              
+##              
+##  -1.00       
+##   1.00 -1.00 
+##              
+##              
+##  -1.00       
+##   0.30 -0.28 
+##              
+##              
+## Number of obs: 26521, groups:  indiv_step_id, 2411; id, 6
+## 
+## Conditional model:
+##                                         Estimate Std. Error z value Pr(&gt;|z|)
+## I(log(sl_))                           -0.1310753        NaN     NaN      NaN
+## lc_adjdisturbed                       -3.7456462        NaN     NaN      NaN
+## lc_adjforest                          -3.4264655        NaN     NaN      NaN
+## lc_adjopen                            -5.9491031        NaN     NaN      NaN
+## lc_adjwetlands                        -3.6782270        NaN     NaN      NaN
+## I(log(dist_to_water + 1))             -0.0358139        NaN     NaN      NaN
+## I(log(sl_)):lc_adjforest               0.2372557        NaN     NaN      NaN
+## I(log(sl_)):lc_adjopen                 0.2930470        NaN     NaN      NaN
+## I(log(sl_)):lc_adjwetlands             0.2838458        NaN     NaN      NaN
+## I(log(sl_)):I(log(dist_to_water + 1))  0.0007197        NaN     NaN      NaN</code></pre>
 </div>
 <div id="troubleshooting-1" class="section level3">
 <h3>
@@ -182,7 +238,7 @@ high VIF, then you will get NAs.</p>
 matrix error very liberally. Generally, you don’t have to worry about it unless
 you have other errors with it.</p>
 <p><em>EXERCISE</em>: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs<img src="https://badgen.net/badge/status/WIP/orange"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; plot coefficient by sample size – is there a relationship?</span></code></pre></div>
 
 </div>
@@ -228,7 +284,7 @@ you have other errors with it.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by . It was last built on 2022-04-07.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by . It was last built on 2022-04-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
