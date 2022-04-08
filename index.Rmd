@@ -1,7 +1,10 @@
 --- 
 title: "How-To iSSA"
 date: "`r Sys.Date()`"
-author: "Julie W. Turner", "Christina M. Prokopenko", "Alec L. Robitaille"
+author: 
+- Julie W. Turner
+- Christina M. Prokopenko
+- Alec L. Robitaille
 site: bookdown::bookdown_site
 documentclass: book
 url: https://issa-guild.github.io/book/
