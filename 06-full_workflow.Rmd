@@ -27,52 +27,27 @@ It is critical that all of the layers you plan to use and GPS points are in the 
 
 Once the data is clean, we make the points into a track. If you have more than one individual in the dataset, do it by individual.
 
-```{r amt, eval = FALSE}
-# example of what it could look like
-require(amt)
-tracks <- dat %>% make_track(long, lat, datetime, crs = sp::CRS("+init=epsg:4326"), id = id)
+Generating tracks:
+```{r tracks_expr, echo = FALSE, comment = ''}
+get_target_expression(targets_tracks, 'tracks')
 ```
+
 
 #### Check the sampling rate
 
-Now we should check how the sampling rate looks due to the messiness of GPS relocations.
-
-```{r sampling rate, eval = FALSE}
-tracks %>% mutate(sr = lapply(data, summarize_sampling_rate)) %>%
-  dplyr::select(id, sr) %>% unnest(cols = c(sr))
-```
+Now we should check how the sampling rate looks due to the messiness of GPS relocations. See [Checking the sampling rate]. 
 
 Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals, so we likely need to resample the data.
 
-```{r resample, eval = FALSE}
-
-resample_tracks <- function(tracks, rate, tolerance) {
-  t <- track_resample(tracks, rate = rate, tolerance = tolerance) %>%
-    filter_min_n_burst()
-}
+```{r resample_expr, echo = FALSE, comment = ''}
+get_target_expression(targets_tracks, 'tracks_resample')
 ```
 
 In our `targets` workflow, we have simplified all of this down to
-```{r n_steps, echo = FALSE, comment = ''}
-# > number of steps, making random steps
-targets_tracks[[1]]$command$expr[[1]]
-targets_tracks[[2]]$command$expr[[1]]
-targets_tracks[[3]]$command$expr[[1]]
-```
 
-Here, all you will have to do is at the beginning of the work flow is fill in the variables to match your data:
 
-```{r Targets: prepare, echo = FALSE, comment = '', eval = FALSE}
-# Targets: prepare
-id_col <- 'id'
-datetime_col <- 't_'
-x_col <- 'x_'
-y_col <- 'y_'
-epsg <- 32618
-crs <- st_crs(epsg)
-crs_sp <- CRS(crs$wkt)
-tz <- 'America/New_York'
-```
+Here, all you will have to do is at the beginning of the work flow is fill in the variables to match your data. See the [Variables] section. 
+
 
 ### Steps
 
