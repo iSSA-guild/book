@@ -5,17 +5,22 @@
 
 ### The data
 
-The critical data for running an iSSA are the x and y coordinates for GPS relocations and the associated datetime timestamp. Depending on what you're doing, you'll probably want to know the individual that those relocations belong to as well.
+The critical data for running an iSSA are the x and y coordinates for GPS
+relocations and the associated datetime timestamp. Depending on what you're
+doing, you'll probably want to know the individual that those relocations belong
+to as well.
 
 There are several things that need to be done prior to actually doing an iSSA
 
 Overarchingly:
+
 1. Clean the GPS data
 2. Prepare the layers and other covariate data
 
 #### Clean the GPS data
 
 Things that you need to check and clean if they are not met:
+
 1. Make sure all observations (GPS points) are complete
  - if not, remove incomplete observations
 2. Check if there are duplicated GPS points (two taken at the same time)
@@ -37,9 +42,11 @@ get_target_expression(targets_tracks, 'tracks')
 
 #### Check the sampling rate
 
-Now we should check how the sampling rate looks due to the messiness of GPS relocations. See [Checking the sampling rate]. 
+Now we should check how the sampling rate looks due to the messiness of GPS 
+relocations. See [Checking the sampling rate]. 
 
-Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals, so we likely need to resample the data.
+Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals, 
+so we likely need to resample the data.
 
 ```{r resample_expr, echo = FALSE, comment = ''}
 get_target_expression(targets_tracks, 'tracks_resampled')
@@ -48,17 +55,25 @@ get_target_expression(targets_tracks, 'tracks_resampled')
 In our `targets` workflow, we have simplified all of this down to
 
 
-Here, all you will have to do is at the beginning of the work flow is fill in the variables to match your data. See the [Variables] section. 
+Here, all you will have to do is at the beginning of the work flow is fill in 
+the variables to match your data. See the [Variables] section. 
 
 
 ### Steps
 
-Now we have tracks, but a step selection analysis requires steps! So, in our targets workflow, we only keep data for individuals that have at least 3 steps, and this is adjustable depending on what you need.
+Now we have tracks, but a step selection analysis requires steps! So, in our 
+targets workflow, we only keep data for individuals that have at least 3 steps, 
+and this is adjustable depending on what you need.
 
 
 #### Check the distribution of steps and turn angles
 
-Now to make sure there aren't any weirdos in the steps.  Usually there are a lot of little steps and few big steps, but this is a good check to make sure any erroneous observations are removed. For instance, this would show if there are any steps that are not biologically possible. It also shows the distribution so you know if you should use a Gamma or exponential distribution for generating random steps. Most are Gamma, and that is the default in `amt`.
+Now to make sure there aren't any weirdos in the steps.  Usually there are a lot
+of little steps and few big steps, but this is a good check to make sure any
+erroneous observations are removed. For instance, this would show if there are
+any steps that are not biologically possible. It also shows the distribution so
+you know if you should use a Gamma or exponential distribution for generating
+random steps. Most are Gamma, and that is the default in `amt`.
 
 SL distribution for 1 individual
 ```{r plot_dist_sl}
@@ -75,19 +90,33 @@ Looks like a von Mises distribution, so that's also good
 
 ### Prepare the data to go into the iSSA
 
-So, at this point, we have our observed steps and know what their distributions look like. Now we can use this information to properly inform our random steps with the correct distribution. As we create the random steps, we will also extract the covariates of interest at each step. 
+So, at this point, we have our observed steps and know what their distributions
+look like. Now we can use this information to properly inform our random steps
+with the correct distribution. As we create the random steps, we will also
+extract the covariates of interest at each step.
 
 #### Motivation vs Selection
 
-One of the critical decisions to make in your analysis is if you want to know if a variable is motivating why/how an animal moves vs. if the animal is selecting for that variable; this decision influences if you use the information from the start of the step (motivation) vs. the end of the step (selection) in your analysis. This decision is of course determined by your question and hypotheses 
+One of the critical decisions to make in your analysis is if you want to know if
+a variable is motivating why/how an animal moves vs. if the animal is selecting
+for that variable; this decision influences if you use the information from the
+start of the step (motivation) vs. the end of the step (selection) in your
+analysis. This decision is of course determined by your question and hypotheses
 
 See [Choosing covariates] for more info
 
 #### Example extraction
 
-For example, here we are creating random steps and extracting information about what landcover class an individual selects for (at the end of each step) and how time of day (day or night at the start of the step) influences their movement. This will create a dataset that includes step length, turn angle, whether it's day or night at the star of the step, and what land class an animal is on at the end of their step.
+For example, here we are creating random steps and extracting information about
+what landcover class an individual selects for (at the end of each step) and how
+time of day (day or night at the start of the step) influences their movement.
+This will create a dataset that includes step length, turn angle, whether it's
+day or night at the star of the step, and what land class an animal is on at the
+end of their step.
 
-If you have multiple hypotheses that would benefit from know information from both the beginning and the end of the step, you can input`"both"` instead of `"start"` or `"end"`.
+If you have multiple hypotheses that would benefit from know information from
+both the beginning and the end of the step, you can input`"both"` instead of
+`"start"` or `"end"`.
 
 ```{r random_expr, echo = FALSE, comment = ''}
 get_target_expression(targets_tracks, 'tracks_random')
@@ -95,7 +124,11 @@ get_target_expression(targets_tracks, 'tracks_random')
 
 
 ## Running an iSSA
-This workflow is going to be an example using the Poisson point process method described by Muff et al (CITE). This method allows us to look at all individuals at once so we can examine both the individual- and population-level responses at once. In this example, we're going to include both categorical and continuous variables.
+This workflow is going to be an example using the Poisson point process method
+described by Muff et al (CITE). This method allows us to look at all individuals
+at once so we can examine both the individual- and population-level responses at
+once. In this example, we're going to include both categorical and continuous
+variables.
 
 
 ```{r f_model_land_cover, comment =''}
@@ -108,26 +141,38 @@ model_land_cover
 summary(tar_read(model_lc))
 ```
 
-When looking at the output of this model, we see some issues. First of all, there are some warnings from the model. The positive hessian warning is applied liberally in `glmmTMB`, but the real sign of a problem is the `NAs` reported for variation. This model didn't converge properly, so we need to look at why.
+When looking at the output of this model, we see some issues. First of all,
+there are some warnings from the model. The positive hessian warning is applied
+liberally in `glmmTMB`, but the real sign of a problem is the `NAs` reported for
+variation. This model didn't converge properly, so we need to look at why.
 
 Things to explore at the data level include:
+
 - lots of `NAs` for a particular variable
 - lots of variation or very little variation in a particular variable
 - availability of variables for individuals
 
 Things to explore at the model level include:
+
 - the model is over-parameterized for the amount of data
 - the high variance is assigned at the strata level and not for another random effect
 - variables are similarly scaled
-- if using the Muff method, the strata represent the step id by individual (`indiv_step_id`), not the step id that is assigned by 	`amt` because the way we have it coded, the numbers restart for each individual
+- if using the Muff method, the strata represent the step id by individual 
+(`indiv_step_id`), not the step id that is assigned by 	`amt` because the way 
+we have it coded, the numbers restart for each individual
 - categorical variables are classified as factors, especially `indiv_step_id`
-- random effects have at least 5 levels (this is likely not going to be a problem for most iSSAs, but it has come up)
+- random effects have at least 5 levels (this is likely not going to be a 
+problem for most iSSAs, but it has come up)
 
 ```{r exploring data}
 #TODO code showing exploration, especially availability
 ```
 
-After some exploration, I'm thinking this model is over-parameterized for 6 individuals, at least having so many landcover classes. So, I'm going to pretend for this example that we only care about selection for forest and disturbed habitats. We created dummy variables for this based on the extracted landcover data and ran the iSSA on this data.
+After some exploration, I'm thinking this model is over-parameterized for 6
+individuals, at least having so many landcover classes. So, I'm going to pretend
+for this example that we only care about selection for forest and disturbed
+habitats. We created dummy variables for this based on the extracted landcover
+data and ran the iSSA on this data.
 
 ```{r f_model_forest, comment =''}
 # R/model_forest_bin.R
@@ -144,10 +189,23 @@ This model runs without issue.
 
 ## Interpretation
 
-Demonstrating effects from iSSA output is an area where you will see a lot of different avenues at this point. Some just show the beta estimates from the model and p-values. This, however is not a real demonstration of effect size for iSSAs (CITE AVGAR). 
+Demonstrating effects from iSSA output is an area where you will see a lot of
+different avenues at this point. Some just show the beta estimates from the
+model and p-values. This, however is not a real demonstration of effect size for
+iSSAs (CITE AVGAR).
 
 ### Relative Selection Strength
-This is where Relative Selection Strength (RSS) comes in. Avgar et al (CITE) derived various equations to calculate RSS depending on if variables are on their own, interacted with others, log-transformed, etc. However, since then Brian Smith has determined that using the `predict()` function can achieve the same outcome (see CITE for proof). But this is all the mathematical details. What RSSs are really doing is comparing the selection strength for a habitat A compared to habitat B.So, say an animal is not in a forest, are they relatively more likely to select to be in a forest or avoid the forest? Then the RSS shows the strength of selection or avoidance over a range of availability of that habitat type.
+
+This is where Relative Selection Strength (RSS) comes in. Avgar et al (CITE)
+derived various equations to calculate RSS depending on if variables are on
+their own, interacted with others, log-transformed, etc. However, since then
+Brian Smith has determined that using the `predict()` function can achieve the
+same outcome (see CITE for proof). But this is all the mathematical details.
+What RSSs are really doing is comparing the selection strength for a habitat A
+compared to habitat B.So, say an animal is not in a forest, are they relatively
+more likely to select to be in a forest or avoid the forest? Then the RSS shows
+the strength of selection or avoidance over a range of availability of that
+habitat type.
 
 ```{r RSS example}
 # TODO insert forest example: code and graph
@@ -159,7 +217,17 @@ tar_read(plot_rss_water)
 
 #TODO insert description of the output graphs
 
-RSSs have to be done one habitat at a time. That being said, interactions can be explored by pre-determining cut off points to examine one of the variables at a time. I know that sounds confusing. So, for example, we have selection of forest interacted with distance to road. Say we want to understand how animals select for forest when they are near or far from roads. So, we define being near a road as being 100m of the road and being far from the road as 5000m from the road. These values are semi-arbitrary, but they should be based on the biology of the animal. This complicates the calculation of the RSS a bit, making it a two step process with the predict method. You first have to calculate the overall selection for, in this case, forest at 100m from the road, then you run the run the predict function over the availability of forest and add them together.
+RSSs have to be done one habitat at a time. That being said, interactions can be
+explored by pre-determining cut off points to examine one of the variables at a
+time. I know that sounds confusing. So, for example, we have selection of forest
+interacted with distance to road. Say we want to understand how animals select
+for forest when they are near or far from roads. So, we define being near a road
+as being 100m of the road and being far from the road as 5000m from the road.
+These values are semi-arbitrary, but they should be based on the biology of the
+animal. This complicates the calculation of the RSS a bit, making it a two step
+process with the predict method. You first have to calculate the overall
+selection for, in this case, forest at 100m from the road, then you run the run
+the predict function over the availability of forest and add them together.
 
 ```{r RSS interaction}
 # TODO: make up some example, there's not one relevant in the current toy model
@@ -167,10 +235,16 @@ RSSs have to be done one habitat at a time. That being said, interactions can be
 
 ### Speed
 
-Speed is a different kettle of fish. Some people show box plots of step length to give an idea of speed, but this is only a partial show of effect size (*this is not phrased well -- fix*). When using a gamma distribution for an iSSA, the mean estimated speed is shape parameter multiplied by the scale parameter from the gamma distribution. However, the shape is modified by the movement variables in the iSSA itself. So this calculation becomes
+Speed is a different kettle of fish. Some people show box plots of step length
+to give an idea of speed, but this is only a partial show of effect size (*this
+is not phrased well -- fix*). When using a gamma distribution for an iSSA, the
+mean estimated speed is shape parameter multiplied by the scale parameter from
+the gamma distribution. However, the shape is modified by the movement variables
+in the iSSA itself. So this calculation becomes
 
-#` TODO make this look like an equation
-mean estimated speed = (shape + log_sl_beta + log_sl_intx_beta*mean(what interacted with))*scale
+TODO make this look like an equation
+
+$\text{mean estimated speed} = (shape + log_sl_beta + log_sl_intx_beta*mean(what interacted with))*scale$
 
 
 So, from our toy example, this would be done as
