@@ -75,9 +75,6 @@ parameter (lambda).
 
 
 ```{r sl_dist}
-# > figure of each distribution
-# > extract params, save for later
-
 tar_read(dist_sl_plots, 1)
 ```
 
@@ -98,8 +95,6 @@ concentration parameter (k) ‘kappa’ in amt, and the location parameter
 
 
 ```{r ta_dist}
-# > figure of von mises distribution
-# > extract params, save for later
 tar_read(dist_ta_plots, 1)
 ```
 
