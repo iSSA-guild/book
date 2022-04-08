@@ -13,7 +13,6 @@ https://bookdown.org/jfieberg/SHABook/
 
 ## Packages
 
-targets
-
+- `targets`
 	- https://books.ropensci.org/targets
 

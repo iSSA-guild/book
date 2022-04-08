@@ -1,5 +1,10 @@
 .targets-files
 .targets-runs/
+_bookdown_files/book_files/figure-html/RSS example-1.png
+_bookdown_files/book_files/figure-html/RSS example-2.png
+_bookdown_files/book_files/figure-html/plot_dist_sl-1.png
+_bookdown_files/book_files/figure-html/plot_ta_dist-1.png
+_bookdown_files/book_files/figure-html/rss-1.png
 _bookdown_files/book_files/figure-html/sl_dist-1.png
 _bookdown_files/book_files/figure-html/ta_dist-1.png
 _targets/.gitignore
@@ -73,8 +78,14 @@ _targets/objects/tracks_resampled_f5a5ec5f
 _targets/objects/tracks_resampled_ff26430e
 _targets/objects/water
 docs/404.html
+docs/book_files/figure-html/RSS example-1.png
+docs/book_files/figure-html/RSS example-2.png
+docs/book_files/figure-html/plot_dist_sl-1.png
+docs/book_files/figure-html/plot_ta_dist-1.png
+docs/book_files/figure-html/rss-1.png
 docs/book_files/figure-html/sl_dist-1.png
 docs/book_files/figure-html/ta_dist-1.png
+docs/full-workflow.html
 docs/images/group.png
 docs/index.html
 docs/interpretation.html
