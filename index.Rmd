@@ -1,7 +1,10 @@
 --- 
 title: "How-To iSSA"
 date: "`r Sys.Date()`"
-# author: 
+author: 
+- Julie W. Turner
+- Christina M. Prokopenko
+- Alec L. Robitaille
 site: bookdown::bookdown_site
 documentclass: book
 url: https://issa-guild.github.io/book/
@@ -20,15 +23,20 @@ nocite: '@*'
 
 ## Acknowledgements
 
-Thank you to iSSA club alumni Katrien Kingdon, Levi Newediuk, Quinn Webber, Emilie Debedan, Eric Vander Wal for the motivation to solve problems and seek answers.
+Thank you to iSSA club alumni Katrien Kingdon, Levi Newediuk, Quinn Webber, Emilie Debedan, Eric Vander Wal for the motivation to solve problems and seek answers. Extra thank you to Katrien for reviewing this document.
 
 Note: Everyone learns differently and reading a document may not be the most helpful. Working with a group or discussing issues with a peer is immensely helpful, even for the most experienced practitioners. Every new analysis is an opportunity to learn and rethink our current ideas.
 
-<!-- TODO: thanks to package authors/R developers -->
+
+Thanks to all developers of R, R packages, and related software that 
+make this book and related analyses possible. Specifically developers of
+`targets`, `bookdown`, `R`, `R Studio`, `amt`, `data.table`, and R-spatial. 
 
 
 
 
 ```{r, echo = FALSE}
 library(targets)
+library(printr)
+options(digits = 2)
 ```
