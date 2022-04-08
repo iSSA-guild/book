@@ -39,3 +39,70 @@ https://github.com/Rdatatable/data.table/wiki/Installation
 https://stackoverflow.com/questions/65860439/installing-data-table-on-macos
 https://www.santoshsrinivas.com/installing-data-table-on-mac-osx/
 
+# Setup
+
+1. Start by downloading or cloning the targets-issa project. 
+	- Download the zipped project: [targets-issa.zip](https://github.com/iSSA-guild/targets-issa/archive/refs/heads/main.zip)
+	- Clone: `git clone https://github.com/iSSA-guild/targets-issa/`
+1. Open the RStudio project in the targets-issa repository. 
+1. Install required packages. 
+	- `renv::restore`
+	- If any packages error while installing, make sure you have the required 
+	system dependencies installed. Then try installing those again with 
+	`install.packages('package_name')`
+	- Run `renv::restore` again
+1. Run the targets workflow. 
+	- Load targets with `library(targets)`
+	- Run the workflow with `tar_make()`
+
+
+While the workflow is running, it will print the progress. A green dot
+indicates targets that run successfully, a red 
+X indicates targets that hit an error and a green check mark indicates 
+targets that are skipped because they are already up to date. 
+After you have run the workflow, you'll be to the output of 
+individual targets with `tar_read(target_name)`. For example, let's read
+the first prepared example relocations. 
+
+```{r}
+tar_read(locs_prep)
+```
+
+
+For more information about `targets`, check out the
+[manual](https://books.ropensci.org/targets/) (start with the Walkthrough).
+
+## Troubleshooting
+
+### `glmmTMB`
+
+There were some issues with the installing `glmmTMB` for Macs, 
+here are the steps that resolved it.
+
+1. remove old versions of `TMB`, `glmmTMB`, and `broom.mixed`
+2. install xcode from app store and do all updates for my OS (takes a while)
+3. restart computer
+4. install `TMB`
+5. restart R
+6. install `glmmTMB` from source (there was a repeated warning as posted in the link but it was ok)
+7. install `broom.mixed` 0.2.7 using `install.packages('broom.mixed')`
+8. restart R
+
+### `tidyverse`
+
+‘tidyverse’ is a meta package made up of the tidyverse pacakges. ‘amt’ relies
+heavily on the tidy packages and use their coding practices frequently. There
+are pros and cons to this that are discussed elsewhere. All this is to say that
+you may not want to install the entire ‘tidyverse’ package but just the ones
+necessary for your analyses. These may include ‘dplyr’, ‘tidyr’, ‘ggplot’,
+‘lubridate’, etc.
+
+
+### `data.table`
+
+Some issues with the compiler for Mac users. This is actually an issue for every packaged that needs a compiler. Some helpful sites to for set up:
+
+- https://github.com/Rdatatable/data.table/wiki/Installation
+- https://stackoverflow.com/questions/65860439/installing-data-table-on-macos
+- https://www.santoshsrinivas.com/installing-data-table-on-mac-osx/
+
