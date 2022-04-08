@@ -13,8 +13,7 @@ summarize_sampling_rate_many(tar_read(tracks), 'id')
 
 ### Erroneous locations
 
-The `amt` package includes code and guidelines for data cleaning, as does
-(Bjørneraas et al. 2010)
+The `amt` package includes code and guidelines for data cleaning, as does Bjørneraas et al. (2010). 
 
 The major GPS cleaning considerations are:
 
@@ -40,11 +39,18 @@ concern, using a robust calculation for confidence intervals can be completed.
 
 ## Sample Available Steps
 
-The main assumption is that the availability distribution defines what is accessible to the animal at a given location or time. For SSF specifically this assumption addresses what is accessible to the animal and can be selected as it makes its next step. 
+The main assumption is that the availability distribution defines what is
+accessible to the animal at a given location or time. For SSF specifically this
+assumption addresses what is accessible to the animal and can be selected as it
+makes its next step.
 
-iSSA builds on this and uses empirical observations of movements to inform probability distributions, which can then be modified by including corresponding covariates in the model. 
+iSSA builds on this and uses empirical observations of movements to inform
+probability distributions, which can then be modified by including corresponding
+covariates in the model.
 
-The unit of replication in iSSA analysis are clusters (or strata) made of a used step matches with a set of available steps. Available steps are sampled from tentative distributions of step length and turn angle.
+The unit of replication in iSSA analysis are clusters (or strata) made of a used
+step matches with a set of available steps. Available steps are sampled from
+tentative distributions of step length and turn angle.
 
 
 ### Distributions
@@ -87,7 +93,8 @@ behaviour. Check which distribution seems to fit best.
 Prokopenko et al. 2016 used a uniform ta and included cos(TA) to adjust for more
 realistic variation in directionality. If a Von Mises is fit from observed
 points, including cos(TA) in the model might not be informative. The
-concentration parameter (k) ‘kappa’ in amt, and the location parameter ($\mu$, mu in `amt`.
+concentration parameter (k) ‘kappa’ in amt, and the location parameter 
+($\mu$, mu in `amt`).
 
 
 ```{r ta_dist}
