@@ -39,7 +39,7 @@ read in using the relevant function (eg. `data.table::fread` or
 
 ```{r set_data, comment = ''}
 l <- readLines('https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R')
-writeLines(l[grep('Data', l)+1:grep('Variables', l)-1])
+writeLines(l[grep('Data', l):(grep('Variables', l)-1)])
 ```
 
 
@@ -51,7 +51,7 @@ shown below.
 
 ```{r set_variables, comment = ''}
 l <- readLines('https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R')
-writeLines(l[grep('Variables', l)+1:grep('Targets: data', l)-1])
+writeLines(l[grep('Variables', l):(grep('Targets: data', l)-1)])
 ```
 
 
