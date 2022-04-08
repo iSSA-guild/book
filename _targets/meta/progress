@@ -58,8 +58,7 @@ dist_parameters_bcf8feb4|branch|dist_parameters|0|skipped
 dist_parameters|pattern|dist_parameters|6|skipped
 tracks_extract|stem|tracks_extract|0|skipped
 model_prep|stem|model_prep|0|skipped
-avail_lc|stem|avail_lc|0|started
-avail_lc|stem|avail_lc|0|built
+avail_lc|stem|avail_lc|0|skipped
 model_forest|stem|model_forest|0|skipped
 model_lc|stem|model_lc|0|skipped
 pred_h1_forest|stem|pred_h1_forest|0|skipped
@@ -71,5 +70,4 @@ rss_water|stem|rss_water|0|skipped
 rss_forest|stem|rss_forest|0|skipped
 plot_rss_water|stem|plot_rss_water|0|skipped
 plot_rss_forest|stem|plot_rss_forest|0|skipped
-book|stem|book|0|started
-book|stem|book|0|built
+book|stem|book|0|skipped
