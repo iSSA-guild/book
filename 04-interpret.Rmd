@@ -113,9 +113,7 @@ the inverse of rate, for gamma and other distributions. Exponential is a special
 case where shape = 1, so using a modifier log SL turns it into a gamma. Thus,
 rate is inverse scale, and shape is one. The equations work out to be the same.
 
-```{r calc_speed}
-# > Julie’s snail code
-```
+See Julie's snail code [here](https://github.com/wildlifeevoeco/SnailPace/blob/master/R/predict.R#L96-L141=). 
 
 See other distributions in the iSSA webinar files (Avgar and Smith 2022)
 
