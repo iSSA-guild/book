@@ -209,9 +209,8 @@ is to rank within your strata/cluster of used and random points (Fortin et al.
 2009). Arguably, this is not ideal because you are restricted to the strata and
 you actually want a validation of the extent of your study area.
 
-```{r qw_social_issa}
-# > link to QW social-issa repo
-```
+Quinn Webber's social iSSA repository: https://github.com/qwebber/social-issa/
+
 
 If the k-fold procedure is used it is critical to mention that as it is done for SSF is not a validation it is an out of sample discrimination test. It is important to accurately state that it is not a predictive validation, this method attempts to discriminate between a used step and an available step.
 
