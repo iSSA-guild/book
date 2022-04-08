@@ -201,6 +201,8 @@ mixed model, still helpful in clogit models but less necessary)
 ```{r selection}
 # > attributing habitat to end points of steps
 # > example scaling
+# R/extract_layers()
+extract_layers
 ```
 
 Scaling covariates 
