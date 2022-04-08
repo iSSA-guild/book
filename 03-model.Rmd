@@ -64,7 +64,7 @@ https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effect
 nested is notated as:
 
 ```{r, eval = FALSE}
-(1|group1/group2)
+(1 | group1 / group2)
 ```
 
 ## Output
@@ -82,8 +82,10 @@ To calculate individual selection coefficients =  Fixed Effect + Random Effect
 
 Check the fixed and random effect standard errors to see if they are really large or NAs.
 
+For example, note the NAs in the example model using land cover. In 
+the summary, at the bottom under "Conditional model". 
+
 ```{r model_failed}
-# > example of ‘failed’ model
 summary(tar_read(model_lc))
 ```
 

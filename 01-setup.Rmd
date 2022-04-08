@@ -74,7 +74,7 @@ here are the steps that resolved it.
 
 ### `tidyverse`
 
-‘tidyverse’ is a meta package made up of the tidyverse pacakges. ‘amt’ relies
+‘tidyverse’ is a meta package made up of the tidyverse packages. ‘amt’ relies
 heavily on the tidy packages and use their coding practices frequently. There
 are pros and cons to this that are discussed elsewhere. All this is to say that
 you may not want to install the entire ‘tidyverse’ package but just the ones

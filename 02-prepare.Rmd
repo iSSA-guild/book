@@ -1,11 +1,19 @@
 # Preparation
 
+## Explore data
+
+### Checking the sampling rate
+
+```{r sampling rate}
+summarize_sampling_rate_many(tar_read(tracks), 'id')
+```
+
+
 ## Clean data
 
 ### Erroneous locations
 
-The `amt` package includes code and guidelines for data cleaning, as does
-(Bjørneraas et al. 2010)
+The `amt` package includes code and guidelines for data cleaning, as does Bjørneraas et al. (2010). 
 
 The major GPS cleaning considerations are:
 
@@ -31,11 +39,18 @@ concern, using a robust calculation for confidence intervals can be completed.
 
 ## Sample Available Steps
 
-The main assumption is that the availability distribution defines what is accessible to the animal at a given location or time. For SSF specifically this assumption addresses what is accessible to the animal and can be selected as it makes its next step. 
+The main assumption is that the availability distribution defines what is
+accessible to the animal at a given location or time. For SSF specifically this
+assumption addresses what is accessible to the animal and can be selected as it
+makes its next step.
 
-iSSA builds on this and uses empirical observations of movements to inform probability distributions, which can then be modified by including corresponding covariates in the model. 
+iSSA builds on this and uses empirical observations of movements to inform
+probability distributions, which can then be modified by including corresponding
+covariates in the model.
 
-The unit of replication in iSSA analysis are clusters (or strata) made of a used step matches with a set of available steps. Available steps are sampled from tentative distributions of step length and turn angle.
+The unit of replication in iSSA analysis are clusters (or strata) made of a used
+step matches with a set of available steps. Available steps are sampled from
+tentative distributions of step length and turn angle.
 
 
 ### Distributions
@@ -60,9 +75,6 @@ parameter (lambda).
 
 
 ```{r sl_dist}
-# > figure of each distribution
-# > extract params, save for later
-
 tar_read(dist_sl_plots, 1)
 ```
 
@@ -78,13 +90,12 @@ behaviour. Check which distribution seems to fit best.
 Prokopenko et al. 2016 used a uniform ta and included cos(TA) to adjust for more
 realistic variation in directionality. If a Von Mises is fit from observed
 points, including cos(TA) in the model might not be informative. The
-concentration parameter (k) ‘kappa’ in amt, and the location parameter ($\mu$, mu in `amt`.
+concentration parameter (k) ‘kappa’ in amt, and the location parameter 
+($\mu$, mu in `amt`).
 
 
 ```{r ta_dist}
-# > figure of von mises distribution
-# > extract params, save for later
-tar_read(dist_sl_plots, 1)
+tar_read(dist_ta_plots, 1)
 ```
 
 
@@ -161,7 +172,7 @@ The purpose of exploring your data is to brainstorm the potential options for yo
 ```{r guide_qs}
 # > table or figure sample size - # individuals and points per individual
 # > locations spread per season, year, individual: counts across categories
-# > density or histogram or boxplot of covariates for used and available by any division that might be used in the model individual, year, season 
+# > density or histogram or box plot of covariates for used and available by any division that might be used in the model individual, year, season 
 # > temporal extent and resolution 
 # > spatial extent and resolution
 # > movement rates and turn angles by individual, season, time of day: mean, range, plots
@@ -192,7 +203,6 @@ Dickie et al. (2020) used 0.01 as the "threshold" of availability. i.e. included
 
 ```{r avail_thresh}
 tar_read(avail_lc)[id == 1016]
-# > Julie’s code
 ```
 
 Depending on how many covariates you have in your model, having many habitat classes (and any associated interactions) can really eat up your data. It's worthwhile doing a habitat point extraction for your GPS locations to see which habitat types are relevant and available to your individuals. Then you can start to combine some habitat types. For example, open vs closed, deciduous vs coniferous vs mixed, etc.
@@ -210,10 +220,16 @@ Important: discrete variable must be coded as factors.
 mixed model, still helpful in clogit models but less necessary)
 
 
-```{r selection}
-# > attributing habitat to end points of steps
-# > example scaling
-# R/extract_layers()
+The `extract_layers` function is a user-facing function from the 
+targets-issa workflow to flexibly sample relevant spatial layers. 
+In the example, it samples land cover (point), elevation (point),
+population density (point), and water (distance to). It also
+combines the merges the land cover legend to provide more useful 
+land cover descriptions in addition to numeric ids. 
+
+
+```{r f_extract_layers, comment =''}
+# R/extract_layers.R
 extract_layers
 ```
 

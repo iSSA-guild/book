@@ -4,6 +4,7 @@ _targets/
 renv/
 _bookdown_files/
 _book/
+book.Rmd
 
 ### R
 .Rproj.user
