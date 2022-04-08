@@ -37,6 +37,6 @@ make this book and related analyses possible. Specifically developers of
 
 ```{r, echo = FALSE}
 library(targets)
-library(printr)
+suppressPackageStartupMessages(library(printr))
 options(digits = 2)
 ```
