@@ -51,10 +51,33 @@ Calculated for an animal selecting one spatial location (x1) over another (x2) w
 - Common RSS expressions in Avgar et al. 2017, formulation depends on the covariates of interest in model
 - Can use the `predict` function: https://rdrr.io/cran/amt/man/log_rss.htm in amt or JWT code
 - Fieberg ‘How-to’ goes through the RSS maths
-    
+
+
+<!-- TODO: [JWT] edits/clarify here --> 
+In the targets-issa workflow, we predict H1, and H2 for forest using
+the following functions:
+
+```{r f_predict_h1_water}
+# R/predict_h1_water.R
+predict_h1_water
+```
+
+```{r f_predict_h2}
+# R/predict_h2.R
+predict_h2
+```
+
+Then we can calculate RSS for forest:
+
+```{r f_calc_rss}
+# R/calc_rss.R
+calc_rss
+```
+
+And finally, the plots with the `plot_rss` function. 
+
 ```{r rss}
-# > predict methods
-# > example plot
+tar_read(plot_rss_forest)
 ```
 
 #### Guiding Questions
