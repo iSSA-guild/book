@@ -84,7 +84,7 @@ concentration parameter (k) ‘kappa’ in amt, and the location parameter ($\mu
 ```{r ta_dist}
 # > figure of von mises distribution
 # > extract params, save for later
-tar_read(dist_sl_plots, 1)
+tar_read(dist_ta_plots, 1)
 ```
 
 
