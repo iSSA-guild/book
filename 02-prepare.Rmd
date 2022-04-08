@@ -126,14 +126,26 @@ The availability distribution is defined by the randomly sampled steps from the 
 
 Using 10 steps for each used step to have a strata of 11 steps is common, but intensity of sampling varies across the literature. Sensitivity analysis can be conducted to determine the influence of availability sample on selection (Northrup et al. 2013, 2016). A general piece of advice is “at least one, the more the merrier” (Avgar and Smith 2022)
 
-```{r n_steps, echo = FALSE, comment = ''}
-# > number of steps, making random steps
-targets_tracks[[1]]$command$expr[[1]]
-targets_tracks[[2]]$command$expr[[1]]
-targets_tracks[[3]]$command$expr[[1]]
+Generating tracks:
+```{r tracks_expr, echo = FALSE, comment = ''}
+get_target_expression(targets_tracks, 'tracks')
 ```
 
-Researchers should consider the resolution of the habitat covariate and the step length of the animal to determine the number of steps required to estimate what is accessible to the animal. 
+Resampling tracks:
+```{r tracks_resampled_expr, echo = FALSE, comment = ''}
+get_target_expression(targets_tracks, 'tracks_resampled')
+```
+
+Adding random steps:
+```{r tracks_random_expr, echo = FALSE, comment = ''}
+get_target_expression(targets_tracks, 'tracks_random')
+```
+
+
+
+Researchers should consider the resolution of the habitat covariate and the step
+length of the animal to determine the number of steps required to estimate what
+is accessible to the animal.
 
 ## Explore data
 
