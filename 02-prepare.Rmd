@@ -216,8 +216,8 @@ combines the merges the land cover legend to provide more useful
 land cover descriptions in addition to numeric ids. 
 
 
-```{r selection}
-# R/extract_layers()
+```{r f_extract_layers}
+# R/extract_layers.R
 extract_layers
 ```
 
