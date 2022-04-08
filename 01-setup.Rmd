@@ -5,11 +5,11 @@
 	- Clone: `git clone https://github.com/iSSA-guild/targets-issa/`
 1. Open the RStudio project in the targets-issa repository. 
 1. Install required packages. 
-	- `renv::restore`
+	- `renv::restore()`
 	- If any packages error while installing, make sure you have the required 
 	system dependencies installed. Then try installing those again with 
 	`install.packages('package_name')`
-	- Run `renv::restore` again
+	- Run `renv::restore()` again
 1. Run the targets workflow. It is defined in the script `_targets.R`. 
 	- Load targets with `library(targets)`
 	- Run the workflow with `tar_make()`
