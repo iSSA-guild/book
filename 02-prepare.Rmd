@@ -160,7 +160,7 @@ The purpose of exploring your data is to brainstorm the potential options for yo
 ```{r guide_qs}
 # > table or figure sample size - # individuals and points per individual
 # > locations spread per season, year, individual: counts across categories
-# > density or histogram or boxplot of covariates for used and available by any division that might be used in the model individual, year, season 
+# > density or histogram or box plot of covariates for used and available by any division that might be used in the model individual, year, season 
 # > temporal extent and resolution 
 # > spatial extent and resolution
 # > movement rates and turn angles by individual, season, time of day: mean, range, plots

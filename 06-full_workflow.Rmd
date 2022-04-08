@@ -58,7 +58,7 @@ Now we have tracks, but a step selection analysis requires steps! So, in our tar
 
 #### Check the distribution of steps and turn angles
 
-Now to make sure there aren't any weirdos in the steps.  Usually there are a lot of little steps and few big steps, but this is a good check to make sure any erroneous obsevations are removed. For instance, this would show if there are any steps that are not biologically possible. It also shows the distribution so you know if you should use a Gamma or exponential distribution for generating random steps. Most are Gamma, and that is the default in `amt`.
+Now to make sure there aren't any weirdos in the steps.  Usually there are a lot of little steps and few big steps, but this is a good check to make sure any erroneous observations are removed. For instance, this would show if there are any steps that are not biologically possible. It also shows the distribution so you know if you should use a Gamma or exponential distribution for generating random steps. Most are Gamma, and that is the default in `amt`.
 
 SL distribution for 1 individual
 ```{r plot_dist_sl}
@@ -94,7 +94,7 @@ get_target_expression(targets_tracks, 'tracks_random')
 ```
 
 
-## Running and iSSA
+## Running an iSSA
 This workflow is going to be an example using the Poisson point process method described by Muff et al (CITE). This method allows us to look at all individuals at once so we can examine both the individual- and population-level responses at once. In this example, we're going to include both categorical and continuous variables.
 
 
@@ -167,7 +167,7 @@ RSSs have to be done one habitat at a time. That being said, interactions can be
 
 ### Speed
 
-Speed is a different kettle of fish. Some people show boxplots of step length to give an idea of speed, but this is only a partial show of effect size (*this is not phrased well -- fix*). When using a gamma distribution for an iSSA, the mean estimated speed is shape parameter multiplied by the scale parameter from the gamma distribution. However, the shape is modified by the movement variables in the iSSA itself. So this calculation becomes
+Speed is a different kettle of fish. Some people show box plots of step length to give an idea of speed, but this is only a partial show of effect size (*this is not phrased well -- fix*). When using a gamma distribution for an iSSA, the mean estimated speed is shape parameter multiplied by the scale parameter from the gamma distribution. However, the shape is modified by the movement variables in the iSSA itself. So this calculation becomes
 
 #` TODO make this look like an equation
 mean estimated speed = (shape + log_sl_beta + log_sl_intx_beta*mean(what interacted with))*scale
