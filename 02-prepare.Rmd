@@ -2,7 +2,7 @@
 
 ## Explore data
 
-Check the sampling rate:
+### Checking the sampling rate
 
 ```{r sampling rate}
 summarize_sampling_rate_many(tar_read(tracks), 'id')
