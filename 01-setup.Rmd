@@ -21,10 +21,10 @@ X indicates targets that hit an error and a green check mark indicates
 targets that are skipped because they are already up to date. 
 After you have run the workflow, you'll be to the output of 
 individual targets with `tar_read(target_name)`. For example, let's read
-the first prepared example relocations. 
+the first five lines from the prepared example relocations. 
 
 ```{r}
-tar_read(locs_prep)
+tar_read(locs_prep)[1:5]
 ```
 
 
