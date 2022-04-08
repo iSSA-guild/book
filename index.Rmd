@@ -30,7 +30,7 @@ Note: Everyone learns differently and reading a document may not be the most hel
 
 Thanks to all developers of R, R packages, and related software that 
 make this book and related analyses possible. Specifically developers of
-`targets`, `bookdown`, `R`, `R Studio`, `amt`, `data.table`, and R-spatial. 
+`targets`, `bookdown`, `R`, `RStudio`, `amt`, `data.table`, and R-spatial. 
 
 
 
