@@ -121,12 +121,12 @@ jobs:
         if: failure()
         run: rm -rf .git .github .targets-files .targets-runs
 
-      - name: Post failure artifact
-        if: failure()
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
-          path: .
+      #- name: Post failure artifact
+      #  if: failure()
+      #  uses: actions/upload-artifact@main
+      #  with:
+      #    name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+      #    path: .
 
       - name: Deploy to GitHub pages 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
