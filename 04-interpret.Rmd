@@ -57,19 +57,19 @@ Calculated for an animal selecting one spatial location (x1) over another (x2) w
 In the targets-issa workflow, we predict H1, and H2 for forest using
 the following functions:
 
-```{r f_predict_h1_water}
+```{r f_predict_h1_water, comment =''}
 # R/predict_h1_water.R
 predict_h1_water
 ```
 
-```{r f_predict_h2}
+```{r f_predict_h2, comment =''}
 # R/predict_h2.R
 predict_h2
 ```
 
 Then we can calculate RSS for forest:
 
-```{r f_calc_rss}
+```{r f_calc_rss, comment =''}
 # R/calc_rss.R
 calc_rss
 ```
@@ -101,9 +101,9 @@ Available steps are drawn from a gamma distribution of step lengths (shape, scal
 
 Extract basal parameters: 
 
-```{r basal_params, eval = FALSE}
-sl_distr_params(mod)
-ta_distr_params(mod)
+```{r basal_params}
+# sl_distr_params(mod)
+# ta_distr_params(mod)
 ```
 
 The calculation for Mean Step Length is shape multiplied by scale:\
