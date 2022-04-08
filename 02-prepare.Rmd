@@ -191,7 +191,6 @@ Dickie et al. (2020) used 0.01 as the "threshold" of availability. i.e. included
 
 ```{r avail_thresh}
 tar_read(avail_lc)[id == 1016]
-# > Julie’s code
 ```
 
 Depending on how many covariates you have in your model, having many habitat classes (and any associated interactions) can really eat up your data. It's worthwhile doing a habitat point extraction for your GPS locations to see which habitat types are relevant and available to your individuals. Then you can start to combine some habitat types. For example, open vs closed, deciduous vs coniferous vs mixed, etc.
@@ -209,9 +208,15 @@ Important: discrete variable must be coded as factors.
 mixed model, still helpful in clogit models but less necessary)
 
 
+The `extract_layers` function is a user-facing function from the 
+targets-issa workflow to flexibly sample relevant spatial layers. 
+In the example, it samples land cover (point), elevation (point),
+population density (point), and water (distance to). It also
+combines the merges the land cover legend to provide more useful 
+land cover descriptions in addition to numeric ids. 
+
+
 ```{r selection}
-# > attributing habitat to end points of steps
-# > example scaling
 # R/extract_layers()
 extract_layers
 ```
