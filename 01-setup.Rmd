@@ -10,7 +10,7 @@
 	system dependencies installed. Then try installing those again with 
 	`install.packages('package_name')`
 	- Run `renv::restore` again
-1. Run the targets workflow. 
+1. Run the targets workflow. It is defined in the script `_targets.R`. 
 	- Load targets with `library(targets)`
 	- Run the workflow with `tar_make()`
 
@@ -30,6 +30,31 @@ tar_read(locs_prep)
 
 For more information about `targets`, check out the
 [manual](https://books.ropensci.org/targets/) (start with the Walkthrough).
+
+## Data
+Data are specified in the "Data" section of the `_targets.R` script. 
+The paths to all files required for the analysis are specified, then
+read in using the relevant function (eg. `data.table::fread` or
+`sf::st_read`) in the targets workflow. 
+
+```{r, results = 'asis'}
+l <- readLines('https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R')
+writeLines(l[grep('Data', l):grep('Variables', l)-1])
+```
+
+
+## Variables
+Variables are specified in the "Variables" section of the `_targets.R` script. 
+For example, the column names for x, y, datetime and id in the input
+relocation data and the resampling rate. All required variables are 
+shown below. 
+
+```{r, results = 'asis'}
+l <- readLines('https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R')
+writeLines(l[grep('Variables', l):grep('Targets: data', l)-1])
+```
+
+
 
 ## Troubleshooting
 
