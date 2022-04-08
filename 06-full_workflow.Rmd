@@ -27,7 +27,7 @@ It is critical that all of the layers you plan to use and GPS points are in the 
 
 Once the data is clean, we make the points into a track. If you have more than one individual in the dataset, do it by individual.
 
-```{r amt, echo=FALSE}
+```{r amt, eval = FALSE}
 # example of what it could look like
 require(amt)
 tracks <- dat %>% make_track(long, lat, datetime, crs = sp::CRS("+init=epsg:4326"), id = id)
@@ -37,15 +37,15 @@ tracks <- dat %>% make_track(long, lat, datetime, crs = sp::CRS("+init=epsg:4326
 
 Now we should check how the sampling rate looks due to the messiness of GPS relocations.
 
-```{r sampling rate}
+```{r sampling rate, eval = FALSE}
 tracks %>% mutate(sr = lapply(data, summarize_sampling_rate)) %>%
   dplyr::select(id, sr) %>% unnest(cols = c(sr))
 ```
 
 Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals, so we likely need to resample the data.
 
-```{r resample}
-require(amt) # This needs to be checked and updated, I don't know what I'm doing
+```{r resample, eval = FALSE}
+
 resample_tracks <- function(tracks, rate, tolerance) {
   t <- track_resample(tracks, rate = rate, tolerance = tolerance) %>%
     filter_min_n_burst()
@@ -62,7 +62,7 @@ targets_tracks[[3]]$command$expr[[1]]
 
 Here, all you will have to do is at the beginning of the work flow is fill in the variables to match your data:
 
-```{r Targets: prepare, echo = FALSE, comment = ''}
+```{r Targets: prepare, echo = FALSE, comment = '', eval = FALSE}
 # Targets: prepare
 id_col <- 'id'
 datetime_col <- 't_'
@@ -78,7 +78,7 @@ tz <- 'America/New_York'
 
 Now we have tracks, but a step selection analysis requires steps! So, in our targets workflow, we only keep data for individuals that have at least 3 steps, and this is adjustable depending on what you need.
 
-```{r steps, echo=FALSE}
+```{r steps, echo=FALSE, eval = FALSE}
 
 resample_tracks <- function(tracks, rate, tolerance) {
   t <- track_resample(tracks, rate = rate, tolerance = tolerance) %>%
@@ -129,7 +129,7 @@ For example, here we are creating random steps and extracting information about 
 
 If you have multiple hypotheses that would benefit from know information from both the beginning and the end of the step, you can input`"both"` instead of `"start"` or `"end"`.
 
-```{r sl/ta distributions, echo=FALSE}
+```{r sl/ta distributions, echo=FALSE, eval = FALSE}
 # this is just code that doesn't run to show what it looks like
 make_random_steps <- function(DT, lc) {
   tar_cancel(nrow(DT) == 0)
@@ -144,7 +144,7 @@ make_random_steps <- function(DT, lc) {
 This workflow is going to be an example using the Poisson point process method described by Muff et al (CITE). This method allows us to look at all individuals at once so we can examine both the individual- and population-level responses at once. In this example, we're going to include both categorical and continuous variables.
 
 ```{r iSSA for selection of landcover and distance from water}
-targets_model_lc[[1]]$command$expr
+targets_model[[2]]$command$expr
 #TODO show errors/warnings
 summary(tar_read(model_lc))
 ```
@@ -173,7 +173,7 @@ After some exploration, I'm thinking this model is over-parameterized for 6 indi
 ```{r simplified iSSA}
 #TODO show binning
 
-targets_model_forest[[1]]$command$expr
+targets_model[[3]]$command$expr
 # show errors/warnings
 summary(tar_read((model_forest)))
 ```
@@ -208,13 +208,12 @@ RSSs have to be done one habitat at a time. That being said, interactions can be
 
 Speed is a different kettle of fish. Some people show boxplots of step length to give an idea of speed, but this is only a partial show of effect size (*this is not phrased well -- fix*). When using a gamma distribution for an iSSA, the mean estimated speed is shape parameter multiplied by the scale parameter from the gamma distribution. However, the shape is modified by the movement variables in the iSSA itself. So this calculation becomes
 
-```{eq modified speed calcualtion written example}
-# i don't know if this is how I do this, as usual, i'm making stuff up
+#` TODO make this look like an equation
 mean estimated speed = (shape + log_sl_beta + log_sl_intx_beta*mean(what interacted with))*scale
-```
+
 
 So, from our toy example, this would be done as
-```{r example mean estimated speed}
+```{r example mean estimated speed, eval = FALSE}
 #TODO create target calc
 #TODO create plot
 ```
