@@ -34,4 +34,6 @@ Note: Everyone learns differently and reading a document may not be the most hel
 
 ```{r, echo = FALSE}
 library(targets)
+library(printr)
+options(digits = 2)
 ```
