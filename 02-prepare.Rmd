@@ -179,6 +179,7 @@ Dickie et al. (2020) used 0.01 as the "threshold" of availability. i.e. included
 
 
 ```{r avail_thresh}
+tar_read(avail_lc)[id == 1016]
 # > Julie’s code
 ```
 
