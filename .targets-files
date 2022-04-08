@@ -1,6 +1,7 @@
 .targets-files
 .targets-runs/
 _bookdown_files/book_files/figure-html/sl_dist-1.png
+_bookdown_files/book_files/figure-html/ta_dist-1.png
 _targets/.gitignore
 _targets/meta/meta
 _targets/meta/process
@@ -19,6 +20,18 @@ _targets/objects/dist_plots_806601f2
 _targets/objects/dist_plots_8ba21cb0
 _targets/objects/dist_plots_cdeaeca0
 _targets/objects/dist_plots_d793a891
+_targets/objects/dist_sl_plots_1ee3ea95
+_targets/objects/dist_sl_plots_1fe6c783
+_targets/objects/dist_sl_plots_806601f2
+_targets/objects/dist_sl_plots_8ba21cb0
+_targets/objects/dist_sl_plots_cdeaeca0
+_targets/objects/dist_sl_plots_d793a891
+_targets/objects/dist_ta_plots_1ee3ea95
+_targets/objects/dist_ta_plots_1fe6c783
+_targets/objects/dist_ta_plots_806601f2
+_targets/objects/dist_ta_plots_8ba21cb0
+_targets/objects/dist_ta_plots_cdeaeca0
+_targets/objects/dist_ta_plots_d793a891
 _targets/objects/elev
 _targets/objects/generate_bib
 _targets/objects/lc
@@ -61,6 +74,7 @@ _targets/objects/tracks_resampled_ff26430e
 _targets/objects/water
 docs/404.html
 docs/book_files/figure-html/sl_dist-1.png
+docs/book_files/figure-html/ta_dist-1.png
 docs/images/group.png
 docs/index.html
 docs/interpretation.html

@@ -26,6 +26,7 @@ not recommended for presentations or the sole means of presenting results.
 
 ```{r interpret_table}
 # > making a nice table from the output code?
+broom.mixed::tidy(tar_read(model_forest))
 ```
 
 #### Box plots

@@ -63,7 +63,7 @@ parameter (lambda).
 # > figure of each distribution
 # > extract params, save for later
 
-tar_read(dist_plots, 1)
+tar_read(dist_sl_plots, 1)
 ```
 
 Plot the observed data against these fitted distributions to assess the
@@ -84,6 +84,7 @@ concentration parameter (k) ‘kappa’ in amt, and the location parameter ($\mu
 ```{r ta_dist}
 # > figure of von mises distribution
 # > extract params, save for later
+tar_read(dist_sl_plots, 1)
 ```
 
 
@@ -178,6 +179,7 @@ Dickie et al. (2020) used 0.01 as the "threshold" of availability. i.e. included
 
 
 ```{r avail_thresh}
+tar_read(avail_lc)[id == 1016]
 # > Julie’s code
 ```
 
@@ -199,6 +201,8 @@ mixed model, still helpful in clogit models but less necessary)
 ```{r selection}
 # > attributing habitat to end points of steps
 # > example scaling
+# R/extract_layers()
+extract_layers
 ```
 
 Scaling covariates 

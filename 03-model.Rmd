@@ -84,6 +84,7 @@ Check the fixed and random effect standard errors to see if they are really larg
 
 ```{r model_failed}
 # > example of ‘failed’ model
+summary(tar_read(model_lc))
 ```
 
 
