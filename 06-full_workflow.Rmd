@@ -1,12 +1,5 @@
----
-title: "iSSA_workflow"
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Preparing an iSSA
+![](https://badgen.net/badge/status/WIP/orange)
 
 ### The data
 
