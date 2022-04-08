@@ -5,16 +5,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 2 Setup | How-To iSSA</title>
-<meta name="description" content="2.1 Packages   2.1.1 amt (Signer et al. 2019)  2.1.2 glmmTMB There were some issues with the installing the packages for Macs, here are the steps that resolved it. remove old versions of TMB,...">
+<meta name="author" content="Julie W. Turner">
+<meta name="author" content="Christina M. Prokopenko">
+<meta name="author" content="Alec L. Robitaille">
+<meta name="description" content="Start by downloading or cloning the targets-issa project. Download the zipped project: targets-issa.zip Clone: git clone https://github.com/iSSA-guild/targets-issa/  Open the RStudio project in...">
 <meta name="generator" content="bookdown 0.25.5 with bs4_book()">
 <meta property="og:title" content="Chapter 2 Setup | How-To iSSA">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://issa-guild.github.io/book/setup.html">
 <meta property="og:image" content="https://issa-guild.github.io/book/images/group.png">
-<meta property="og:description" content="2.1 Packages   2.1.1 amt (Signer et al. 2019)  2.1.2 glmmTMB There were some issues with the installing the packages for Macs, here are the steps that resolved it. remove old versions of TMB,...">
+<meta property="og:description" content="Start by downloading or cloning the targets-issa project. Download the zipped project: targets-issa.zip Clone: git clone https://github.com/iSSA-guild/targets-issa/  Open the RStudio project in...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 2 Setup | How-To iSSA">
-<meta name="twitter:description" content="2.1 Packages   2.1.1 amt (Signer et al. 2019)  2.1.2 glmmTMB There were some issues with the installing the packages for Macs, here are the steps that resolved it. remove old versions of TMB,...">
+<meta name="twitter:description" content="Start by downloading or cloning the targets-issa project. Download the zipped project: targets-issa.zip Clone: git clone https://github.com/iSSA-guild/targets-issa/  Open the RStudio project in...">
 <meta name="twitter:image" content="https://issa-guild.github.io/book/images/group.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -51,6 +54,7 @@
 <li><a class="" href="modelling.html"><span class="header-section-number">4</span> Modelling</a></li>
 <li><a class="" href="interpretation.html"><span class="header-section-number">5</span> Interpretation</a></li>
 <li><a class="" href="resources.html"><span class="header-section-number">6</span> Resources</a></li>
+<li><a class="" href="full-workflow.html"><span class="header-section-number">7</span> Full workflow</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -63,22 +67,166 @@
 <h1>
 <span class="header-section-number">2</span> Setup<a class="anchor" aria-label="anchor" href="#setup"><i class="fas fa-link"></i></a>
 </h1>
-<div id="packages" class="section level2">
+<ol style="list-style-type: decimal">
+<li>Start by downloading or cloning the targets-issa project.
+<ul>
+<li>Download the zipped project: <a href="https://github.com/iSSA-guild/targets-issa/archive/refs/heads/main.zip">targets-issa.zip</a>
+</li>
+<li>Clone: <code>git clone https://github.com/iSSA-guild/targets-issa/</code>
+</li>
+</ul>
+</li>
+<li>Open the RStudio project in the targets-issa repository.</li>
+<li>Install required packages.
+<ul>
+<li><code><a href="https://rstudio.github.io/renv/reference/restore.html">renv::restore()</a></code></li>
+<li>If any packages error while installing, make sure you have the required
+system dependencies installed. Then try installing those again with
+<code>install.packages('package_name')</code>
+</li>
+<li>Run <code><a href="https://rstudio.github.io/renv/reference/restore.html">renv::restore()</a></code> again</li>
+</ul>
+</li>
+<li>Run the targets workflow. It is defined in the script <code>_targets.R</code>.
+<ul>
+<li>Load targets with <code><a href="https://docs.ropensci.org/targets/">library(targets)</a></code>
+</li>
+<li>Run the workflow with <code>tar_make()</code>
+</li>
+</ul>
+</li>
+</ol>
+<p>While the workflow is running, it will print the progress. A green dot
+indicates targets that run successfully, a red
+X indicates targets that hit an error and a green check mark indicates
+targets that are skipped because they are already up to date.
+After you have run the workflow, you’ll be to the output of
+individual targets with <code>tar_read(target_name)</code>. For example, let’s read
+the first five lines from the prepared example relocations.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">locs_prep</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">x_</th>
+<th align="right">y_</th>
+<th align="left">t_</th>
+<th align="right">id</th>
+<th align="right">tar_group</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">593216</td>
+<td align="right">4738712</td>
+<td align="left">2011-02-11 23:06:14</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">593227</td>
+<td align="right">4738718</td>
+<td align="left">2011-02-11 23:10:09</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">593217</td>
+<td align="right">4738711</td>
+<td align="left">2011-02-11 23:20:59</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">593218</td>
+<td align="right">4738661</td>
+<td align="left">2011-02-11 23:41:31</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">593198</td>
+<td align="right">4738690</td>
+<td align="left">2011-02-12 00:41:11</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table></div>
+<p>For more information about <code>targets</code>, check out the
+<a href="https://books.ropensci.org/targets/">manual</a> (start with the Walkthrough).</p>
+<div id="data" class="section level2">
 <h2>
-<span class="header-section-number">2.1</span> Packages<a class="anchor" aria-label="anchor" href="#packages"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.1</span> Data<a class="anchor" aria-label="anchor" href="#data"><i class="fas fa-link"></i></a>
 </h2>
-<div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
-<div id="amt" class="section level3">
-<h3>
-<span class="header-section-number">2.1.1</span> <code>amt</code><a class="anchor" aria-label="anchor" href="#amt"><i class="fas fa-link"></i></a>
-</h3>
-<p>(Signer et al. 2019)</p>
+<p>Data are specified in the “Data” section of the <code>_targets.R</code> script.
+The paths to all files required for the analysis are specified, then
+read in using the relevant function (eg. <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">data.table::fread</a></code> or
+<code><a href="https://r-spatial.github.io/sf/reference/st_read.html">sf::st_read</a></code>) in the targets workflow.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">l</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'Data'</span>, <span class="va">l</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'Variables'</span>, <span class="va">l</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code># Data --------------------------------------------------------------------
+# Path to fisher locs data
+locs_path &lt;- file.path('input', 'fisher.csv')
+
+# Path to land cover, legend
+lc_path &lt;- file.path('input', 'lc.tif')
+legend_path &lt;- file.path('input', 'fisher_legend.csv')
+
+# Path to elevation
+elev_path &lt;- file.path('input', 'elev.tif')
+
+# Path to population density
+popdens_path &lt;- file.path('input', 'popdens.tif')
+
+# Path to water
+water_path &lt;- file.path('input', 'water.gpkg')</code></pre>
 </div>
+<div id="variables" class="section level2">
+<h2>
+<span class="header-section-number">2.2</span> Variables<a class="anchor" aria-label="anchor" href="#variables"><i class="fas fa-link"></i></a>
+</h2>
+<p>Variables are specified in the “Variables” section of the <code>_targets.R</code> script.
+For example, the column names for x, y, datetime and id in the input
+relocation data and the resampling rate. All required variables are
+shown below.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">l</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'Variables'</span>, <span class="va">l</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'Targets: data'</span>, <span class="va">l</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code># Variables ---------------------------------------------------------------
+# Targets: prepare
+id_col &lt;- 'id'
+datetime_col &lt;- 't_'
+x_col &lt;- 'x_'
+y_col &lt;- 'y_'
+epsg &lt;- 32618
+crs &lt;- st_crs(epsg)
+crs_sp &lt;- CRS(crs$wkt)
+tz &lt;- 'America/New_York'
+
+# Targets: tracks
+# Split by: within which column or set of columns (eg. c(id, yr))
+#  do we want to split our analysis?
+split_by &lt;- id_col
+
+# Resampling rate
+rate &lt;- minutes(30)
+
+# Tolerance
+tolerance &lt;- minutes(5)
+
+# Number of random steps
+n_random_steps &lt;- 10</code></pre>
+</div>
+<div id="troubleshooting" class="section level2">
+<h2>
+<span class="header-section-number">2.3</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
+</h2>
 <div id="glmmtmb" class="section level3">
 <h3>
-<span class="header-section-number">2.1.2</span> <code>glmmTMB</code><a class="anchor" aria-label="anchor" href="#glmmtmb"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.1</span> <code>glmmTMB</code><a class="anchor" aria-label="anchor" href="#glmmtmb"><i class="fas fa-link"></i></a>
 </h3>
-<p>There were some issues with the installing the packages for Macs, here are the steps that resolved it.</p>
+<p>There were some issues with the installing <code>glmmTMB</code> for Macs,
+here are the steps that resolved it.</p>
 <ol style="list-style-type: decimal">
 <li>remove old versions of <code>TMB</code>, <code>glmmTMB</code>, and <code>broom.mixed</code>
 </li>
@@ -86,18 +234,18 @@
 <li>restart computer</li>
 <li>install <code>TMB</code>
 </li>
-<li>restart R and computer because I am superstitious at this point</li>
+<li>restart R</li>
 <li>install <code>glmmTMB</code> from source (there was a repeated warning as posted in the link but it was ok)</li>
-<li>install <code>broom.mixed</code> 0.2.7 using <code>remotes::install_github('bbolker/broom.mixed')</code>
+<li>install <code>broom.mixed</code> 0.2.7 using <code>install.packages('broom.mixed')</code>
 </li>
 <li>restart R</li>
 </ol>
 </div>
 <div id="tidyverse" class="section level3">
 <h3>
-<span class="header-section-number">2.1.3</span> <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.2</span> <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
 </h3>
-<p>‘tidyverse’ is a meta package made up of the tidyverse pacakges. ‘amt’ relies
+<p>‘tidyverse’ is a meta package made up of the tidyverse packages. ‘amt’ relies
 heavily on the tidy packages and use their coding practices frequently. There
 are pros and cons to this that are discussed elsewhere. All this is to say that
 you may not want to install the entire ‘tidyverse’ package but just the ones
@@ -106,13 +254,14 @@ necessary for your analyses. These may include ‘dplyr’, ‘tidyr’, ‘ggpl
 </div>
 <div id="data.table" class="section level3">
 <h3>
-<span class="header-section-number">2.1.4</span> <code>data.table</code><a class="anchor" aria-label="anchor" href="#data.table"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.3</span> <code>data.table</code><a class="anchor" aria-label="anchor" href="#data.table"><i class="fas fa-link"></i></a>
 </h3>
-<p>Some issues with the compiler for mac users. This is actually an issue for every packaged that needs a compiler. Some helpful sites to for set up:
-<a href="https://github.com/Rdatatable/data.table/wiki/Installation" class="uri">https://github.com/Rdatatable/data.table/wiki/Installation</a>
-<a href="https://stackoverflow.com/questions/65860439/installing-data-table-on-macos" class="uri">https://stackoverflow.com/questions/65860439/installing-data-table-on-macos</a>
-<a href="https://www.santoshsrinivas.com/installing-data-table-on-mac-osx/" class="uri">https://www.santoshsrinivas.com/installing-data-table-on-mac-osx/</a></p>
-
+<p>Some issues with the compiler for Mac users. This is actually an issue for every packaged that needs a compiler. Some helpful sites to for set up:</p>
+<ul>
+<li><a href="https://github.com/Rdatatable/data.table/wiki/Installation" class="uri">https://github.com/Rdatatable/data.table/wiki/Installation</a></li>
+<li><a href="https://stackoverflow.com/questions/65860439/installing-data-table-on-macos" class="uri">https://stackoverflow.com/questions/65860439/installing-data-table-on-macos</a></li>
+<li><a href="https://www.santoshsrinivas.com/installing-data-table-on-mac-osx/" class="uri">https://www.santoshsrinivas.com/installing-data-table-on-mac-osx/</a></li>
+</ul>
 </div>
 </div>
 </div>
@@ -123,12 +272,13 @@ necessary for your analyses. These may include ‘dplyr’, ‘tidyr’, ‘ggpl
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#setup"><span class="header-section-number">2</span> Setup</a></li>
+<li><a class="nav-link" href="#data"><span class="header-section-number">2.1</span> Data</a></li>
+<li><a class="nav-link" href="#variables"><span class="header-section-number">2.2</span> Variables</a></li>
 <li>
-<a class="nav-link" href="#packages"><span class="header-section-number">2.1</span> Packages</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#amt"><span class="header-section-number">2.1.1</span> amt</a></li>
-<li><a class="nav-link" href="#glmmtmb"><span class="header-section-number">2.1.2</span> glmmTMB</a></li>
-<li><a class="nav-link" href="#tidyverse"><span class="header-section-number">2.1.3</span> tidyverse</a></li>
-<li><a class="nav-link" href="#data.table"><span class="header-section-number">2.1.4</span> data.table</a></li>
+<a class="nav-link" href="#troubleshooting"><span class="header-section-number">2.3</span> Troubleshooting</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#glmmtmb"><span class="header-section-number">2.3.1</span> glmmTMB</a></li>
+<li><a class="nav-link" href="#tidyverse"><span class="header-section-number">2.3.2</span> tidyverse</a></li>
+<li><a class="nav-link" href="#data.table"><span class="header-section-number">2.3.3</span> data.table</a></li>
 </ul>
 </li>
 </ul>
@@ -148,7 +298,7 @@ necessary for your analyses. These may include ‘dplyr’, ‘tidyr’, ‘ggpl
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by . It was last built on 2022-04-08.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

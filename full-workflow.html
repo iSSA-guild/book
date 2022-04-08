@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Full workflow | How-To iSSA</title>
+<meta name="author" content="Julie W. Turner">
+<meta name="author" content="Christina M. Prokopenko">
+<meta name="author" content="Alec L. Robitaille">
+<meta name="description" content="7.1 Preparing an iSSA   7.1.1 The data The critical data for running an iSSA are the x and y coordinates for GPS relocations and the associated datetime timestamp. Depending on what you’re doing,...">
+<meta name="generator" content="bookdown 0.25.5 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Full workflow | How-To iSSA">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://issa-guild.github.io/book/full-workflow.html">
+<meta property="og:image" content="https://issa-guild.github.io/book/images/group.png">
+<meta property="og:description" content="7.1 Preparing an iSSA   7.1.1 The data The critical data for running an iSSA are the x and y coordinates for GPS relocations and the associated datetime timestamp. Depending on what you’re doing,...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Full workflow | How-To iSSA">
+<meta name="twitter:description" content="7.1 Preparing an iSSA   7.1.1 The data The critical data for running an iSSA are the x and y coordinates for GPS relocations and the associated datetime timestamp. Depending on what you’re doing,...">
+<meta name="twitter:image" content="https://issa-guild.github.io/book/images/group.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">How-To iSSA</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="setup.html"><span class="header-section-number">2</span> Setup</a></li>
+<li><a class="" href="preparation.html"><span class="header-section-number">3</span> Preparation</a></li>
+<li><a class="" href="modelling.html"><span class="header-section-number">4</span> Modelling</a></li>
+<li><a class="" href="interpretation.html"><span class="header-section-number">5</span> Interpretation</a></li>
+<li><a class="" href="resources.html"><span class="header-section-number">6</span> Resources</a></li>
+<li><a class="active" href="full-workflow.html"><span class="header-section-number">7</span> Full workflow</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/iSSA-guild/book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="full-workflow" class="section level1">
+<h1>
+<span class="header-section-number">7</span> Full workflow<a class="anchor" aria-label="anchor" href="#full-workflow"><i class="fas fa-link"></i></a>
+</h1>
+<div id="preparing-an-issa" class="section level2">
+<h2>
+<span class="header-section-number">7.1</span> Preparing an iSSA<a class="anchor" aria-label="anchor" href="#preparing-an-issa"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
+<div id="the-data" class="section level3">
+<h3>
+<span class="header-section-number">7.1.1</span> The data<a class="anchor" aria-label="anchor" href="#the-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>The critical data for running an iSSA are the x and y coordinates for GPS
+relocations and the associated datetime timestamp. Depending on what you’re
+doing, you’ll probably want to know the individual that those relocations belong
+to as well.</p>
+<p>There are several things that need to be done prior to actually doing an iSSA</p>
+<p>Overarchingly:</p>
+<ol style="list-style-type: decimal">
+<li>Clean the GPS data</li>
+<li>Prepare the layers and other covariate data</li>
+</ol>
+<div id="clean-the-gps-data" class="section level4">
+<h4>
+<span class="header-section-number">7.1.1.1</span> Clean the GPS data<a class="anchor" aria-label="anchor" href="#clean-the-gps-data"><i class="fas fa-link"></i></a>
+</h4>
+<p>Things that you need to check and clean if they are not met:</p>
+<ol style="list-style-type: decimal">
+<li>Make sure all observations (GPS points) are complete</li>
+</ol>
+<ul>
+<li>if not, remove incomplete observations</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Check if there are duplicated GPS points (two taken at the same time)</li>
+</ol>
+<ul>
+<li>remove duplicate observations</li>
+</ul>
+</div>
+<div id="prepare-covariate-input-data" class="section level4">
+<h4>
+<span class="header-section-number">7.1.1.2</span> Prepare covariate input data<a class="anchor" aria-label="anchor" href="#prepare-covariate-input-data"><i class="fas fa-link"></i></a>
+</h4>
+<p>It is critical that all of the layers you plan to use and GPS points are in the same coordinate reference system. This can take a long time to reproject layers, crop them, and anything else you need to do for everything to be in the same “world,” but it is critical to do for the later steps of extracting covariates by step.</p>
+</div>
+</div>
+<div id="making-tracks" class="section level3">
+<h3>
+<span class="header-section-number">7.1.2</span> Making tracks<a class="anchor" aria-label="anchor" href="#making-tracks"><i class="fas fa-link"></i></a>
+</h3>
+<p>Once the data is clean, we make the points into a track. If you have more than one individual in the dataset, do it by individual.</p>
+<p>Generating tracks:</p>
+<pre><code>make_track(locs_prep, x_, y_, t_, all_cols = TRUE, crs = epsg)</code></pre>
+<div id="check-the-sampling-rate" class="section level4">
+<h4>
+<span class="header-section-number">7.1.2.1</span> Check the sampling rate<a class="anchor" aria-label="anchor" href="#check-the-sampling-rate"><i class="fas fa-link"></i></a>
+</h4>
+<p>Now we should check how the sampling rate looks due to the messiness of GPS
+relocations. See <a href="preparation.html#checking-the-sampling-rate">Checking the sampling rate</a>.</p>
+<p>Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals,
+so we likely need to resample the data.</p>
+<pre><code>resample_tracks(tracks, rate = rate, tolerance = tolerance)</code></pre>
+<p>In our <code>targets</code> workflow, we have simplified all of this down to</p>
+<p>Here, all you will have to do is at the beginning of the work flow is fill in
+the variables to match your data. See the <a href="setup.html#variables">Variables</a> section.</p>
+</div>
+</div>
+<div id="steps" class="section level3">
+<h3>
+<span class="header-section-number">7.1.3</span> Steps<a class="anchor" aria-label="anchor" href="#steps"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now we have tracks, but a step selection analysis requires steps! So, in our
+targets workflow, we only keep data for individuals that have at least 3 steps,
+and this is adjustable depending on what you need.</p>
+<div id="check-the-distribution-of-steps-and-turn-angles" class="section level4">
+<h4>
+<span class="header-section-number">7.1.3.1</span> Check the distribution of steps and turn angles<a class="anchor" aria-label="anchor" href="#check-the-distribution-of-steps-and-turn-angles"><i class="fas fa-link"></i></a>
+</h4>
+<p>Now to make sure there aren’t any weirdos in the steps. Usually there are a lot
+of little steps and few big steps, but this is a good check to make sure any
+erroneous observations are removed. For instance, this would show if there are
+any steps that are not biologically possible. It also shows the distribution so
+you know if you should use a Gamma or exponential distribution for generating
+random steps. Most are Gamma, and that is the default in <code>amt</code>.</p>
+<p>SL distribution for 1 individual</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_sl_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## $dist_sl_plots_8ba21cb0</code></pre>
+<div class="inline-figure">
+<img src="book_files/figure-html/plot_dist_sl-1.png" width="672">
+Looks like a gamma distribution, so that’s good</div>
+<p>TA distribution for 1 individual</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_ta_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## $dist_ta_plots_8ba21cb0</code></pre>
+<pre><code>## Warning: Removed 35 rows containing non-finite values (stat_density).</code></pre>
+<div class="inline-figure">
+<img src="book_files/figure-html/plot_ta_dist-1.png" width="672">
+Looks like a von Mises distribution, so that’s also good</div>
+</div>
+</div>
+<div id="prepare-the-data-to-go-into-the-issa" class="section level3">
+<h3>
+<span class="header-section-number">7.1.4</span> Prepare the data to go into the iSSA<a class="anchor" aria-label="anchor" href="#prepare-the-data-to-go-into-the-issa"><i class="fas fa-link"></i></a>
+</h3>
+<p>So, at this point, we have our observed steps and know what their distributions
+look like. Now we can use this information to properly inform our random steps
+with the correct distribution. As we create the random steps, we will also
+extract the covariates of interest at each step.</p>
+<div id="motivation-vs-selection" class="section level4">
+<h4>
+<span class="header-section-number">7.1.4.1</span> Motivation vs Selection<a class="anchor" aria-label="anchor" href="#motivation-vs-selection"><i class="fas fa-link"></i></a>
+</h4>
+<p>One of the critical decisions to make in your analysis is if you want to know if
+a variable is motivating why/how an animal moves vs. if the animal is selecting
+for that variable; this decision influences if you use the information from the
+start of the step (motivation) vs. the end of the step (selection) in your
+analysis. This decision is of course determined by your question and hypotheses</p>
+<p>See <a href="preparation.html#choosing-covariates">Choosing covariates</a> for more info</p>
+</div>
+<div id="example-extraction" class="section level4">
+<h4>
+<span class="header-section-number">7.1.4.2</span> Example extraction<a class="anchor" aria-label="anchor" href="#example-extraction"><i class="fas fa-link"></i></a>
+</h4>
+<p>For example, here we are creating random steps and extracting information about
+what landcover class an individual selects for (at the end of each step) and how
+time of day (day or night at the start of the step) influences their movement.
+This will create a dataset that includes step length, turn angle, whether it’s
+day or night at the star of the step, and what land class an animal is on at the
+end of their step.</p>
+<p>If you have multiple hypotheses that would benefit from know information from
+both the beginning and the end of the step, you can input<code>"both"</code> instead of
+<code>"start"</code> or <code>"end"</code>.</p>
+<pre><code>random_steps(tracks_resampled, n = n_random_steps)</code></pre>
+</div>
+</div>
+</div>
+<div id="running-an-issa" class="section level2">
+<h2>
+<span class="header-section-number">7.2</span> Running an iSSA<a class="anchor" aria-label="anchor" href="#running-an-issa"><i class="fas fa-link"></i></a>
+</h2>
+<p>This workflow is going to be an example using the Poisson point process method
+described by Muff et al (CITE). This method allows us to look at all individuals
+at once so we can examine both the individual- and population-level responses at
+once. In this example, we’re going to include both categorical and continuous
+variables.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># R/model_land_cover.R</span>
+<span class="va">model_land_cover</span></code></pre></div>
+<pre><code>function (DT) 
+{
+    glmmTMB(case_ ~ -1 + I(log(sl_)) + I(log(sl_)):lc_adj + lc_adj + 
+        I(log(dist_to_water + 1)) + I(log(dist_to_water + 1)):I(log(sl_)) + 
+        (1 | indiv_step_id) + (0 + I(log(sl_)) | id) + (0 + I(log(sl_)):lc_adj | 
+        id) + (0 + lc_adj | id) + (0 + I(log(dist_to_water + 
+        1)) | id) + (0 + I(log(dist_to_water + 1)):I(log(sl_)) | 
+        id), data = DT, family = poisson(), map = list(theta = factor(c(NA, 
+        1:23))), start = list(theta = c(log(1000), seq(0, 0, 
+        length.out = 23))))
+}</code></pre>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_lc</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##  Family: poisson  ( log )
+## Formula:          
+## case_ ~ -1 + I(log(sl_)) + I(log(sl_)):lc_adj + lc_adj + I(log(dist_to_water +  
+##     1)) + I(log(dist_to_water + 1)):I(log(sl_)) + (1 | indiv_step_id) +  
+##     (0 + I(log(sl_)) | id) + (0 + I(log(sl_)):lc_adj | id) +  
+##     (0 + lc_adj | id) + (0 + I(log(dist_to_water + 1)) | id) +  
+##     (0 + I(log(dist_to_water + 1)):I(log(sl_)) | id)
+## Data: DT
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##       NA       NA       NA       NA    26488 
+## 
+## Random effects:
+## 
+## Conditional model:
+##  Groups        Name                                  Variance Std.Dev. Corr 
+##  indiv_step_id (Intercept)                           1.00e+06 1.00e+03      
+##  id            I(log(sl_))                           1.87e-90 1.37e-45      
+##  id.1          I(log(sl_)):lc_adjdisturbed           1.08e-02 1.04e-01      
+##                I(log(sl_)):lc_adjforest              2.05e-03 4.52e-02 -1.00
+##                I(log(sl_)):lc_adjopen                1.08e-01 3.28e-01  1.00
+##                I(log(sl_)):lc_adjwetlands            2.05e-03 4.53e-02 -1.00
+##  id.2          lc_adjdisturbed                       4.42e-01 6.64e-01      
+##                lc_adjforest                          3.32e-02 1.82e-01 -1.00
+##                lc_adjopen                            4.42e+00 2.10e+00  1.00
+##                lc_adjwetlands                        2.38e-26 1.54e-13 -0.27
+##  id.3          I(log(dist_to_water + 1))             1.34e-02 1.16e-01      
+##  id.4          I(log(dist_to_water + 1)):I(log(sl_)) 5.26e-90 2.29e-45      
+##              
+##              
+##              
+##              
+##              
+##  -1.00       
+##   1.00 -1.00 
+##              
+##              
+##  -1.00       
+##   0.30 -0.28 
+##              
+##              
+## Number of obs: 26521, groups:  indiv_step_id, 2411; id, 6
+## 
+## Conditional model:
+##                                       Estimate Std. Error z value Pr(&gt;|z|)
+## I(log(sl_))                           -0.13107        NaN     NaN      NaN
+## lc_adjdisturbed                       -3.74565        NaN     NaN      NaN
+## lc_adjforest                          -3.42646        NaN     NaN      NaN
+## lc_adjopen                            -5.94910        NaN     NaN      NaN
+## lc_adjwetlands                        -3.67823        NaN     NaN      NaN
+## I(log(dist_to_water + 1))             -0.03581        NaN     NaN      NaN
+## I(log(sl_)):lc_adjforest               0.23726        NaN     NaN      NaN
+## I(log(sl_)):lc_adjopen                 0.29305        NaN     NaN      NaN
+## I(log(sl_)):lc_adjwetlands             0.28385        NaN     NaN      NaN
+## I(log(sl_)):I(log(dist_to_water + 1))  0.00072        NaN     NaN      NaN</code></pre>
+<p>When looking at the output of this model, we see some issues. First of all,
+there are some warnings from the model. The positive hessian warning is applied
+liberally in <code>glmmTMB</code>, but the real sign of a problem is the <code>NAs</code> reported for
+variation. This model didn’t converge properly, so we need to look at why.</p>
+<p>Things to explore at the data level include:</p>
+<ul>
+<li>lots of <code>NAs</code> for a particular variable</li>
+<li>lots of variation or very little variation in a particular variable</li>
+<li>availability of variables for individuals</li>
+</ul>
+<p>Things to explore at the model level include:</p>
+<ul>
+<li>the model is over-parameterized for the amount of data</li>
+<li>the high variance is assigned at the strata level and not for another random effect</li>
+<li>variables are similarly scaled</li>
+<li>if using the Muff method, the strata represent the step id by individual
+(<code>indiv_step_id</code>), not the step id that is assigned by <code>amt</code> because the way
+we have it coded, the numbers restart for each individual</li>
+<li>categorical variables are classified as factors, especially <code>indiv_step_id</code>
+</li>
+<li>random effects have at least 5 levels (this is likely not going to be a
+problem for most iSSAs, but it has come up)</li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#TODO code showing exploration, especially availability</span></code></pre></div>
+<p>After some exploration, I’m thinking this model is over-parameterized for 6
+individuals, at least having so many landcover classes. So, I’m going to pretend
+for this example that we only care about selection for forest and disturbed
+habitats. We created dummy variables for this based on the extracted landcover
+data and ran the iSSA on this data.</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># R/model_forest_bin.R</span>
+<span class="va">model_forest_bin</span></code></pre></div>
+<pre><code>function (DT) 
+{
+    glmmTMB(case_ ~ -1 + I(log(sl_)) + I(log(sl_)):forest + forest + 
+        I(log(sl_)):disturbed + disturbed + I(log(dist_to_water + 
+        1)) + I(log(dist_to_water + 1)):I(log(sl_)) + (1 | indiv_step_id) + 
+        (0 + I(log(sl_)) | id) + (0 + I(log(sl_)):disturbed | 
+        id) + (0 + I(log(sl_)):forest | id) + (0 + forest | id) + 
+        (0 + disturbed | id) + (0 + I(log(dist_to_water + 1)) | 
+        id) + (0 + I(log(dist_to_water + 1)):I(log(sl_)) | id), 
+        data = DT, family = poisson(), map = list(theta = factor(c(NA, 
+            1:7))), start = list(theta = c(log(1000), seq(0, 
+            0, length.out = 7))))
+}</code></pre>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_forest</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##  Family: poisson  ( log )
+## Formula:          
+## case_ ~ -1 + I(log(sl_)) + I(log(sl_)):forest + forest + I(log(sl_)):disturbed +  
+##     disturbed + I(log(dist_to_water + 1)) + I(log(dist_to_water +  
+##     1)):I(log(sl_)) + (1 | indiv_step_id) + (0 + I(log(sl_)) |  
+##     id) + (0 + I(log(sl_)):disturbed | id) + (0 + I(log(sl_)):forest |  
+##     id) + (0 + forest | id) + (0 + disturbed | id) + (0 + I(log(dist_to_water +  
+##     1)) | id) + (0 + I(log(dist_to_water + 1)):I(log(sl_)) |      id)
+## Data: DT
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    49162    49276   -24567    49134    26507 
+## 
+## Random effects:
+## 
+## Conditional model:
+##  Groups        Name                                  Variance Std.Dev.
+##  indiv_step_id (Intercept)                           1.00e+06 1.00e+03
+##  id            I(log(sl_))                           1.26e-09 3.55e-05
+##  id.1          I(log(sl_)):disturbed                 7.67e-04 2.77e-02
+##  id.2          I(log(sl_)):forest                    2.65e-10 1.63e-05
+##  id.3          forest                                1.77e-02 1.33e-01
+##  id.4          disturbed                             1.23e-10 1.11e-05
+##  id.5          I(log(dist_to_water + 1))             1.34e-02 1.16e-01
+##  id.6          I(log(dist_to_water + 1)):I(log(sl_)) 1.55e-11 3.93e-06
+## Number of obs: 26521, groups:  indiv_step_id, 2411; id, 6
+## 
+## Conditional model:
+##                                       Estimate Std. Error z value Pr(&gt;|z|)    
+## I(log(sl_))                            0.07923    0.07735    1.02    0.306    
+## forest                                 0.34653    0.19410    1.79    0.074 .  
+## disturbed                             -0.19495    0.27753   -0.70    0.482    
+## I(log(dist_to_water + 1))              0.08271    0.08956    0.92    0.356    
+## I(log(sl_)):forest                    -0.05632    0.03635   -1.55    0.121    
+## I(log(sl_)):disturbed                 -0.24794    0.05330   -4.65  3.3e-06 ***
+## I(log(sl_)):I(log(dist_to_water + 1))  0.00875    0.01142    0.77    0.444    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p>This model runs without issue.</p>
+</div>
+<div id="interpretation-1" class="section level2">
+<h2>
+<span class="header-section-number">7.3</span> Interpretation<a class="anchor" aria-label="anchor" href="#interpretation-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Demonstrating effects from iSSA output is an area where you will see a lot of
+different avenues at this point. Some just show the beta estimates from the
+model and p-values. This, however is not a real demonstration of effect size for
+iSSAs (CITE AVGAR).</p>
+<div id="relative-selection-strength-1" class="section level3">
+<h3>
+<span class="header-section-number">7.3.1</span> Relative Selection Strength<a class="anchor" aria-label="anchor" href="#relative-selection-strength-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>This is where Relative Selection Strength (RSS) comes in. Avgar et al (CITE)
+derived various equations to calculate RSS depending on if variables are on
+their own, interacted with others, log-transformed, etc. However, since then
+Brian Smith has determined that using the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function can achieve the
+same outcome (see CITE for proof). But this is all the mathematical details.
+What RSSs are really doing is comparing the selection strength for a habitat A
+compared to habitat B.So, say an animal is not in a forest, are they relatively
+more likely to select to be in a forest or avoid the forest? Then the RSS shows
+the strength of selection or avoidance over a range of availability of that
+habitat type.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># TODO insert forest example: code and graph</span>
+
+<span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_rss_forest</span><span class="op">)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
+<div class="inline-figure"><img src="book_files/figure-html/RSS%20example-1.png" width="672"></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_rss_water</span><span class="op">)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
+<div class="inline-figure"><img src="book_files/figure-html/RSS%20example-2.png" width="672"></div>
+<p>#TODO insert description of the output graphs</p>
+<p>RSSs have to be done one habitat at a time. That being said, interactions can be
+explored by pre-determining cut off points to examine one of the variables at a
+time. I know that sounds confusing. So, for example, we have selection of forest
+interacted with distance to road. Say we want to understand how animals select
+for forest when they are near or far from roads. So, we define being near a road
+as being 100m of the road and being far from the road as 5000m from the road.
+These values are semi-arbitrary, but they should be based on the biology of the
+animal. This complicates the calculation of the RSS a bit, making it a two step
+process with the predict method. You first have to calculate the overall
+selection for, in this case, forest at 100m from the road, then you run the run
+the predict function over the availability of forest and add them together.</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># TODO: make up some example, there's not one relevant in the current toy model</span></code></pre></div>
+</div>
+<div id="speed" class="section level3">
+<h3>
+<span class="header-section-number">7.3.2</span> Speed<a class="anchor" aria-label="anchor" href="#speed"><i class="fas fa-link"></i></a>
+</h3>
+<p>Speed is a different kettle of fish. Some people show box plots of step length
+to give an idea of speed, but this is only a partial show of effect size (<em>this
+is not phrased well – fix</em>). When using a gamma distribution for an iSSA, the
+mean estimated speed is shape parameter multiplied by the scale parameter from
+the gamma distribution. However, the shape is modified by the movement variables
+in the iSSA itself. So this calculation becomes</p>
+<p>TODO make this look like an equation</p>
+<p><span class="math inline">\(\text{mean estimated speed} = (shape + log_sl_beta + log_sl_intx_beta*mean(what interacted with))*scale\)</span></p>
+<p>So, from our toy example, this would be done as</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#TODO create target calc</span>
+<span class="co">#TODO create plot</span></code></pre></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="resources.html"><span class="header-section-number">6</span> Resources</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#full-workflow"><span class="header-section-number">7</span> Full workflow</a></li>
+<li>
+<a class="nav-link" href="#preparing-an-issa"><span class="header-section-number">7.1</span> Preparing an iSSA</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-data"><span class="header-section-number">7.1.1</span> The data</a></li>
+<li><a class="nav-link" href="#making-tracks"><span class="header-section-number">7.1.2</span> Making tracks</a></li>
+<li><a class="nav-link" href="#steps"><span class="header-section-number">7.1.3</span> Steps</a></li>
+<li><a class="nav-link" href="#prepare-the-data-to-go-into-the-issa"><span class="header-section-number">7.1.4</span> Prepare the data to go into the iSSA</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#running-an-issa"><span class="header-section-number">7.2</span> Running an iSSA</a></li>
+<li>
+<a class="nav-link" href="#interpretation-1"><span class="header-section-number">7.3</span> Interpretation</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#relative-selection-strength-1"><span class="header-section-number">7.3.1</span> Relative Selection Strength</a></li>
+<li><a class="nav-link" href="#speed"><span class="header-section-number">7.3.2</span> Speed</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/iSSA-guild/book/blob/master/06-full_workflow.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/iSSA-guild/book/edit/master/06-full_workflow.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-08.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -5,6 +5,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 4 Modelling | How-To iSSA</title>
+<meta name="author" content="Julie W. Turner">
+<meta name="author" content="Christina M. Prokopenko">
+<meta name="author" content="Alec L. Robitaille">
 <meta name="description" content="4.1 Guiding Questions What decisions did you make when creating your iSSAs and why? What is the biological or statistical justification for these decisions? How might your decisions impact your...">
 <meta name="generator" content="bookdown 0.25.5 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Modelling | How-To iSSA">
@@ -51,6 +54,7 @@
 <li><a class="active" href="modelling.html"><span class="header-section-number">4</span> Modelling</a></li>
 <li><a class="" href="interpretation.html"><span class="header-section-number">5</span> Interpretation</a></li>
 <li><a class="" href="resources.html"><span class="header-section-number">6</span> Resources</a></li>
+<li><a class="" href="full-workflow.html"><span class="header-section-number">7</span> Full workflow</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -100,11 +104,11 @@ interpretation of spurious results.</p>
 <p>Global model or alternative hypotheses when the goal is to be descriptive of the ecological processes.</p>
 <p>The global or alternative models can be composed of core or interest variables.</p>
 <p>The concept of a core model is to identify key features of animal movement that are important but perhaps not the covariates of interest to the particular study or hypotheses. – Prokopenko et al 2017</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code</span></code></pre></div>
-<div id="troubleshooting" class="section level4">
+<div id="troubleshooting-1" class="section level4">
 <h4>
-<span class="header-section-number">4.3.1.1</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.1.1</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting-1"><i class="fas fa-link"></i></a>
 </h4>
 <p>Starting with simpler models could help to identify covariates that might be
 causing problems</p>
@@ -134,8 +138,8 @@ See Supplementary information.</p></li>
 <p>Regarding our discussion of nesting random effects:
 <a href="https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified" class="uri">https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified</a>
 nested is notated as:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">group1</span><span class="op">/</span><span class="va">group2</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">group1</span> <span class="op">/</span> <span class="va">group2</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="output" class="section level2">
 <h2>
@@ -155,9 +159,10 @@ nested is notated as:</p>
 <span class="header-section-number">4.5.2</span> Std. Error/CIs<a class="anchor" aria-label="anchor" href="#std.-errorcis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Check the fixed and random effect standard errors to see if they are really large or NAs.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># &gt; example of ‘failed’ model</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_lc</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>For example, note the NAs in the example model using land cover. In
+the summary, at the bottom under “Conditional model”.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_lc</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##  Family: poisson  ( log )
 ## Formula:          
 ## case_ ~ -1 + I(log(sl_)) + I(log(sl_)):lc_adj + lc_adj + I(log(dist_to_water +  
@@ -173,19 +178,19 @@ nested is notated as:</p>
 ## Random effects:
 ## 
 ## Conditional model:
-##  Groups        Name                                  Variance  Std.Dev.  Corr 
-##  indiv_step_id (Intercept)                           1.000e+06 1.000e+03      
-##  id            I(log(sl_))                           1.872e-90 1.368e-45      
-##  id.1          I(log(sl_)):lc_adjdisturbed           1.080e-02 1.039e-01      
-##                I(log(sl_)):lc_adjforest              2.047e-03 4.524e-02 -1.00
-##                I(log(sl_)):lc_adjopen                1.076e-01 3.280e-01  1.00
-##                I(log(sl_)):lc_adjwetlands            2.052e-03 4.530e-02 -1.00
-##  id.2          lc_adjdisturbed                       4.415e-01 6.645e-01      
-##                lc_adjforest                          3.323e-02 1.823e-01 -1.00
-##                lc_adjopen                            4.423e+00 2.103e+00  1.00
-##                lc_adjwetlands                        2.383e-26 1.544e-13 -0.27
-##  id.3          I(log(dist_to_water + 1))             1.343e-02 1.159e-01      
-##  id.4          I(log(dist_to_water + 1)):I(log(sl_)) 5.259e-90 2.293e-45      
+##  Groups        Name                                  Variance Std.Dev. Corr 
+##  indiv_step_id (Intercept)                           1.00e+06 1.00e+03      
+##  id            I(log(sl_))                           1.87e-90 1.37e-45      
+##  id.1          I(log(sl_)):lc_adjdisturbed           1.08e-02 1.04e-01      
+##                I(log(sl_)):lc_adjforest              2.05e-03 4.52e-02 -1.00
+##                I(log(sl_)):lc_adjopen                1.08e-01 3.28e-01  1.00
+##                I(log(sl_)):lc_adjwetlands            2.05e-03 4.53e-02 -1.00
+##  id.2          lc_adjdisturbed                       4.42e-01 6.64e-01      
+##                lc_adjforest                          3.32e-02 1.82e-01 -1.00
+##                lc_adjopen                            4.42e+00 2.10e+00  1.00
+##                lc_adjwetlands                        2.38e-26 1.54e-13 -0.27
+##  id.3          I(log(dist_to_water + 1))             1.34e-02 1.16e-01      
+##  id.4          I(log(dist_to_water + 1)):I(log(sl_)) 5.26e-90 2.29e-45      
 ##              
 ##              
 ##              
@@ -202,21 +207,21 @@ nested is notated as:</p>
 ## Number of obs: 26521, groups:  indiv_step_id, 2411; id, 6
 ## 
 ## Conditional model:
-##                                         Estimate Std. Error z value Pr(&gt;|z|)
-## I(log(sl_))                           -0.1310753        NaN     NaN      NaN
-## lc_adjdisturbed                       -3.7456462        NaN     NaN      NaN
-## lc_adjforest                          -3.4264655        NaN     NaN      NaN
-## lc_adjopen                            -5.9491031        NaN     NaN      NaN
-## lc_adjwetlands                        -3.6782270        NaN     NaN      NaN
-## I(log(dist_to_water + 1))             -0.0358139        NaN     NaN      NaN
-## I(log(sl_)):lc_adjforest               0.2372557        NaN     NaN      NaN
-## I(log(sl_)):lc_adjopen                 0.2930470        NaN     NaN      NaN
-## I(log(sl_)):lc_adjwetlands             0.2838458        NaN     NaN      NaN
-## I(log(sl_)):I(log(dist_to_water + 1))  0.0007197        NaN     NaN      NaN</code></pre>
+##                                       Estimate Std. Error z value Pr(&gt;|z|)
+## I(log(sl_))                           -0.13107        NaN     NaN      NaN
+## lc_adjdisturbed                       -3.74565        NaN     NaN      NaN
+## lc_adjforest                          -3.42646        NaN     NaN      NaN
+## lc_adjopen                            -5.94910        NaN     NaN      NaN
+## lc_adjwetlands                        -3.67823        NaN     NaN      NaN
+## I(log(dist_to_water + 1))             -0.03581        NaN     NaN      NaN
+## I(log(sl_)):lc_adjforest               0.23726        NaN     NaN      NaN
+## I(log(sl_)):lc_adjopen                 0.29305        NaN     NaN      NaN
+## I(log(sl_)):lc_adjwetlands             0.28385        NaN     NaN      NaN
+## I(log(sl_)):I(log(dist_to_water + 1))  0.00072        NaN     NaN      NaN</code></pre>
 </div>
-<div id="troubleshooting-1" class="section level3">
+<div id="troubleshooting-2" class="section level3">
 <h3>
-<span class="header-section-number">4.5.3</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.3</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>We have had success troubleshooting by putting the error in google and looking
 for it as a github issue with the package or <code>lme4</code> since they’re built more or
@@ -238,7 +243,7 @@ high VIF, then you will get NAs.</p>
 matrix error very liberally. Generally, you don’t have to worry about it unless
 you have other errors with it.</p>
 <p><em>EXERCISE</em>: note of individuals or variables that are not converging or are on the extremes of response. Do they have different availability, fewer points, more NAs<img src="https://badgen.net/badge/status/WIP/orange"></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; plot coefficient by sample size – is there a relationship?</span></code></pre></div>
 
 </div>
@@ -264,7 +269,7 @@ you have other errors with it.</p>
 <a class="nav-link" href="#output"><span class="header-section-number">4.5</span> Output</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#coefficients"><span class="header-section-number">4.5.1</span> Coefficients</a></li>
 <li><a class="nav-link" href="#std.-errorcis"><span class="header-section-number">4.5.2</span> Std. Error/CIs</a></li>
-<li><a class="nav-link" href="#troubleshooting-1"><span class="header-section-number">4.5.3</span> Troubleshooting</a></li>
+<li><a class="nav-link" href="#troubleshooting-2"><span class="header-section-number">4.5.3</span> Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -284,7 +289,7 @@ you have other errors with it.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by . It was last built on 2022-04-08.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
