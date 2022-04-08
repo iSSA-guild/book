@@ -3,7 +3,7 @@ docs/
 _targets/
 renv/
 _bookdown_files/
-
+_book/
 
 ### R
 .Rproj.user
