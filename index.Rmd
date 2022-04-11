@@ -19,11 +19,13 @@ nocite: '@*'
 
 
 # Introduction
-This guide is a team effort synsthesizing past experiences, best practices, and
-leading resources. Given how difficult it is to just start an iSSA and all the
+This guide is a team effort synthesizing past experiences, best practices, and
+key resources. Given how difficult it is to just start an iSSA and all the
 choices that need to be made, we wanted to create a workbook to be an
 approachable gateway to the world of iSSAs. We wanted to bring everything
 together we have done to help others.
+
+
 
 ## Acknowledgements
 
@@ -39,7 +41,7 @@ opportunity to learn and rethink our current ideas.
 
 Thanks to all developers of R, R packages, and related software that 
 make this book and related analyses possible. Specifically developers of
-`targets`, `bookdown`, `R`, `RStudio`, `amt`, `data.table`, and R-spatial. 
+`targets`, `bookdown`, `R`, `RStudio`, `amt`, `data.table`, R-lib, and R-spatial. 
 
 
 
