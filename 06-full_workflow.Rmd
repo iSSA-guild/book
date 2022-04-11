@@ -284,8 +284,10 @@ process with the predict method. You first have to calculate the overall
 selection for, in this case, forest at 100m from the road, then you run the run
 the predict function over the availability of forest and add them together.
 
+
+<!-- # TODO: make up some example, there's not one relevant in the current toy model -->
+
 ```{r RSS_interaction}
-# TODO: make up some example, there's not one relevant in the current toy model
 ```
 
 ### Speed
