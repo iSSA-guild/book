@@ -1,7 +1,10 @@
 # Full workflow
+![](https://badgen.net/badge/status/WIP/orange)
+
+## Preface
+This is an example of me "talking" the reader through conducting an iSSA on the fisher data that is set up in our [targets workflow](https://github.com/iSSA-guild/targets-issa).
 
 ## Preparing an iSSA
-![](https://badgen.net/badge/status/WIP/orange)
 
 ### The data
 
@@ -52,10 +55,7 @@ so we likely need to resample the data.
 get_target_expression(targets_tracks, 'tracks_resampled')
 ```
 
-In our `targets` workflow, we have simplified all of this down to
-
-
-Here, all you will have to do is at the beginning of the work flow is fill in 
+In our `targets` workflow, we have simplified all of this. Here, all you will have to do is at the beginning of the workflow: fill in 
 the variables to match your data. See the [Variables] section. 
 
 
@@ -164,8 +164,14 @@ we have it coded, the numbers restart for each individual
 - random effects have at least 5 levels (this is likely not going to be a 
 problem for most iSSAs, but it has come up)
 
-```{r exploring data}
-#TODO code showing exploration, especially availability
+```{r exploring_data}
+# checking availability 
+# for landcover
+tar_read(avail_lc)
+
+# for distance to water
+tar_read(tracks_extract)[case_ == 'FALSE', quantile(dist_to_water, na.rm = T), by = .(id)]
+
 ```
 
 After some exploration, I'm thinking this model is over-parameterized for 6
@@ -200,14 +206,14 @@ This is where Relative Selection Strength (RSS) comes in. Avgar et al (CITE)
 derived various equations to calculate RSS depending on if variables are on
 their own, interacted with others, log-transformed, etc. However, since then
 Brian Smith has determined that using the `predict()` function can achieve the
-same outcome (see CITE for proof). But this is all the mathematical details.
+same outcome (see proof [Smith 2020](https://bsmity13.github.io/log_rss/)). But this is all the mathematical details.
 What RSSs are really doing is comparing the selection strength for a habitat A
 compared to habitat B.So, say an animal is not in a forest, are they relatively
 more likely to select to be in a forest or avoid the forest? Then the RSS shows
 the strength of selection or avoidance over a range of availability of that
 habitat type.
 
-```{r RSS example}
+```{r RSS_example}
 # TODO insert forest example: code and graph
 
 tar_read(plot_rss_forest)
@@ -229,7 +235,7 @@ process with the predict method. You first have to calculate the overall
 selection for, in this case, forest at 100m from the road, then you run the run
 the predict function over the availability of forest and add them together.
 
-```{r RSS interaction}
+```{r RSS_interaction}
 # TODO: make up some example, there's not one relevant in the current toy model
 ```
 
@@ -242,9 +248,8 @@ mean estimated speed is shape parameter multiplied by the scale parameter from
 the gamma distribution. However, the shape is modified by the movement variables
 in the iSSA itself. So this calculation becomes
 
-TODO make this look like an equation
 
-$\text{mean estimated speed} = (shape + log_sl_beta + log_sl_intx_beta*mean(what interacted with))*scale$
+$\text{mean estimated speed} = (shape + logSL.beta + logSLintx.beta*mean(what.interacted.with))*scale$
 
 
 So, from our toy example, this would be done as
