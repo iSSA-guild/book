@@ -142,7 +142,7 @@ get_target_expression(targets_tracks, 'tracks_random')
 
 ## Running an iSSA
 This workflow is going to be an example using the Poisson point process method
-described by Muff et al {@*Muff_2020}. This method allows us to look at all individuals
+described by Muff et al [-@Muff_2020]. This method allows us to look at all individuals
 at once so we can examine both the individual- and population-level responses at
 once. In this example, we're going to include both categorical and continuous
 variables.
@@ -215,7 +215,7 @@ This model runs without issue.
 Demonstrating effects from iSSA output is an area where you will see a lot of
 different avenues at this point. Some just show the beta estimates from the
 model and p-values. This, however is not a real demonstration of effect size for
-iSSAs {@Avgar2017}.
+iSSAs [@Avgar2017].
 
 ### Relative Selection Strength
 
