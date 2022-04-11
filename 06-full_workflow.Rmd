@@ -2,9 +2,9 @@
 ![](https://badgen.net/badge/status/WIP/orange)
 
 ## Preface
-This is an example of me "talking" the reader through conducting an iSSA on the
-fisher data that is set up in our [targets
-workflow](https://github.com/iSSA-guild/targets-issa).
+This is an example of me (Julie) "talking" the reader through conducting an iSSA on the
+fisher data that is set up in our 
+[targets workflow](https://github.com/iSSA-guild/targets-issa).
 
 ## Preparing an iSSA
 
@@ -67,7 +67,8 @@ data.
 get_target_expression(targets_tracks, 'tracks_resampled')
 ```
 
-In our `targets` workflow, we have simplified all of this. Here, all you will have to do is at the beginning of the workflow: fill in 
+In our `targets` workflow, we have simplified all of this. Here, all you will 
+have to do is at the beginning of the workflow: fill in 
 the [Variables] to match your data.
 
 ```{r tar_vars, comment = '', echo=FALSE}
@@ -222,7 +223,8 @@ This is where Relative Selection Strength (RSS) comes in. Avgar et al (2017)
 derived various equations to calculate RSS depending on if variables are on
 their own, interacted with others, log-transformed, etc. However, since then
 Brian Smith has determined that using the `predict()` function can achieve the
-same outcome (see proof [Smith 2020](https://bsmity13.github.io/log_rss/)). But this is all the mathematical details.
+same outcome (see proof [Smith 2020](https://bsmity13.github.io/log_rss/)). 
+But this is all the mathematical details.
 What RSSs are really doing is comparing the selection strength for a habitat 1 (H1)
 compared to habitat 2 (H2).So, say an animal is not in a forest, are they relatively
 more likely to select to be in a forest or avoid the forest? Then the RSS shows
@@ -268,7 +270,7 @@ We can then do the same thing to determine the RSS for distance to water.
 tar_read(plot_rss_water)
 ```
 
-#TODO insert description of the output graphs
+<!-- #TODO insert description of the output graphs -->
 
 RSSs have to be done one habitat at a time. That being said, interactions can be
 explored by pre-determining cut off points to examine one of the variables at a
