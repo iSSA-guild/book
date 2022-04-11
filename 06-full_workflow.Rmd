@@ -187,8 +187,8 @@ problem for most iSSAs, but it has come up)
 tar_read(avail_lc)
 
 # for distance to water
-tar_read(tracks_extract)[case_ == 'FALSE', quantile(dist_to_water, na.rm = T), by = .(id)]
-
+tracks_extract <- tar_read(tracks_extract)
+tracks_extract[!(case_), quantile(dist_to_water, na.rm = TRUE), by = id]
 ```
 
 After some exploration, I'm thinking this model is over-parameterized for 6
