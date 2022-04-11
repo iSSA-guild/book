@@ -223,17 +223,48 @@ derived various equations to calculate RSS depending on if variables are on
 their own, interacted with others, log-transformed, etc. However, since then
 Brian Smith has determined that using the `predict()` function can achieve the
 same outcome (see proof [Smith 2020](https://bsmity13.github.io/log_rss/)). But this is all the mathematical details.
-What RSSs are really doing is comparing the selection strength for a habitat A
-compared to habitat B.So, say an animal is not in a forest, are they relatively
+What RSSs are really doing is comparing the selection strength for a habitat 1 (H1)
+compared to habitat 2 (H2).So, say an animal is not in a forest, are they relatively
 more likely to select to be in a forest or avoid the forest? Then the RSS shows
 the strength of selection or avoidance over a range of availability of that
 habitat type.
 
-```{r RSS_example}
-# TODO insert forest example: code and graph
 
+In the targets-issa workflow, we predict H1, and H2 for forest using
+the following functions:
+
+```{r RSS_forest_ex}
+# R/predict_h1_forest.R
+predict_h1_forest
+
+# R/predict_h2.R
+predict_h2
+
+# Then we can calculate RSS for forest as H1 - H2:
+
+# R/calc_rss.R
+calc_rss
+```
+
+And finally, the plots with the `plot_rss` function. 
+
+```{r rss_forest_plot}
 tar_read(plot_rss_forest)
+```
 
+JWT comment: I personally find it weird and hard to wrap my head around RSSs for
+categorical variables, and I don't have a great way of explaining it for others
+like me who didn't get it. The closest I can describe is, say, looking at this
+plot, the individual starts not in forest, is their next step more likely to go
+to forest or not. To continuous nature of the RSS is hard for me to wrap my head
+around with a categorical variable. I just pretend in my head that it's a
+proportional value of 'no forest' = 0 and 'all forest' = 1, and the middle is an
+estimate based on the model. It's not perfect, but that's the best I've been
+able to come to terms with it. :shrug: #OverlyHonestMethods
+
+
+We can then do the same thing to determine the RSS for distance to water.
+```{r RSS_water_ex}
 tar_read(plot_rss_water)
 ```
 
