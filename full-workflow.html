@@ -8,16 +8,16 @@
 <meta name="author" content="Julie W. Turner">
 <meta name="author" content="Christina M. Prokopenko">
 <meta name="author" content="Alec L. Robitaille">
-<meta name="description" content="7.1 Preparing an iSSA   7.1.1 The data The critical data for running an iSSA are the x and y coordinates for GPS relocations and the associated datetime timestamp. Depending on what you’re doing,...">
+<meta name="description" content="7.1 Preface This is an example of me (Julie) “talking” the reader through conducting an iSSA on the fisher data that is set up in our targets workflow.  7.2 Preparing an iSSA  7.2.1 The data The...">
 <meta name="generator" content="bookdown 0.25.5 with bs4_book()">
 <meta property="og:title" content="Chapter 7 Full workflow | How-To iSSA">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://issa-guild.github.io/book/full-workflow.html">
 <meta property="og:image" content="https://issa-guild.github.io/book/images/group.png">
-<meta property="og:description" content="7.1 Preparing an iSSA   7.1.1 The data The critical data for running an iSSA are the x and y coordinates for GPS relocations and the associated datetime timestamp. Depending on what you’re doing,...">
+<meta property="og:description" content="7.1 Preface This is an example of me (Julie) “talking” the reader through conducting an iSSA on the fisher data that is set up in our targets workflow.  7.2 Preparing an iSSA  7.2.1 The data The...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 7 Full workflow | How-To iSSA">
-<meta name="twitter:description" content="7.1 Preparing an iSSA   7.1.1 The data The critical data for running an iSSA are the x and y coordinates for GPS relocations and the associated datetime timestamp. Depending on what you’re doing,...">
+<meta name="twitter:description" content="7.1 Preface This is an example of me (Julie) “talking” the reader through conducting an iSSA on the fisher data that is set up in our targets workflow.  7.2 Preparing an iSSA  7.2.1 The data The...">
 <meta name="twitter:image" content="https://issa-guild.github.io/book/images/group.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -67,14 +67,22 @@
 <h1>
 <span class="header-section-number">7</span> Full workflow<a class="anchor" aria-label="anchor" href="#full-workflow"><i class="fas fa-link"></i></a>
 </h1>
+<div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
+<div id="preface" class="section level2">
+<h2>
+<span class="header-section-number">7.1</span> Preface<a class="anchor" aria-label="anchor" href="#preface"><i class="fas fa-link"></i></a>
+</h2>
+<p>This is an example of me (Julie) “talking” the reader through conducting an iSSA on the
+fisher data that is set up in our
+<a href="https://github.com/iSSA-guild/targets-issa">targets workflow</a>.</p>
+</div>
 <div id="preparing-an-issa" class="section level2">
 <h2>
-<span class="header-section-number">7.1</span> Preparing an iSSA<a class="anchor" aria-label="anchor" href="#preparing-an-issa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2</span> Preparing an iSSA<a class="anchor" aria-label="anchor" href="#preparing-an-issa"><i class="fas fa-link"></i></a>
 </h2>
-<div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
 <div id="the-data" class="section level3">
 <h3>
-<span class="header-section-number">7.1.1</span> The data<a class="anchor" aria-label="anchor" href="#the-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.1</span> The data<a class="anchor" aria-label="anchor" href="#the-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>The critical data for running an iSSA are the x and y coordinates for GPS
 relocations and the associated datetime timestamp. Depending on what you’re
@@ -88,7 +96,7 @@ to as well.</p>
 </ol>
 <div id="clean-the-gps-data" class="section level4">
 <h4>
-<span class="header-section-number">7.1.1.1</span> Clean the GPS data<a class="anchor" aria-label="anchor" href="#clean-the-gps-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.1.1</span> Clean the GPS data<a class="anchor" aria-label="anchor" href="#clean-the-gps-data"><i class="fas fa-link"></i></a>
 </h4>
 <p>Things that you need to check and clean if they are not met:</p>
 <ol style="list-style-type: decimal">
@@ -106,42 +114,162 @@ to as well.</p>
 </div>
 <div id="prepare-covariate-input-data" class="section level4">
 <h4>
-<span class="header-section-number">7.1.1.2</span> Prepare covariate input data<a class="anchor" aria-label="anchor" href="#prepare-covariate-input-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.1.2</span> Prepare covariate input data<a class="anchor" aria-label="anchor" href="#prepare-covariate-input-data"><i class="fas fa-link"></i></a>
 </h4>
-<p>It is critical that all of the layers you plan to use and GPS points are in the same coordinate reference system. This can take a long time to reproject layers, crop them, and anything else you need to do for everything to be in the same “world,” but it is critical to do for the later steps of extracting covariates by step.</p>
+<p>It is critical that all of the layers you plan to use and GPS points are in the
+same coordinate reference system. This can take a long time to reproject layers,
+crop them, and anything else you need to do for everything to be in the same
+“world,” but it is critical to do for the later steps of extracting covariates
+by step.</p>
 </div>
 </div>
 <div id="making-tracks" class="section level3">
 <h3>
-<span class="header-section-number">7.1.2</span> Making tracks<a class="anchor" aria-label="anchor" href="#making-tracks"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.2</span> Making tracks<a class="anchor" aria-label="anchor" href="#making-tracks"><i class="fas fa-link"></i></a>
 </h3>
-<p>Once the data is clean, we make the points into a track. If you have more than one individual in the dataset, do it by individual.</p>
+<p>Once the data is clean, we make the points into a track. If you have more than
+one individual in the dataset, do it by individual.</p>
 <p>Generating tracks:</p>
 <pre><code>make_track(locs_prep, x_, y_, t_, all_cols = TRUE, crs = epsg)</code></pre>
 <div id="check-the-sampling-rate" class="section level4">
 <h4>
-<span class="header-section-number">7.1.2.1</span> Check the sampling rate<a class="anchor" aria-label="anchor" href="#check-the-sampling-rate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.2.1</span> Check the sampling rate<a class="anchor" aria-label="anchor" href="#check-the-sampling-rate"><i class="fas fa-link"></i></a>
 </h4>
 <p>Now we should check how the sampling rate looks due to the messiness of GPS
-relocations. See <a href="preparation.html#checking-the-sampling-rate">Checking the sampling rate</a>.</p>
+relocations.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">summarize_sampling_rate_many</span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">tracks</span><span class="op">)</span>, <span class="st">'id'</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">id</th>
+<th align="right">min</th>
+<th align="right">q1</th>
+<th align="right">median</th>
+<th align="right">mean</th>
+<th align="right">q3</th>
+<th align="right">max</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="left">unit</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1072</td>
+<td align="right">3.92</td>
+<td align="right">9.8</td>
+<td align="right">10.0</td>
+<td align="right">20.7</td>
+<td align="right">10.3</td>
+<td align="right">1650</td>
+<td align="right">95</td>
+<td align="right">1348</td>
+<td align="left">min</td>
+</tr>
+<tr class="even">
+<td align="right">1465</td>
+<td align="right">0.40</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="right">8.9</td>
+<td align="right">4.0</td>
+<td align="right">1080</td>
+<td align="right">48</td>
+<td align="right">3003</td>
+<td align="left">min</td>
+</tr>
+<tr class="odd">
+<td align="right">1466</td>
+<td align="right">0.42</td>
+<td align="right">2.0</td>
+<td align="right">2.1</td>
+<td align="right">15.7</td>
+<td align="right">4.1</td>
+<td align="right">2167</td>
+<td align="right">104</td>
+<td align="right">1500</td>
+<td align="left">min</td>
+</tr>
+<tr class="even">
+<td align="right">1078</td>
+<td align="right">1.35</td>
+<td align="right">9.8</td>
+<td align="right">10.0</td>
+<td align="right">21.7</td>
+<td align="right">10.3</td>
+<td align="right">2111</td>
+<td align="right">87</td>
+<td align="right">1637</td>
+<td align="left">min</td>
+</tr>
+<tr class="odd">
+<td align="right">1469</td>
+<td align="right">0.42</td>
+<td align="right">2.0</td>
+<td align="right">2.2</td>
+<td align="right">13.2</td>
+<td align="right">5.4</td>
+<td align="right">2889</td>
+<td align="right">90</td>
+<td align="right">2435</td>
+<td align="left">min</td>
+</tr>
+<tr class="even">
+<td align="right">1016</td>
+<td align="right">0.07</td>
+<td align="right">1.9</td>
+<td align="right">2.0</td>
+<td align="right">8.0</td>
+<td align="right">2.5</td>
+<td align="right">1209</td>
+<td align="right">44</td>
+<td align="right">8957</td>
+<td align="left">min</td>
+</tr>
+</tbody>
+</table></div>
 <p>Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals,
-so we likely need to resample the data.</p>
+the same for all individuals in the model, so we likely need to resample the
+data.</p>
 <pre><code>resample_tracks(tracks, rate = rate, tolerance = tolerance)</code></pre>
-<p>In our <code>targets</code> workflow, we have simplified all of this down to</p>
-<p>Here, all you will have to do is at the beginning of the work flow is fill in
-the variables to match your data. See the <a href="setup.html#variables">Variables</a> section.</p>
+<p>In our <code>targets</code> workflow, we have simplified all of this. Here, all you will
+have to do is at the beginning of the workflow: fill in
+the <a href="setup.html#variables">Variables</a> to match your data.</p>
+<pre><code># Variables ---------------------------------------------------------------
+# Targets: prepare
+id_col &lt;- 'id'
+datetime_col &lt;- 't_'
+x_col &lt;- 'x_'
+y_col &lt;- 'y_'
+epsg &lt;- 32618
+crs &lt;- st_crs(epsg)
+crs_sp &lt;- CRS(crs$wkt)
+tz &lt;- 'America/New_York'
+
+# Targets: tracks
+# Split by: within which column or set of columns (eg. c(id, yr))
+#  do we want to split our analysis?
+split_by &lt;- id_col
+
+# Resampling rate
+rate &lt;- minutes(30)
+
+# Tolerance
+tolerance &lt;- minutes(5)
+
+# Number of random steps
+n_random_steps &lt;- 10</code></pre>
 </div>
 </div>
 <div id="steps" class="section level3">
 <h3>
-<span class="header-section-number">7.1.3</span> Steps<a class="anchor" aria-label="anchor" href="#steps"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.3</span> Steps<a class="anchor" aria-label="anchor" href="#steps"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now we have tracks, but a step selection analysis requires steps! So, in our
 targets workflow, we only keep data for individuals that have at least 3 steps,
 and this is adjustable depending on what you need.</p>
 <div id="check-the-distribution-of-steps-and-turn-angles" class="section level4">
 <h4>
-<span class="header-section-number">7.1.3.1</span> Check the distribution of steps and turn angles<a class="anchor" aria-label="anchor" href="#check-the-distribution-of-steps-and-turn-angles"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.3.1</span> Check the distribution of steps and turn angles<a class="anchor" aria-label="anchor" href="#check-the-distribution-of-steps-and-turn-angles"><i class="fas fa-link"></i></a>
 </h4>
 <p>Now to make sure there aren’t any weirdos in the steps. Usually there are a lot
 of little steps and few big steps, but this is a good check to make sure any
@@ -168,7 +296,7 @@ Looks like a von Mises distribution, so that’s also good</div>
 </div>
 <div id="prepare-the-data-to-go-into-the-issa" class="section level3">
 <h3>
-<span class="header-section-number">7.1.4</span> Prepare the data to go into the iSSA<a class="anchor" aria-label="anchor" href="#prepare-the-data-to-go-into-the-issa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.4</span> Prepare the data to go into the iSSA<a class="anchor" aria-label="anchor" href="#prepare-the-data-to-go-into-the-issa"><i class="fas fa-link"></i></a>
 </h3>
 <p>So, at this point, we have our observed steps and know what their distributions
 look like. Now we can use this information to properly inform our random steps
@@ -176,7 +304,7 @@ with the correct distribution. As we create the random steps, we will also
 extract the covariates of interest at each step.</p>
 <div id="motivation-vs-selection" class="section level4">
 <h4>
-<span class="header-section-number">7.1.4.1</span> Motivation vs Selection<a class="anchor" aria-label="anchor" href="#motivation-vs-selection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.4.1</span> Motivation vs Selection<a class="anchor" aria-label="anchor" href="#motivation-vs-selection"><i class="fas fa-link"></i></a>
 </h4>
 <p>One of the critical decisions to make in your analysis is if you want to know if
 a variable is motivating why/how an animal moves vs. if the animal is selecting
@@ -187,7 +315,7 @@ analysis. This decision is of course determined by your question and hypotheses<
 </div>
 <div id="example-extraction" class="section level4">
 <h4>
-<span class="header-section-number">7.1.4.2</span> Example extraction<a class="anchor" aria-label="anchor" href="#example-extraction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.4.2</span> Example extraction<a class="anchor" aria-label="anchor" href="#example-extraction"><i class="fas fa-link"></i></a>
 </h4>
 <p>For example, here we are creating random steps and extracting information about
 what landcover class an individual selects for (at the end of each step) and how
@@ -204,10 +332,10 @@ both the beginning and the end of the step, you can input<code>"both"</code> ins
 </div>
 <div id="running-an-issa" class="section level2">
 <h2>
-<span class="header-section-number">7.2</span> Running an iSSA<a class="anchor" aria-label="anchor" href="#running-an-issa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3</span> Running an iSSA<a class="anchor" aria-label="anchor" href="#running-an-issa"><i class="fas fa-link"></i></a>
 </h2>
 <p>This workflow is going to be an example using the Poisson point process method
-described by Muff et al (CITE). This method allows us to look at all individuals
+described by Muff et al <span class="citation">(<a href="references.html#ref-Muff_2020" role="doc-biblioref">2020</a>)</span>. This method allows us to look at all individuals
 at once so we can examine both the individual- and population-level responses at
 once. In this example, we’re going to include both categorical and continuous
 variables.</p>
@@ -306,13 +434,341 @@ we have it coded, the numbers restart for each individual</li>
 problem for most iSSAs, but it has come up)</li>
 </ul>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#TODO code showing exploration, especially availability</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># checking availability </span>
+<span class="co"># for landcover</span>
+<span class="fu">tar_read</span><span class="op">(</span><span class="va">avail_lc</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">id</th>
+<th align="right">prop_lc_description</th>
+<th align="left">lc_description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1072</td>
+<td align="right">0.72</td>
+<td align="left">forest</td>
+</tr>
+<tr class="even">
+<td align="right">1072</td>
+<td align="right">0.16</td>
+<td align="left">developed</td>
+</tr>
+<tr class="odd">
+<td align="right">1072</td>
+<td align="right">0.01</td>
+<td align="left">water</td>
+</tr>
+<tr class="even">
+<td align="right">1072</td>
+<td align="right">0.02</td>
+<td align="left">cultivated</td>
+</tr>
+<tr class="odd">
+<td align="right">1072</td>
+<td align="right">0.07</td>
+<td align="left">wetlands</td>
+</tr>
+<tr class="even">
+<td align="right">1072</td>
+<td align="right">0.00</td>
+<td align="left">barren</td>
+</tr>
+<tr class="odd">
+<td align="right">1072</td>
+<td align="right">0.00</td>
+<td align="left">shrubland</td>
+</tr>
+<tr class="even">
+<td align="right">1465</td>
+<td align="right">0.37</td>
+<td align="left">wetlands</td>
+</tr>
+<tr class="odd">
+<td align="right">1465</td>
+<td align="right">0.19</td>
+<td align="left">developed</td>
+</tr>
+<tr class="even">
+<td align="right">1465</td>
+<td align="right">0.37</td>
+<td align="left">forest</td>
+</tr>
+<tr class="odd">
+<td align="right">1465</td>
+<td align="right">0.07</td>
+<td align="left">cultivated</td>
+</tr>
+<tr class="even">
+<td align="right">1465</td>
+<td align="right">0.01</td>
+<td align="left">barren</td>
+</tr>
+<tr class="odd">
+<td align="right">1465</td>
+<td align="right">0.00</td>
+<td align="left">water</td>
+</tr>
+<tr class="even">
+<td align="right">1465</td>
+<td align="right">0.00</td>
+<td align="left">shrubland</td>
+</tr>
+<tr class="odd">
+<td align="right">1466</td>
+<td align="right">0.61</td>
+<td align="left">wetlands</td>
+</tr>
+<tr class="even">
+<td align="right">1466</td>
+<td align="right">0.17</td>
+<td align="left">developed</td>
+</tr>
+<tr class="odd">
+<td align="right">1466</td>
+<td align="right">0.05</td>
+<td align="left">cultivated</td>
+</tr>
+<tr class="even">
+<td align="right">1466</td>
+<td align="right">0.15</td>
+<td align="left">forest</td>
+</tr>
+<tr class="odd">
+<td align="right">1466</td>
+<td align="right">0.01</td>
+<td align="left">water</td>
+</tr>
+<tr class="even">
+<td align="right">1078</td>
+<td align="right">0.48</td>
+<td align="left">forest</td>
+</tr>
+<tr class="odd">
+<td align="right">1078</td>
+<td align="right">0.28</td>
+<td align="left">developed</td>
+</tr>
+<tr class="even">
+<td align="right">1078</td>
+<td align="right">0.21</td>
+<td align="left">wetlands</td>
+</tr>
+<tr class="odd">
+<td align="right">1078</td>
+<td align="right">0.00</td>
+<td align="left">shrubland</td>
+</tr>
+<tr class="even">
+<td align="right">1078</td>
+<td align="right">0.03</td>
+<td align="left">cultivated</td>
+</tr>
+<tr class="odd">
+<td align="right">1078</td>
+<td align="right">0.00</td>
+<td align="left">water</td>
+</tr>
+<tr class="even">
+<td align="right">1469</td>
+<td align="right">0.18</td>
+<td align="left">forest</td>
+</tr>
+<tr class="odd">
+<td align="right">1469</td>
+<td align="right">0.06</td>
+<td align="left">cultivated</td>
+</tr>
+<tr class="even">
+<td align="right">1469</td>
+<td align="right">0.42</td>
+<td align="left">developed</td>
+</tr>
+<tr class="odd">
+<td align="right">1469</td>
+<td align="right">0.33</td>
+<td align="left">wetlands</td>
+</tr>
+<tr class="even">
+<td align="right">1469</td>
+<td align="right">0.01</td>
+<td align="left">water</td>
+</tr>
+<tr class="odd">
+<td align="right">1016</td>
+<td align="right">0.49</td>
+<td align="left">forest</td>
+</tr>
+<tr class="even">
+<td align="right">1016</td>
+<td align="right">0.16</td>
+<td align="left">developed</td>
+</tr>
+<tr class="odd">
+<td align="right">1016</td>
+<td align="right">0.01</td>
+<td align="left">shrubland</td>
+</tr>
+<tr class="even">
+<td align="right">1016</td>
+<td align="right">0.20</td>
+<td align="left">wetlands</td>
+</tr>
+<tr class="odd">
+<td align="right">1016</td>
+<td align="right">0.06</td>
+<td align="left">cultivated</td>
+</tr>
+<tr class="even">
+<td align="right">1016</td>
+<td align="right">0.08</td>
+<td align="left">water</td>
+</tr>
+<tr class="odd">
+<td align="right">1016</td>
+<td align="right">0.00</td>
+<td align="left">herbaceous</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for distance to water</span>
+<span class="va">tracks_extract</span> <span class="op">&lt;-</span> <span class="fu">tar_read</span><span class="op">(</span><span class="va">tracks_extract</span><span class="op">)</span>
+<span class="va">tracks_extract</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="va">case_</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">dist_to_water</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">id</span><span class="op">]</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">id</th>
+<th align="right">V1</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1072</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1072</td>
+<td align="right">285</td>
+</tr>
+<tr class="odd">
+<td align="right">1072</td>
+<td align="right">1131</td>
+</tr>
+<tr class="even">
+<td align="right">1072</td>
+<td align="right">1714</td>
+</tr>
+<tr class="odd">
+<td align="right">1072</td>
+<td align="right">3049</td>
+</tr>
+<tr class="even">
+<td align="right">1465</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1465</td>
+<td align="right">595</td>
+</tr>
+<tr class="even">
+<td align="right">1465</td>
+<td align="right">854</td>
+</tr>
+<tr class="odd">
+<td align="right">1465</td>
+<td align="right">1188</td>
+</tr>
+<tr class="even">
+<td align="right">1465</td>
+<td align="right">2573</td>
+</tr>
+<tr class="odd">
+<td align="right">1466</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1466</td>
+<td align="right">222</td>
+</tr>
+<tr class="odd">
+<td align="right">1466</td>
+<td align="right">418</td>
+</tr>
+<tr class="even">
+<td align="right">1466</td>
+<td align="right">809</td>
+</tr>
+<tr class="odd">
+<td align="right">1466</td>
+<td align="right">2154</td>
+</tr>
+<tr class="even">
+<td align="right">1078</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1078</td>
+<td align="right">1833</td>
+</tr>
+<tr class="even">
+<td align="right">1078</td>
+<td align="right">2271</td>
+</tr>
+<tr class="odd">
+<td align="right">1078</td>
+<td align="right">2604</td>
+</tr>
+<tr class="even">
+<td align="right">1078</td>
+<td align="right">3376</td>
+</tr>
+<tr class="odd">
+<td align="right">1469</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1469</td>
+<td align="right">418</td>
+</tr>
+<tr class="odd">
+<td align="right">1469</td>
+<td align="right">791</td>
+</tr>
+<tr class="even">
+<td align="right">1469</td>
+<td align="right">1365</td>
+</tr>
+<tr class="odd">
+<td align="right">1469</td>
+<td align="right">2594</td>
+</tr>
+<tr class="even">
+<td align="right">1016</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1016</td>
+<td align="right">135</td>
+</tr>
+<tr class="even">
+<td align="right">1016</td>
+<td align="right">442</td>
+</tr>
+<tr class="odd">
+<td align="right">1016</td>
+<td align="right">918</td>
+</tr>
+<tr class="even">
+<td align="right">1016</td>
+<td align="right">1839</td>
+</tr>
+</tbody>
+</table></div>
 <p>After some exploration, I’m thinking this model is over-parameterized for 6
 individuals, at least having so many landcover classes. So, I’m going to pretend
 for this example that we only care about selection for forest and disturbed
 habitats. We created dummy variables for this based on the extracted landcover
 data and ran the iSSA on this data.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/model_forest_bin.R</span>
 <span class="va">model_forest_bin</span></code></pre></div>
 <pre><code>function (DT) 
@@ -328,7 +784,7 @@ data and ran the iSSA on this data.</p>
             1:7))), start = list(theta = c(log(1000), seq(0, 
             0, length.out = 7))))
 }</code></pre>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_forest</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##  Family: poisson  ( log )
 ## Formula:          
@@ -372,37 +828,85 @@ data and ran the iSSA on this data.</p>
 </div>
 <div id="interpretation-1" class="section level2">
 <h2>
-<span class="header-section-number">7.3</span> Interpretation<a class="anchor" aria-label="anchor" href="#interpretation-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.4</span> Interpretation<a class="anchor" aria-label="anchor" href="#interpretation-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Demonstrating effects from iSSA output is an area where you will see a lot of
 different avenues at this point. Some just show the beta estimates from the
 model and p-values. This, however is not a real demonstration of effect size for
-iSSAs (CITE AVGAR).</p>
+iSSAs <span class="citation">(Avgar et al. <a href="references.html#ref-Avgar2017" role="doc-biblioref">2017</a>)</span>.</p>
 <div id="relative-selection-strength-1" class="section level3">
 <h3>
-<span class="header-section-number">7.3.1</span> Relative Selection Strength<a class="anchor" aria-label="anchor" href="#relative-selection-strength-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.4.1</span> Relative Selection Strength<a class="anchor" aria-label="anchor" href="#relative-selection-strength-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>This is where Relative Selection Strength (RSS) comes in. Avgar et al (CITE)
+<p>This is where Relative Selection Strength (RSS) comes in. Avgar et al (2017)
 derived various equations to calculate RSS depending on if variables are on
 their own, interacted with others, log-transformed, etc. However, since then
 Brian Smith has determined that using the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function can achieve the
-same outcome (see CITE for proof). But this is all the mathematical details.
-What RSSs are really doing is comparing the selection strength for a habitat A
-compared to habitat B.So, say an animal is not in a forest, are they relatively
+same outcome (see proof <a href="https://bsmity13.github.io/log_rss/">Smith 2020</a>).
+But this is all the mathematical details.
+What RSSs are really doing is comparing the selection strength for a habitat 1 (H1)
+compared to habitat 2 (H2).So, say an animal is not in a forest, are they relatively
 more likely to select to be in a forest or avoid the forest? Then the RSS shows
 the strength of selection or avoidance over a range of availability of that
 habitat type.</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># TODO insert forest example: code and graph</span>
+<p>In the targets-issa workflow, we predict H1, and H2 for forest using
+the following functions:</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># R/predict_h1_forest.R</span>
+<span class="va">predict_h1_forest</span></code></pre></div>
+<pre><code>## function (DT, model) 
+## {
+##     N &lt;- 100L
+##     new_data &lt;- DT[, .(sl_ = mean(sl_), forest = seq(from = 0, 
+##         to = 1, length.out = N), disturbed = 0, dist_to_water = median(dist_to_water, 
+##         na.rm = TRUE), indiv_step_id = NA), by = id]
+##     new_data[, `:=`(h1_forest, predict(model, .SD, type = "link", 
+##         re.form = NULL))]
+##     new_data[, `:=`(x, seq(from = 0, to = 1, length.out = N)), 
+##         by = id]
+## }</code></pre>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># R/predict_h2.R</span>
+<span class="va">predict_h2</span></code></pre></div>
+<pre><code>## function (DT, model) 
+## {
+##     new_data &lt;- DT[, .(sl_ = mean(sl_), forest = 0, disturbed = 0, 
+##         dist_to_water = median(dist_to_water, na.rm = TRUE), 
+##         indiv_step_id = NA), by = id]
+##     new_data[, `:=`(h2, predict(model, .SD, type = "link", re.form = NULL))]
+## }</code></pre>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Then we can calculate RSS for forest as H1 - H2:</span>
 
-<span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_rss_forest</span><span class="op">)</span></code></pre></div>
+<span class="co"># R/calc_rss.R</span>
+<span class="va">calc_rss</span></code></pre></div>
+<pre><code>## function (pred_h1, h1_col, pred_h2, h2_col) 
+## {
+##     log_rss &lt;- merge(pred_h1[, .SD, .SDcols = c("id", "x", h1_col)], 
+##         pred_h2[, .SD, .SDcols = c("id", h2_col)], by = "id", 
+##         all.x = TRUE)
+##     log_rss[, `:=`(rss, h1 - h2), env = list(h1 = h1_col, h2 = h2_col)]
+## }</code></pre>
+<p>And finally, the plots with the <code>plot_rss</code> function.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_rss_forest</span><span class="op">)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="book_files/figure-html/RSS%20example-1.png" width="672"></div>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="book_files/figure-html/rss_forest_plot-1.png" width="672"></div>
+<p>JWT comment: I personally find it weird and hard to wrap my head around RSSs for
+categorical variables, and I don’t have a great way of explaining it for others
+like me who didn’t get it. The closest I can describe is, say, looking at this
+plot, the individual starts not in forest, is their next step more likely to go
+to forest or not. To continuous nature of the RSS is hard for me to wrap my head
+around with a categorical variable. I just pretend in my head that it’s a
+proportional value of ‘no forest’ = 0 and ‘all forest’ = 1, and the middle is an
+estimate based on the model. It’s not perfect, but that’s the best I’ve been
+able to come to terms with it. :shrug: #OverlyHonestMethods</p>
+<p>We can then do the same thing to determine the RSS for distance to water.</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_rss_water</span><span class="op">)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="book_files/figure-html/RSS%20example-2.png" width="672"></div>
-<p>#TODO insert description of the output graphs</p>
+<div class="inline-figure"><img src="book_files/figure-html/RSS_water_ex-1.png" width="672"></div>
+<!-- #TODO insert description of the output graphs -->
 <p>RSSs have to be done one habitat at a time. That being said, interactions can be
 explored by pre-determining cut off points to examine one of the variables at a
 time. I know that sounds confusing. So, for example, we have selection of forest
@@ -414,12 +918,11 @@ animal. This complicates the calculation of the RSS a bit, making it a two step
 process with the predict method. You first have to calculate the overall
 selection for, in this case, forest at 100m from the road, then you run the run
 the predict function over the availability of forest and add them together.</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># TODO: make up some example, there's not one relevant in the current toy model</span></code></pre></div>
+<!-- # TODO: make up some example, there's not one relevant in the current toy model -->
 </div>
 <div id="speed" class="section level3">
 <h3>
-<span class="header-section-number">7.3.2</span> Speed<a class="anchor" aria-label="anchor" href="#speed"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.4.2</span> Speed<a class="anchor" aria-label="anchor" href="#speed"><i class="fas fa-link"></i></a>
 </h3>
 <p>Speed is a different kettle of fish. Some people show box plots of step length
 to give an idea of speed, but this is only a partial show of effect size (<em>this
@@ -427,10 +930,9 @@ is not phrased well – fix</em>). When using a gamma distribution for an iSSA, 
 mean estimated speed is shape parameter multiplied by the scale parameter from
 the gamma distribution. However, the shape is modified by the movement variables
 in the iSSA itself. So this calculation becomes</p>
-<p>TODO make this look like an equation</p>
-<p><span class="math inline">\(\text{mean estimated speed} = (shape + log_sl_beta + log_sl_intx_beta*mean(what interacted with))*scale\)</span></p>
+<p><span class="math inline">\(\text{mean estimated speed} = (shape + logSL.beta + logSLintx.beta*mean(what.interacted.with))*scale\)</span></p>
 <p>So, from our toy example, this would be done as</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#TODO create target calc</span>
 <span class="co">#TODO create plot</span></code></pre></div>
 
@@ -444,19 +946,20 @@ in the iSSA itself. So this calculation becomes</p>
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#full-workflow"><span class="header-section-number">7</span> Full workflow</a></li>
+<li><a class="nav-link" href="#preface"><span class="header-section-number">7.1</span> Preface</a></li>
 <li>
-<a class="nav-link" href="#preparing-an-issa"><span class="header-section-number">7.1</span> Preparing an iSSA</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#the-data"><span class="header-section-number">7.1.1</span> The data</a></li>
-<li><a class="nav-link" href="#making-tracks"><span class="header-section-number">7.1.2</span> Making tracks</a></li>
-<li><a class="nav-link" href="#steps"><span class="header-section-number">7.1.3</span> Steps</a></li>
-<li><a class="nav-link" href="#prepare-the-data-to-go-into-the-issa"><span class="header-section-number">7.1.4</span> Prepare the data to go into the iSSA</a></li>
+<a class="nav-link" href="#preparing-an-issa"><span class="header-section-number">7.2</span> Preparing an iSSA</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-data"><span class="header-section-number">7.2.1</span> The data</a></li>
+<li><a class="nav-link" href="#making-tracks"><span class="header-section-number">7.2.2</span> Making tracks</a></li>
+<li><a class="nav-link" href="#steps"><span class="header-section-number">7.2.3</span> Steps</a></li>
+<li><a class="nav-link" href="#prepare-the-data-to-go-into-the-issa"><span class="header-section-number">7.2.4</span> Prepare the data to go into the iSSA</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#running-an-issa"><span class="header-section-number">7.2</span> Running an iSSA</a></li>
+<li><a class="nav-link" href="#running-an-issa"><span class="header-section-number">7.3</span> Running an iSSA</a></li>
 <li>
-<a class="nav-link" href="#interpretation-1"><span class="header-section-number">7.3</span> Interpretation</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#relative-selection-strength-1"><span class="header-section-number">7.3.1</span> Relative Selection Strength</a></li>
-<li><a class="nav-link" href="#speed"><span class="header-section-number">7.3.2</span> Speed</a></li>
+<a class="nav-link" href="#interpretation-1"><span class="header-section-number">7.4</span> Interpretation</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#relative-selection-strength-1"><span class="header-section-number">7.4.1</span> Relative Selection Strength</a></li>
+<li><a class="nav-link" href="#speed"><span class="header-section-number">7.4.2</span> Speed</a></li>
 </ul>
 </li>
 </ul>
@@ -476,7 +979,7 @@ in the iSSA itself. So this calculation becomes</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-08.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

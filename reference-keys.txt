@@ -70,6 +70,7 @@ resources
 links
 packages
 full-workflow
+preface
 preparing-an-issa
 the-data
 clean-the-gps-data

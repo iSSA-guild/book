@@ -161,9 +161,6 @@ the first five lines from the prepared example relocations.</p>
 The paths to all files required for the analysis are specified, then
 read in using the relevant function (eg. <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">data.table::fread</a></code> or
 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">sf::st_read</a></code>) in the targets workflow.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R'</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">l</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'Data'</span>, <span class="va">l</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'Variables'</span>, <span class="va">l</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code># Data --------------------------------------------------------------------
 # Path to fisher locs data
 locs_path &lt;- file.path('input', 'fisher.csv')
@@ -189,9 +186,6 @@ water_path &lt;- file.path('input', 'water.gpkg')</code></pre>
 For example, the column names for x, y, datetime and id in the input
 relocation data and the resampling rate. All required variables are
 shown below.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R'</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">l</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'Variables'</span>, <span class="va">l</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'Targets: data'</span>, <span class="va">l</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code># Variables ---------------------------------------------------------------
 # Targets: prepare
 id_col &lt;- 'id'
@@ -298,7 +292,7 @@ necessary for your analyses. These may include ‘dplyr’, ‘tidyr’, ‘ggpl
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-08.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

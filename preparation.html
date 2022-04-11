@@ -75,7 +75,7 @@
 <h3>
 <span class="header-section-number">3.1.1</span> Checking the sampling rate<a class="anchor" aria-label="anchor" href="#checking-the-sampling-rate"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">summarize_sampling_rate_many</span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">tracks</span><span class="op">)</span>, <span class="st">'id'</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -237,7 +237,7 @@ but will provide some exponential examples. The Gamma distribution has a shape
 (k) and a scale parameter (<span class="math inline">\(\theta\)</span>, ‘shape’ and ‘scale’ in the <code>amt</code> package. The
 exponential distribution, which is a special case of the gamma, only has a rate
 parameter (lambda).</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_sl_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## $dist_sl_plots_8ba21cb0</code></pre>
 <div class="inline-figure"><img src="book_files/figure-html/sl_dist-1.png" width="672"></div>
@@ -257,7 +257,7 @@ realistic variation in directionality. If a Von Mises is fit from observed
 points, including cos(TA) in the model might not be informative. The
 concentration parameter (k) ‘kappa’ in amt, and the location parameter
 (<span class="math inline">\(\mu\)</span>, mu in <code>amt</code>).</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_ta_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## $dist_ta_plots_8ba21cb0</code></pre>
 <pre><code>## Warning: Removed 35 rows containing non-finite values (stat_density).</code></pre>
@@ -323,7 +323,7 @@ is accessible to the animal.</p>
 <li>How does movement vary within and between biological/ecological divisions?</li>
 </ul>
 <p>The purpose of exploring your data is to brainstorm the potential options for your models and identify potential limitations. Proper exploration of used (case = 1) and available (case = 0) domains by individual, population, season, year etc. will help inform downstream decisions and troubleshoot convergence issues.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; table or figure sample size - # individuals and points per individual</span>
 <span class="co"># &gt; locations spread per season, year, individual: counts across categories</span>
 <span class="co"># &gt; density or histogram or box plot of covariates for used and available by any division that might be used in the model individual, year, season </span>
@@ -362,7 +362,7 @@ is accessible to the animal.</p>
 <span class="header-section-number">3.5.2</span> Availability threshold<a class="anchor" aria-label="anchor" href="#availability-threshold"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dickie et al. (2020) used 0.01 as the “threshold” of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">avail_lc</span><span class="op">)</span><span class="op">[</span><span class="va">id</span> <span class="op">==</span> <span class="fl">1016</span><span class="op">]</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -429,7 +429,7 @@ In the example, it samples land cover (point), elevation (point),
 population density (point), and water (distance to). It also
 combines the merges the land cover legend to provide more useful
 land cover descriptions in addition to numeric ids.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/extract_layers.R</span>
 <span class="va">extract_layers</span></code></pre></div>
 <pre><code>function (DT, crs, lc, legend, elev, popdens, water) 
@@ -493,7 +493,7 @@ Identifying crepuscule movements may not matter to your analysis, in which case,
 don’t include it when calculating time of day (<code>crepuscule = FALSE</code>). If you
 need to include crepuscular movement, adjust the default <code>solarDep</code> or create
 your own calculation (can link to Katrien’s or mine for wolves).</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; time of day</span></code></pre></div>
 </div>
 <div id="interactions" class="section level4">
@@ -566,7 +566,7 @@ Example Table: prediction and covariates.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-08.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

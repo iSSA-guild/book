@@ -107,7 +107,7 @@ itself is avoided.</li>
 </h4>
 <p>A table with coefficient and error is standard for reporting results. This is
 not recommended for presentations or the sole means of presenting results.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">broom.mixed</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_forest</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">effect</span> <span class="op">==</span> <span class="st">'fixed'</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -202,7 +202,7 @@ not recommended for presentations or the sole means of presenting results.</p>
 <p>Boxplots can be useful to look at general results and variation between
 categories - time of day, seasons. It is useful to take note of outlying
 individuals here then investigate their movement and availability</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; ggplot code</span></code></pre></div>
 </div>
 </div>
@@ -220,12 +220,12 @@ individuals here then investigate their movement and availability</p>
 <!-- TODO: need RSS formula -->
 <ul>
 <li>Common RSS expressions in Avgar et al. 2017, formulation depends on the covariates of interest in model</li>
-<li>Can use the <code>predict</code> function: <a href="https://rdrr.io/cran/amt/man/log_rss.htm" class="uri">https://rdrr.io/cran/amt/man/log_rss.htm</a> in amt or JWT code</li>
+<li>Can use the <code>predict</code> function: <a href="https://rdrr.io/cran/amt/man/log_rss.html" class="uri">https://rdrr.io/cran/amt/man/log_rss.html</a> in amt or JWT code</li>
 <li>Fieberg ‘How-to’ goes through the RSS maths</li>
 </ul>
 <!-- TODO: [JWT] edits/clarify here --><p>In the targets-issa workflow, we predict H1, and H2 for forest using
 the following functions:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/predict_h1_water.R</span>
 <span class="va">predict_h1_water</span></code></pre></div>
 <pre><code>function (DT, model) 
@@ -239,7 +239,7 @@ the following functions:</p>
     new_data[, `:=`(x, seq(from = 0, to = 1500, length.out = N)), 
         by = id]
 }</code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/predict_h2.R</span>
 <span class="va">predict_h2</span></code></pre></div>
 <pre><code>function (DT, model) 
@@ -250,7 +250,7 @@ the following functions:</p>
     new_data[, `:=`(h2, predict(model, .SD, type = "link", re.form = NULL))]
 }</code></pre>
 <p>Then we can calculate RSS for forest:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/calc_rss.R</span>
 <span class="va">calc_rss</span></code></pre></div>
 <pre><code>function (pred_h1, h1_col, pred_h2, h2_col) 
@@ -261,7 +261,7 @@ the following functions:</p>
     log_rss[, `:=`(rss, h1 - h2), env = list(h1 = h1_col, h2 = h2_col)]
 }</code></pre>
 <p>And finally, the plots with the <code>plot_rss</code> function.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_rss_forest</span><span class="op">)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="book_files/figure-html/rss-1.png" width="672"></div>
@@ -294,12 +294,12 @@ consider biological realism.</li>
 <span class="header-section-number">5.2.2.1</span> Speed/Step Length<a class="anchor" aria-label="anchor" href="#speedstep-length"><i class="fas fa-link"></i></a>
 </h4>
 <p>Extract basal parameters:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># sl_distr_params(mod)</span>
 <span class="co"># ta_distr_params(mod)</span></code></pre></div>
 <p>The calculation for Mean Step Length is shape multiplied by scale:<br></p>
 <!-- TODO: step length formula -->
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code for this calculation</span>
 <span class="co"># &gt; example plot</span></code></pre></div>
 <div id="negative-speed-estimates" class="section level5">
@@ -337,7 +337,7 @@ rate is inverse scale, and shape is one. The equations work out to be the same.<
 <span class="header-section-number">5.2.2.2.1</span> Negative Von Mises Estimates<a class="anchor" aria-label="anchor" href="#negative-von-mises-estimates"><i class="fas fa-link"></i></a>
 </h5>
 <p>A negative von Mises concentration parameter means the adjusted turn angle distribution is centred at 𝜋 (180°) rather than 0 (negative directional autocorrelation; behaviourally the animal is more likely to turn back). This can happen with high resolution data. A fix is to multiply by -1 to recenter the distribution and assumption around 0 and not 𝜋.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; turn angle plot</span></code></pre></div>
 </div>
 </div>
@@ -364,7 +364,7 @@ trade-off can be superseded by large data sets which then favours complex
 models. Please read (Fieberg and Johnson 2015, Northrup et al. 2021) for in
 depth discussion of building and evaluating models.</p>
 <p>Likelihood ratios can be used when required.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; example</span></code></pre></div>
 </div>
 </div>
@@ -426,7 +426,7 @@ you actually want a validation of the extent of your study area.</p>
 </h4>
 <p>Habitat calibration plots are a way to find the most predictive model, it can be considered a true validation of the model (Fieberg et al. 2018)</p>
 <div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; code for this?</span></code></pre></div>
 
 </div>
@@ -476,7 +476,7 @@ you actually want a validation of the extent of your study area.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-08.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
