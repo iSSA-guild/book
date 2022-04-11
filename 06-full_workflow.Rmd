@@ -2,7 +2,9 @@
 ![](https://badgen.net/badge/status/WIP/orange)
 
 ## Preface
-This is an example of me "talking" the reader through conducting an iSSA on the fisher data that is set up in our [targets workflow](https://github.com/iSSA-guild/targets-issa).
+This is an example of me "talking" the reader through conducting an iSSA on the
+fisher data that is set up in our [targets
+workflow](https://github.com/iSSA-guild/targets-issa).
 
 ## Preparing an iSSA
 
@@ -31,11 +33,16 @@ Things that you need to check and clean if they are not met:
 
 #### Prepare covariate input data
 
-It is critical that all of the layers you plan to use and GPS points are in the same coordinate reference system. This can take a long time to reproject layers, crop them, and anything else you need to do for everything to be in the same "world," but it is critical to do for the later steps of extracting covariates by step.
+It is critical that all of the layers you plan to use and GPS points are in the
+same coordinate reference system. This can take a long time to reproject layers,
+crop them, and anything else you need to do for everything to be in the same
+"world," but it is critical to do for the later steps of extracting covariates
+by step.
 
 ### Making tracks
 
-Once the data is clean, we make the points into a track. If you have more than one individual in the dataset, do it by individual.
+Once the data is clean, we make the points into a track. If you have more than
+one individual in the dataset, do it by individual.
 
 Generating tracks:
 ```{r tracks_expr, echo = FALSE, comment = ''}
@@ -46,18 +53,27 @@ get_target_expression(targets_tracks, 'tracks')
 #### Check the sampling rate
 
 Now we should check how the sampling rate looks due to the messiness of GPS 
-relocations. See [Checking the sampling rate]. 
+relocations. 
 
-Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals, 
-so we likely need to resample the data.
+```{r samp_rate}
+summarize_sampling_rate_many(tar_read(tracks), 'id')
+```
+
+Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals,
+the same for all individuals in the model, so we likely need to resample the
+data.
 
 ```{r resample_expr, echo = FALSE, comment = ''}
 get_target_expression(targets_tracks, 'tracks_resampled')
 ```
 
 In our `targets` workflow, we have simplified all of this. Here, all you will have to do is at the beginning of the workflow: fill in 
-the variables to match your data. See the [Variables] section. 
+the [Variables] to match your data.
 
+```{r tar_vars, comment = '', echo=FALSE}
+l <- readLines('https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R')
+writeLines(l[grep('Variables', l):(grep('Targets: data', l)-1)])
+```
 
 ### Steps
 
@@ -125,7 +141,7 @@ get_target_expression(targets_tracks, 'tracks_random')
 
 ## Running an iSSA
 This workflow is going to be an example using the Poisson point process method
-described by Muff et al (CITE). This method allows us to look at all individuals
+described by Muff et al {@*Muff_2020}. This method allows us to look at all individuals
 at once so we can examine both the individual- and population-level responses at
 once. In this example, we're going to include both categorical and continuous
 variables.
@@ -198,11 +214,11 @@ This model runs without issue.
 Demonstrating effects from iSSA output is an area where you will see a lot of
 different avenues at this point. Some just show the beta estimates from the
 model and p-values. This, however is not a real demonstration of effect size for
-iSSAs (CITE AVGAR).
+iSSAs {@Avgar2017}.
 
 ### Relative Selection Strength
 
-This is where Relative Selection Strength (RSS) comes in. Avgar et al (CITE)
+This is where Relative Selection Strength (RSS) comes in. Avgar et al (2017)
 derived various equations to calculate RSS depending on if variables are on
 their own, interacted with others, log-transformed, etc. However, since then
 Brian Smith has determined that using the `predict()` function can achieve the
