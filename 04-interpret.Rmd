@@ -49,7 +49,7 @@ Calculated for an animal selecting one spatial location (x1) over another (x2) w
 <!-- TODO: need RSS formula --> 
 
 - Common RSS expressions in Avgar et al. 2017, formulation depends on the covariates of interest in model
-- Can use the `predict` function: https://rdrr.io/cran/amt/man/log_rss.htm in amt or JWT code
+- Can use the `predict` function: https://rdrr.io/cran/amt/man/log_rss.html in amt or JWT code
 - Fieberg ‘How-to’ goes through the RSS maths
 
 

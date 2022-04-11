@@ -70,4 +70,5 @@ rss_water|stem|rss_water|0|skipped
 rss_forest|stem|rss_forest|0|skipped
 plot_rss_water|stem|plot_rss_water|0|skipped
 plot_rss_forest|stem|plot_rss_forest|0|skipped
-book|stem|book|0|skipped
+book|stem|book|0|started
+book|stem|book|0|built

@@ -1,7 +1,12 @@
 # Full workflow
+![](https://badgen.net/badge/status/WIP/orange)
+
+## Preface
+This is an example of me (Julie) "talking" the reader through conducting an iSSA on the
+fisher data that is set up in our 
+[targets workflow](https://github.com/iSSA-guild/targets-issa).
 
 ## Preparing an iSSA
-![](https://badgen.net/badge/status/WIP/orange)
 
 ### The data
 
@@ -28,11 +33,16 @@ Things that you need to check and clean if they are not met:
 
 #### Prepare covariate input data
 
-It is critical that all of the layers you plan to use and GPS points are in the same coordinate reference system. This can take a long time to reproject layers, crop them, and anything else you need to do for everything to be in the same "world," but it is critical to do for the later steps of extracting covariates by step.
+It is critical that all of the layers you plan to use and GPS points are in the
+same coordinate reference system. This can take a long time to reproject layers,
+crop them, and anything else you need to do for everything to be in the same
+"world," but it is critical to do for the later steps of extracting covariates
+by step.
 
 ### Making tracks
 
-Once the data is clean, we make the points into a track. If you have more than one individual in the dataset, do it by individual.
+Once the data is clean, we make the points into a track. If you have more than
+one individual in the dataset, do it by individual.
 
 Generating tracks:
 ```{r tracks_expr, echo = FALSE, comment = ''}
@@ -43,21 +53,28 @@ get_target_expression(targets_tracks, 'tracks')
 #### Check the sampling rate
 
 Now we should check how the sampling rate looks due to the messiness of GPS 
-relocations. See [Checking the sampling rate]. 
+relocations. 
 
-Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals, 
-so we likely need to resample the data.
+```{r samp_rate}
+summarize_sampling_rate_many(tar_read(tracks), 'id')
+```
+
+Data are messy. For iSSA, we need the GPS fixes to happen at regular intervals,
+the same for all individuals in the model, so we likely need to resample the
+data.
 
 ```{r resample_expr, echo = FALSE, comment = ''}
 get_target_expression(targets_tracks, 'tracks_resampled')
 ```
 
-In our `targets` workflow, we have simplified all of this down to
+In our `targets` workflow, we have simplified all of this. Here, all you will 
+have to do is at the beginning of the workflow: fill in 
+the [Variables] to match your data.
 
-
-Here, all you will have to do is at the beginning of the work flow is fill in 
-the variables to match your data. See the [Variables] section. 
-
+```{r tar_vars, comment = '', echo=FALSE}
+l <- readLines('https://raw.githubusercontent.com/robitalec/targets-issa/main/_targets.R')
+writeLines(l[grep('Variables', l):(grep('Targets: data', l)-1)])
+```
 
 ### Steps
 
@@ -125,7 +142,7 @@ get_target_expression(targets_tracks, 'tracks_random')
 
 ## Running an iSSA
 This workflow is going to be an example using the Poisson point process method
-described by Muff et al (CITE). This method allows us to look at all individuals
+described by Muff et al [-@Muff_2020]. This method allows us to look at all individuals
 at once so we can examine both the individual- and population-level responses at
 once. In this example, we're going to include both categorical and continuous
 variables.
@@ -164,8 +181,14 @@ we have it coded, the numbers restart for each individual
 - random effects have at least 5 levels (this is likely not going to be a 
 problem for most iSSAs, but it has come up)
 
-```{r exploring data}
-#TODO code showing exploration, especially availability
+```{r exploring_data}
+# checking availability 
+# for landcover
+tar_read(avail_lc)
+
+# for distance to water
+tracks_extract <- tar_read(tracks_extract)
+tracks_extract[!(case_), quantile(dist_to_water, na.rm = TRUE), by = id]
 ```
 
 After some exploration, I'm thinking this model is over-parameterized for 6
@@ -192,30 +215,62 @@ This model runs without issue.
 Demonstrating effects from iSSA output is an area where you will see a lot of
 different avenues at this point. Some just show the beta estimates from the
 model and p-values. This, however is not a real demonstration of effect size for
-iSSAs (CITE AVGAR).
+iSSAs [@Avgar2017].
 
 ### Relative Selection Strength
 
-This is where Relative Selection Strength (RSS) comes in. Avgar et al (CITE)
+This is where Relative Selection Strength (RSS) comes in. Avgar et al (2017)
 derived various equations to calculate RSS depending on if variables are on
 their own, interacted with others, log-transformed, etc. However, since then
 Brian Smith has determined that using the `predict()` function can achieve the
-same outcome (see CITE for proof). But this is all the mathematical details.
-What RSSs are really doing is comparing the selection strength for a habitat A
-compared to habitat B.So, say an animal is not in a forest, are they relatively
+same outcome (see proof [Smith 2020](https://bsmity13.github.io/log_rss/)). 
+But this is all the mathematical details.
+What RSSs are really doing is comparing the selection strength for a habitat 1 (H1)
+compared to habitat 2 (H2).So, say an animal is not in a forest, are they relatively
 more likely to select to be in a forest or avoid the forest? Then the RSS shows
 the strength of selection or avoidance over a range of availability of that
 habitat type.
 
-```{r RSS example}
-# TODO insert forest example: code and graph
 
+In the targets-issa workflow, we predict H1, and H2 for forest using
+the following functions:
+
+```{r RSS_forest_ex}
+# R/predict_h1_forest.R
+predict_h1_forest
+
+# R/predict_h2.R
+predict_h2
+
+# Then we can calculate RSS for forest as H1 - H2:
+
+# R/calc_rss.R
+calc_rss
+```
+
+And finally, the plots with the `plot_rss` function. 
+
+```{r rss_forest_plot}
 tar_read(plot_rss_forest)
+```
 
+JWT comment: I personally find it weird and hard to wrap my head around RSSs for
+categorical variables, and I don't have a great way of explaining it for others
+like me who didn't get it. The closest I can describe is, say, looking at this
+plot, the individual starts not in forest, is their next step more likely to go
+to forest or not. To continuous nature of the RSS is hard for me to wrap my head
+around with a categorical variable. I just pretend in my head that it's a
+proportional value of 'no forest' = 0 and 'all forest' = 1, and the middle is an
+estimate based on the model. It's not perfect, but that's the best I've been
+able to come to terms with it. :shrug: #OverlyHonestMethods
+
+
+We can then do the same thing to determine the RSS for distance to water.
+```{r RSS_water_ex}
 tar_read(plot_rss_water)
 ```
 
-#TODO insert description of the output graphs
+<!-- #TODO insert description of the output graphs -->
 
 RSSs have to be done one habitat at a time. That being said, interactions can be
 explored by pre-determining cut off points to examine one of the variables at a
@@ -229,8 +284,10 @@ process with the predict method. You first have to calculate the overall
 selection for, in this case, forest at 100m from the road, then you run the run
 the predict function over the availability of forest and add them together.
 
-```{r RSS interaction}
-# TODO: make up some example, there's not one relevant in the current toy model
+
+<!-- # TODO: make up some example, there's not one relevant in the current toy model -->
+
+```{r RSS_interaction}
 ```
 
 ### Speed
@@ -242,9 +299,8 @@ mean estimated speed is shape parameter multiplied by the scale parameter from
 the gamma distribution. However, the shape is modified by the movement variables
 in the iSSA itself. So this calculation becomes
 
-TODO make this look like an equation
 
-$\text{mean estimated speed} = (shape + log_sl_beta + log_sl_intx_beta*mean(what interacted with))*scale$
+$\text{mean estimated speed} = (shape + logSL.beta + logSLintx.beta*mean(what.interacted.with))*scale$
 
 
 So, from our toy example, this would be done as
