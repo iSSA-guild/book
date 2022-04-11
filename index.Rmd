@@ -19,11 +19,22 @@ nocite: '@*'
 
 
 # Introduction
+
 This guide is a team effort synthesizing past experiences, best practices, and
-key resources. Given how difficult it is to just start an iSSA and all the
-choices that need to be made, we wanted to create a workbook to be an
-approachable gateway to the world of iSSAs. We wanted to bring everything
-together we have done to help others.
+key resources. Given how difficult it is to start an integrated step selection
+analysis and all the choices that need to be made, we created it to
+be an approachable gateway to the world of iSSAs. We hope that putting
+everything together will help others. Please get in touch if you have any
+questions or comments, and if you have any suggested edits.
+
+This guide integrates functions and outputs from the 
+[targets-iSSA workflow](https://github.com/iSSA-guild/targets-issa). 
+`targets` manages the relationships between data, variables and intermediate 
+outputs, as well as the functions that generate them, and ensures that 
+outdated objects are regenerated. It also provides helpers for flexibly
+batching steps across individuals, study periods or regions. Starting from the 
+workflow, users can swap in their own data, variables, and questions
+without having to reinvent the wheel. 
 
 
 
@@ -41,7 +52,7 @@ opportunity to learn and rethink our current ideas.
 
 Thanks to all developers of R, R packages, and related software that 
 make this book and related analyses possible. Specifically developers of
-`targets`, `bookdown`, `R`, `RStudio`, `amt`, `data.table`, R-lib, and R-spatial. 
+`targets`, `renv`, `bookdown`, `R`, `RStudio`, `amt`, `data.table`, R-lib, and R-spatial. 
 
 
 
