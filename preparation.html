@@ -175,7 +175,7 @@
 <h3>
 <span class="header-section-number">3.2.1</span> Erroneous locations<a class="anchor" aria-label="anchor" href="#erroneous-locations"><i class="fas fa-link"></i></a>
 </h3>
-<p>The <code>amt</code> package includes code and guidelines for data cleaning, as does Bjørneraas et al. (2010).</p>
+<p>The <code>amt</code> package includes code and guidelines for data cleaning, as does Bjørneraas et al. <span class="citation">(<a href="references.html#ref-Bjorneraas_2010" role="doc-biblioref">2010</a>)</span>.</p>
 <p>The major GPS cleaning considerations are:</p>
 <ul>
 <li>censor locations pre- and post- animal capture and collaring</li>
@@ -192,11 +192,9 @@
 </h3>
 <p>In early GPS and RSF studies, autocorrelation was viewed as an issue to directly
 eliminate. Over the last two decades, however, the discourse around
-autocorrelation has become more nuanced (Fieberg et al. 2021, Northrup et al.
-2021). To summarize our current understanding, locations are indeed ‘serially
-dependent’ – points closer in time will be closer in space (Fleming et al.
-2014). However, if these locations are taken at regular intervals, they should
-be representative of space use (Fieberg et al 2021). Sampling locations at
+autocorrelation has become more nuanced <span class="citation">(Fieberg et al. <a href="references.html#ref-Fieberg_2021" role="doc-biblioref">2021</a>; Northrup et al. <a href="references.html#ref-Northrup_2022" role="doc-biblioref">2022</a>)</span>. To summarize our current understanding, locations are indeed ‘serially
+dependent’ – points closer in time will be closer in space <span class="citation">(Fleming et al. <a href="references.html#ref-Fleming_2014" role="doc-biblioref">2014</a>)</span>. However, if these locations are taken at regular intervals, they should
+be representative of space use <span class="citation">(Fieberg et al. <a href="references.html#ref-Fieberg_2021" role="doc-biblioref">2021</a>)</span>. Sampling locations at
 regular intervals is the best practice for habitat selection analyses. Further,
 autocorrelation bias will reduce estimate of uncertainty (SE). To address
 concern, using a robust calculation for confidence intervals can be completed.</p>
@@ -252,10 +250,10 @@ behaviour. Check which distribution seems to fit best.</p>
 <h4>
 <span class="header-section-number">3.3.1.2</span> Turn Angle Distribution<a class="anchor" aria-label="anchor" href="#turn-angle-distribution"><i class="fas fa-link"></i></a>
 </h4>
-<p>Prokopenko et al. 2016 used a uniform ta and included cos(TA) to adjust for more
-realistic variation in directionality. If a Von Mises is fit from observed
-points, including cos(TA) in the model might not be informative. The
-concentration parameter (k) ‘kappa’ in amt, and the location parameter
+<p>Prokopenko et al. <span class="citation">(<a href="references.html#ref-Prokopenko2016" role="doc-biblioref">2016</a>)</span> used a uniform ta and included cos(TA) to
+adjust for more realistic variation in directionality. If a Von Mises is fit
+from observed points, including cos(TA) in the model might not be informative.
+The concentration parameter (k) ‘kappa’ in amt, and the location parameter
 (<span class="math inline">\(\mu\)</span>, mu in <code>amt</code>).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_ta_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
@@ -296,7 +294,11 @@ patterns that could result is critical.</p>
 <span class="header-section-number">3.3.2</span> Number of random steps<a class="anchor" aria-label="anchor" href="#number-of-random-steps"><i class="fas fa-link"></i></a>
 </h3>
 <p>The availability distribution is defined by the randomly sampled steps from the step length and turn angle probability distributions.</p>
-<p>Using 10 steps for each used step to have a strata of 11 steps is common, but intensity of sampling varies across the literature. Sensitivity analysis can be conducted to determine the influence of availability sample on selection (Northrup et al. 2013, 2016). A general piece of advice is “at least one, the more the merrier” (Avgar and Smith 2022)</p>
+<p>Using 10 steps for each used step to have a strata of 11 steps is common, but
+intensity of sampling varies across the literature. Sensitivity analysis can be
+conducted to determine the influence of availability sample on selection
+<span class="citation">(Northrup et al. <a href="references.html#ref-Northrup_2013" role="doc-biblioref">2013</a>, <a href="references.html#ref-Northrup_2016" role="doc-biblioref">2016</a>)</span>. A general piece of advice is “at least one,
+the more the merrier” (Avgar and Smith 2022)</p>
 <p>Generating tracks:</p>
 <pre><code>make_track(locs_prep, x_, y_, t_, all_cols = TRUE, crs = epsg)</code></pre>
 <p>Resampling tracks:</p>
@@ -322,7 +324,10 @@ is accessible to the animal.</p>
 <li>How does this relate to your location data?</li>
 <li>How does movement vary within and between biological/ecological divisions?</li>
 </ul>
-<p>The purpose of exploring your data is to brainstorm the potential options for your models and identify potential limitations. Proper exploration of used (case = 1) and available (case = 0) domains by individual, population, season, year etc. will help inform downstream decisions and troubleshoot convergence issues.</p>
+<p>The purpose of exploring your data is to brainstorm the potential options for
+your models and identify potential limitations. Proper exploration of used (case
+= 1) and available (case = 0) domains by individual, population, season, year
+etc. will help inform downstream decisions and troubleshoot convergence issues.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># &gt; table or figure sample size - # individuals and points per individual</span>
 <span class="co"># &gt; locations spread per season, year, individual: counts across categories</span>
@@ -361,7 +366,7 @@ is accessible to the animal.</p>
 <h3>
 <span class="header-section-number">3.5.2</span> Availability threshold<a class="anchor" aria-label="anchor" href="#availability-threshold"><i class="fas fa-link"></i></a>
 </h3>
-<p>Dickie et al. (2020) used 0.01 as the “threshold” of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%.</p>
+<p>Dickie et al. <span class="citation">(<a href="references.html#ref-Dickie_2020" role="doc-biblioref">2020</a>)</span> used 0.01 as the “threshold” of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">avail_lc</span><span class="op">)</span><span class="op">[</span><span class="va">id</span> <span class="op">==</span> <span class="fl">1016</span><span class="op">]</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -566,7 +571,7 @@ Example Table: prediction and covariates.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-11.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
