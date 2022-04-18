@@ -303,9 +303,18 @@ in the iSSA itself. So this calculation becomes
 $\text{mean estimated speed} = (shape + logSL.beta + logSLintx.beta*mean(what.interacted.with))*scale$
 
 
-So, from our toy example, this would be done as
-```{r example mean estimated speed, eval = FALSE}
-#TODO create target calc
-#TODO create plot
+So, from our toy example, this could be done as below. Here, we can pick which
+covariate we want to vary to estimate speed to see how speed is impacted by what
+it is interacted with. `seq` represents the range of values we're looking over.
+
+```{r calc_speed_code}
+# R/calc_speed.R
+calc_speed
+```
+
+Let's see how fishers' speed changes in areas without anthropogenic disturbance vs areas that are disturbed (`seq = 0:1`)
+
+```{r plot_speed}
+tar_read(plot_speed_disturbed)
 ```
 
