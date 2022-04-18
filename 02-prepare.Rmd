@@ -13,7 +13,7 @@ summarize_sampling_rate_many(tar_read(tracks), 'id')
 
 ### Erroneous locations
 
-The `amt` package includes code and guidelines for data cleaning, as does Bjørneraas et al. (2010). 
+The `amt` package includes code and guidelines for data cleaning, as does Bjørneraas et al. [-@Bjorneraas_2010]. 
 
 The major GPS cleaning considerations are:
 
@@ -28,11 +28,9 @@ The major GPS cleaning considerations are:
 
 In early GPS and RSF studies, autocorrelation was viewed as an issue to directly
 eliminate. Over the last two decades, however, the discourse around
-autocorrelation has become more nuanced (Fieberg et al. 2021, Northrup et al.
-2021). To summarize our current understanding, locations are indeed ‘serially
-dependent’ – points closer in time will be closer in space (Fleming et al.
-2014). However, if these locations are taken at regular intervals, they should
-be representative of space use (Fieberg et al 2021). Sampling locations at
+autocorrelation has become more nuanced [@Fieberg_2021; @Northrup_2022]. To summarize our current understanding, locations are indeed ‘serially
+dependent’ – points closer in time will be closer in space [@Fleming_2014]. However, if these locations are taken at regular intervals, they should
+be representative of space use [@Fieberg_2021]. Sampling locations at
 regular intervals is the best practice for habitat selection analyses. Further,
 autocorrelation bias will reduce estimate of uncertainty (SE). To address
 concern, using a robust calculation for confidence intervals can be completed.
@@ -87,10 +85,10 @@ behaviour. Check which distribution seems to fit best.
 
 #### Turn Angle Distribution
 
-Prokopenko et al. 2016 used a uniform ta and included cos(TA) to adjust for more
-realistic variation in directionality. If a Von Mises is fit from observed
-points, including cos(TA) in the model might not be informative. The
-concentration parameter (k) ‘kappa’ in amt, and the location parameter 
+Prokopenko et al. [-@Prokopenko2016] used a uniform ta and included cos(TA) to
+adjust for more realistic variation in directionality. If a Von Mises is fit
+from observed points, including cos(TA) in the model might not be informative.
+The concentration parameter (k) ‘kappa’ in amt, and the location parameter
 ($\mu$, mu in `amt`).
 
 
@@ -135,7 +133,11 @@ These decisions can be informed once you explore your data.
 
 The availability distribution is defined by the randomly sampled steps from the step length and turn angle probability distributions.
 
-Using 10 steps for each used step to have a strata of 11 steps is common, but intensity of sampling varies across the literature. Sensitivity analysis can be conducted to determine the influence of availability sample on selection (Northrup et al. 2013, 2016). A general piece of advice is “at least one, the more the merrier” (Avgar and Smith 2022)
+Using 10 steps for each used step to have a strata of 11 steps is common, but
+intensity of sampling varies across the literature. Sensitivity analysis can be
+conducted to determine the influence of availability sample on selection
+[@Northrup_2013; @Northrup_2016]. A general piece of advice is “at least one,
+the more the merrier” (Avgar and Smith 2022)
 
 Generating tracks:
 ```{r, echo = FALSE, comment = ''}
@@ -167,7 +169,10 @@ is accessible to the animal.
 - How does this relate to your location data? 
 - How does movement vary within and between biological/ecological divisions?
 
-The purpose of exploring your data is to brainstorm the potential options for your models and identify potential limitations. Proper exploration of used (case = 1) and available (case = 0) domains by individual, population, season, year etc. will help inform downstream decisions and troubleshoot convergence issues. 
+The purpose of exploring your data is to brainstorm the potential options for
+your models and identify potential limitations. Proper exploration of used (case
+= 1) and available (case = 0) domains by individual, population, season, year
+etc. will help inform downstream decisions and troubleshoot convergence issues.
 
 ```{r guide_qs}
 # > table or figure sample size - # individuals and points per individual
@@ -198,7 +203,7 @@ Attributes extracted at the start-point do not vary within a cluster, but can be
 
 ### Availability threshold
 
-Dickie et al. (2020) used 0.01 as the "threshold" of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%. 
+Dickie et al. [-@Dickie_2020] used 0.01 as the "threshold" of availability. i.e. included the variable in the model if the available steps had at least 1% of that habitat type, and otherwise booted it out. I think the more typical choice would be 5%, Dickie was able to get reasonable estimates with most individuals fitting at 1%. 
 
 
 ```{r avail_thresh}

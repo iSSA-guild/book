@@ -85,12 +85,13 @@ and this is adjustable depending on what you need.
 
 #### Check the distribution of steps and turn angles
 
-Now to make sure there aren't any weirdos in the steps.  Usually there are a lot
-of little steps and few big steps, but this is a good check to make sure any
-erroneous observations are removed. For instance, this would show if there are
-any steps that are not biologically possible. It also shows the distribution so
-you know if you should use a Gamma or exponential distribution for generating
-random steps. Most are Gamma, and that is the default in `amt`.
+Now to make sure there aren't any biological impossibilities in the steps.
+Usually there are a lot of little steps and few big steps, but this is a good
+check to make sure any erroneous observations are removed. For instance, this
+would show if there are any steps that are not biologically possible. It also
+shows the distribution so you know if you should use a Gamma or exponential
+distribution for generating random steps. Most are Gamma, and that is the
+default in `amt`.
 
 SL distribution for 1 individual
 ```{r plot_dist_sl}
@@ -125,18 +126,34 @@ See [Choosing covariates] for more info
 #### Example extraction
 
 For example, here we are creating random steps and extracting information about
-what landcover class an individual selects for (at the end of each step) and how
-time of day (day or night at the start of the step) influences their movement.
+what landcover class and the distance from water an individual selects (at the end of each step) and 
+time of day (day or night at the start of the step) at the time of each step.
 This will create a dataset that includes step length, turn angle, whether it's
-day or night at the star of the step, and what land class an animal is on at the
+day or night at the start of the step, and what land class an animal is on at the
 end of their step.
+
+*NOTE: In the `targets` workflow, we have created out own extraction functions
+instead of using `amt`'s `extract_covariate` and `time_of_day` functions. This
+is for several reasons - more flexibility - `amt` isn't functional with `terra`
+yet (coming soon) - `time_of_day` is good for day vs night, but if you want dawn
+or dusk, it's not great at larger fixrates. For instance, if you have a 2 hour
+fixrate, it rarely includes dawn or dusk because those time frames are narrow in
+the default `maptools` function that `time_of_day` wraps around. In this
+circumstance, we have created our own time of day extractions as needed by
+location. However, for our fisher example here with a 30 minute fixrate,
+including default crepuscular times should be fine.*
+```{r extracting, comment =''}
+# R/extract_layers.R
+extract_layers
+```
 
 If you have multiple hypotheses that would benefit from know information from
 both the beginning and the end of the step, you can input`"both"` instead of
 `"start"` or `"end"`.
 
-```{r random_expr, echo = FALSE, comment = ''}
-get_target_expression(targets_tracks, 'tracks_random')
+So, in the end, we get a dataset that looks something like:
+```{r extracted_dat, echo=FALSE}
+tar_read(tracks_extract)[1:11]
 ```
 
 
@@ -146,6 +163,10 @@ described by Muff et al [-@Muff_2020]. This method allows us to look at all indi
 at once so we can examine both the individual- and population-level responses at
 once. In this example, we're going to include both categorical and continuous
 variables.
+
+*NOTE: Random effects in GLMMs are supposed to have 5 or more levels, which
+means you should have at least 5 individuals if you want to include them as a
+random effect.*
 
 
 ```{r f_model_land_cover, comment =''}
@@ -165,7 +186,7 @@ variation. This model didn't converge properly, so we need to look at why.
 
 Things to explore at the data level include:
 
-- lots of `NAs` for a particular variable
+- lots of `NAs` for a particular variable [(helpful tips from Bolker)](https://stackoverflow.com/questions/62239351/why-am-i-getting-nas-in-the-model-summary-output-zero-inflated-glmm-with-glmmtm)
 - lots of variation or very little variation in a particular variable
 - availability of variables for individuals
 
@@ -214,21 +235,19 @@ This model runs without issue.
 
 Demonstrating effects from iSSA output is an area where you will see a lot of
 different avenues at this point. Some just show the beta estimates from the
-model and p-values. This, however is not a real demonstration of effect size for
-iSSAs [@Avgar2017].
+model and p-values. This, however can result in misinterpretation of biological significance [@Avgar2017].
 
 ### Relative Selection Strength
 
-This is where Relative Selection Strength (RSS) comes in. Avgar et al (2017)
+This is where Relative Selection Strength (RSS) comes in. Avgar et al [-@Avgar2017]
 derived various equations to calculate RSS depending on if variables are on
 their own, interacted with others, log-transformed, etc. However, since then
 Brian Smith has determined that using the `predict()` function can achieve the
 same outcome (see proof [Smith 2020](https://bsmity13.github.io/log_rss/)). 
 But this is all the mathematical details.
-What RSSs are really doing is comparing the selection strength for a habitat 1 (H1)
-compared to habitat 2 (H2).So, say an animal is not in a forest, are they relatively
+What RSSs are really doing is comparing the selection strength for habitat at location 1 (H1) compared to location 2 (H2).So, say an animal is not in a forest, are they relatively
 more likely to select to be in a forest or avoid the forest? Then the RSS shows
-the strength of selection or avoidance over a range of availability of that
+the strength of selection or avoidance over a range of habitat values of that
 habitat type.
 
 
@@ -254,7 +273,7 @@ And finally, the plots with the `plot_rss` function.
 tar_read(plot_rss_forest)
 ```
 
-JWT comment: I personally find it weird and hard to wrap my head around RSSs for
+JWT comment: I personally find it hard to wrap my head around RSSs for
 categorical variables, and I don't have a great way of explaining it for others
 like me who didn't get it. The closest I can describe is, say, looking at this
 plot, the individual starts not in forest, is their next step more likely to go
@@ -303,9 +322,18 @@ in the iSSA itself. So this calculation becomes
 $\text{mean estimated speed} = (shape + logSL.beta + logSLintx.beta*mean(what.interacted.with))*scale$
 
 
-So, from our toy example, this would be done as
-```{r example mean estimated speed, eval = FALSE}
-#TODO create target calc
-#TODO create plot
+So, from our toy example, this could be done as below. Here, we can pick which
+covariate we want to vary to estimate speed to see how speed is impacted by what
+it is interacted with. `seq` represents the range of values we're looking over.
+
+```{r calc_speed_code}
+# R/calc_speed.R
+calc_speed
+```
+
+Let's see how fishers' speed changes in areas without anthropogenic disturbance vs areas that are disturbed (`seq = 0:1`)
+
+```{r plot_speed}
+tar_read(plot_speed_disturbed)
 ```
 
