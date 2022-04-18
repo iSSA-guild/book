@@ -271,12 +271,13 @@ and this is adjustable depending on what you need.</p>
 <h4>
 <span class="header-section-number">7.2.3.1</span> Check the distribution of steps and turn angles<a class="anchor" aria-label="anchor" href="#check-the-distribution-of-steps-and-turn-angles"><i class="fas fa-link"></i></a>
 </h4>
-<p>Now to make sure there aren’t any weirdos in the steps. Usually there are a lot
-of little steps and few big steps, but this is a good check to make sure any
-erroneous observations are removed. For instance, this would show if there are
-any steps that are not biologically possible. It also shows the distribution so
-you know if you should use a Gamma or exponential distribution for generating
-random steps. Most are Gamma, and that is the default in <code>amt</code>.</p>
+<p>Now to make sure there aren’t any biological impossibilities in the steps.
+Usually there are a lot of little steps and few big steps, but this is a good
+check to make sure any erroneous observations are removed. For instance, this
+would show if there are any steps that are not biologically possible. It also
+shows the distribution so you know if you should use a Gamma or exponential
+distribution for generating random steps. Most are Gamma, and that is the
+default in <code>amt</code>.</p>
 <p>SL distribution for 1 individual</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">dist_sl_plots</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
@@ -318,15 +319,316 @@ analysis. This decision is of course determined by your question and hypotheses<
 <span class="header-section-number">7.2.4.2</span> Example extraction<a class="anchor" aria-label="anchor" href="#example-extraction"><i class="fas fa-link"></i></a>
 </h4>
 <p>For example, here we are creating random steps and extracting information about
-what landcover class an individual selects for (at the end of each step) and how
-time of day (day or night at the start of the step) influences their movement.
+what landcover class and the distance from water an individual selects (at the end of each step) and
+time of day (day or night at the start of the step) at the time of each step.
 This will create a dataset that includes step length, turn angle, whether it’s
-day or night at the star of the step, and what land class an animal is on at the
+day or night at the start of the step, and what land class an animal is on at the
 end of their step.</p>
+<p><em>NOTE: In the <code>targets</code> workflow, we have created out own extraction functions
+instead of using <code>amt</code>’s <code>extract_covariate</code> and <code>time_of_day</code> functions. This
+is for several reasons - more flexibility - <code>amt</code> isn’t functional with <code>terra</code>
+yet (coming soon) - <code>time_of_day</code> is good for day vs night, but if you want dawn
+or dusk, it’s not great at larger fixrates. For instance, if you have a 2 hour
+fixrate, it rarely includes dawn or dusk because those time frames are narrow in
+the default <code>maptools</code> function that <code>time_of_day</code> wraps around. In this
+circumstance, we have created our own time of day extractions as needed by
+location. However, for our fisher example here with a 30 minute fixrate,
+including default crepuscular times should be fine.</em></p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># R/extract_layers.R</span>
+<span class="va">extract_layers</span></code></pre></div>
+<pre><code>function (DT, crs, lc, legend, elev, popdens, water) 
+{
+    setDT(DT)
+    start &lt;- c("x1_", "y1_")
+    end &lt;- c("x2_", "y2_")
+    extract_pt(DT, lc, end)
+    DT[legend, `:=`(lc_description, description), on = .(pt_lc = Value)]
+    extract_pt(DT, elev, end)
+    extract_pt(DT, popdens, end)
+    extract_distance_to(DT, water, end, crs)
+}</code></pre>
 <p>If you have multiple hypotheses that would benefit from know information from
 both the beginning and the end of the step, you can input<code>"both"</code> instead of
 <code>"start"</code> or <code>"end"</code>.</p>
-<pre><code>random_steps(tracks_resampled, n = n_random_steps)</code></pre>
+<p>So, in the end, we get a dataset that looks something like:</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="3%">
+<col width="3%">
+<col width="4%">
+<col width="4%">
+<col width="3%">
+<col width="3%">
+<col width="2%">
+<col width="5%">
+<col width="3%">
+<col width="10%">
+<col width="10%">
+<col width="4%">
+<col width="4%">
+<col width="3%">
+<col width="3%">
+<col width="8%">
+<col width="4%">
+<col width="6%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">x1_</th>
+<th align="right">x2_</th>
+<th align="right">y1_</th>
+<th align="right">y2_</th>
+<th align="right">sl_</th>
+<th align="right">ta_</th>
+<th align="right">id</th>
+<th align="right">tar_group</th>
+<th align="right">burst_</th>
+<th align="left">t1_</th>
+<th align="left">t2_</th>
+<th align="left">dt_</th>
+<th align="right">step_id_</th>
+<th align="left">case_</th>
+<th align="right">pt_lc</th>
+<th align="left">lc_description</th>
+<th align="right">pt_elev</th>
+<th align="right">pt_popdens</th>
+<th align="right">dist_to_water</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">593975</td>
+<td align="right">593969</td>
+<td align="right">4739337</td>
+<td align="right">4739492</td>
+<td align="right">155.61</td>
+<td align="right">NA</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">TRUE</td>
+<td align="right">41</td>
+<td align="left">forest</td>
+<td align="right">83</td>
+<td align="right">51</td>
+<td align="right">171</td>
+</tr>
+<tr class="even">
+<td align="right">593975</td>
+<td align="right">593967</td>
+<td align="right">4739337</td>
+<td align="right">4739367</td>
+<td align="right">31.62</td>
+<td align="right">0.21</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">42</td>
+<td align="left">forest</td>
+<td align="right">100</td>
+<td align="right">102</td>
+<td align="right">289</td>
+</tr>
+<tr class="odd">
+<td align="right">593975</td>
+<td align="right">593959</td>
+<td align="right">4739337</td>
+<td align="right">4739362</td>
+<td align="right">29.55</td>
+<td align="right">0.52</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">42</td>
+<td align="left">forest</td>
+<td align="right">100</td>
+<td align="right">102</td>
+<td align="right">297</td>
+</tr>
+<tr class="even">
+<td align="right">593975</td>
+<td align="right">594216</td>
+<td align="right">4739337</td>
+<td align="right">4739595</td>
+<td align="right">353.46</td>
+<td align="right">-0.79</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">21</td>
+<td align="left">developed</td>
+<td align="right">58</td>
+<td align="right">51</td>
+<td align="right">49</td>
+</tr>
+<tr class="odd">
+<td align="right">593975</td>
+<td align="right">593973</td>
+<td align="right">4739337</td>
+<td align="right">4739338</td>
+<td align="right">2.03</td>
+<td align="right">0.90</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">42</td>
+<td align="left">forest</td>
+<td align="right">105</td>
+<td align="right">102</td>
+<td align="right">314</td>
+</tr>
+<tr class="even">
+<td align="right">593975</td>
+<td align="right">594090</td>
+<td align="right">4739337</td>
+<td align="right">4739452</td>
+<td align="right">162.43</td>
+<td align="right">-0.83</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">41</td>
+<td align="left">forest</td>
+<td align="right">77</td>
+<td align="right">51</td>
+<td align="right">180</td>
+</tr>
+<tr class="odd">
+<td align="right">593975</td>
+<td align="right">593978</td>
+<td align="right">4739337</td>
+<td align="right">4739339</td>
+<td align="right">4.15</td>
+<td align="right">-0.93</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">42</td>
+<td align="left">forest</td>
+<td align="right">105</td>
+<td align="right">102</td>
+<td align="right">311</td>
+</tr>
+<tr class="even">
+<td align="right">593975</td>
+<td align="right">593829</td>
+<td align="right">4739337</td>
+<td align="right">4739372</td>
+<td align="right">150.09</td>
+<td align="right">1.29</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">43</td>
+<td align="left">forest</td>
+<td align="right">90</td>
+<td align="right">102</td>
+<td align="right">333</td>
+</tr>
+<tr class="odd">
+<td align="right">593975</td>
+<td align="right">593916</td>
+<td align="right">4739337</td>
+<td align="right">4739366</td>
+<td align="right">66.11</td>
+<td align="right">1.06</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">43</td>
+<td align="left">forest</td>
+<td align="right">97</td>
+<td align="right">102</td>
+<td align="right">305</td>
+</tr>
+<tr class="even">
+<td align="right">593975</td>
+<td align="right">593975</td>
+<td align="right">4739337</td>
+<td align="right">4739337</td>
+<td align="right">0.48</td>
+<td align="right">1.41</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">42</td>
+<td align="left">forest</td>
+<td align="right">105</td>
+<td align="right">102</td>
+<td align="right">314</td>
+</tr>
+<tr class="odd">
+<td align="right">593975</td>
+<td align="right">594066</td>
+<td align="right">4739337</td>
+<td align="right">4739605</td>
+<td align="right">283.09</td>
+<td align="right">-0.37</td>
+<td align="right">1072</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2011-02-13 04:31:32</td>
+<td align="left">2011-02-13 05:00:13</td>
+<td align="left">29 mins</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">41</td>
+<td align="left">forest</td>
+<td align="right">72</td>
+<td align="right">51</td>
+<td align="right">32</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 </div>
 </div>
@@ -339,7 +641,10 @@ described by Muff et al <span class="citation">(<a href="references.html#ref-Muf
 at once so we can examine both the individual- and population-level responses at
 once. In this example, we’re going to include both categorical and continuous
 variables.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<p><em>NOTE: Random effects in GLMMs are supposed to have 5 or more levels, which
+means you should have at least 5 individuals if you want to include them as a
+random effect.</em></p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/model_land_cover.R</span>
 <span class="va">model_land_cover</span></code></pre></div>
 <pre><code>function (DT) 
@@ -353,7 +658,7 @@ variables.</p>
         1:23))), start = list(theta = c(log(1000), seq(0, 0, 
         length.out = 23))))
 }</code></pre>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_lc</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##  Family: poisson  ( log )
 ## Formula:          
@@ -416,7 +721,8 @@ liberally in <code>glmmTMB</code>, but the real sign of a problem is the <code>N
 variation. This model didn’t converge properly, so we need to look at why.</p>
 <p>Things to explore at the data level include:</p>
 <ul>
-<li>lots of <code>NAs</code> for a particular variable</li>
+<li>lots of <code>NAs</code> for a particular variable <a href="https://stackoverflow.com/questions/62239351/why-am-i-getting-nas-in-the-model-summary-output-zero-inflated-glmm-with-glmmtm">(helpful tips from Bolker)</a>
+</li>
 <li>lots of variation or very little variation in a particular variable</li>
 <li>availability of variables for individuals</li>
 </ul>
@@ -433,7 +739,7 @@ we have it coded, the numbers restart for each individual</li>
 <li>random effects have at least 5 levels (this is likely not going to be a
 problem for most iSSAs, but it has come up)</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># checking availability </span>
 <span class="co"># for landcover</span>
 <span class="fu">tar_read</span><span class="op">(</span><span class="va">avail_lc</span><span class="op">)</span></code></pre></div>
@@ -631,7 +937,7 @@ problem for most iSSAs, but it has come up)</li>
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for distance to water</span>
 <span class="va">tracks_extract</span> <span class="op">&lt;-</span> <span class="fu">tar_read</span><span class="op">(</span><span class="va">tracks_extract</span><span class="op">)</span>
 <span class="va">tracks_extract</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="va">case_</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">dist_to_water</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">id</span><span class="op">]</span></code></pre></div>
@@ -768,7 +1074,7 @@ individuals, at least having so many landcover classes. So, I’m going to prete
 for this example that we only care about selection for forest and disturbed
 habitats. We created dummy variables for this based on the extracted landcover
 data and ran the iSSA on this data.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/model_forest_bin.R</span>
 <span class="va">model_forest_bin</span></code></pre></div>
 <pre><code>function (DT) 
@@ -784,7 +1090,7 @@ data and ran the iSSA on this data.</p>
             1:7))), start = list(theta = c(log(1000), seq(0, 
             0, length.out = 7))))
 }</code></pre>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">tar_read</span><span class="op">(</span><span class="va">model_forest</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##  Family: poisson  ( log )
 ## Formula:          
@@ -832,26 +1138,24 @@ data and ran the iSSA on this data.</p>
 </h2>
 <p>Demonstrating effects from iSSA output is an area where you will see a lot of
 different avenues at this point. Some just show the beta estimates from the
-model and p-values. This, however is not a real demonstration of effect size for
-iSSAs <span class="citation">(Avgar et al. <a href="references.html#ref-Avgar2017" role="doc-biblioref">2017</a>)</span>.</p>
+model and p-values. This, however can result in misinterpretation of biological significance <span class="citation">(Avgar et al. <a href="references.html#ref-Avgar2017" role="doc-biblioref">2017</a>)</span>.</p>
 <div id="relative-selection-strength-1" class="section level3">
 <h3>
 <span class="header-section-number">7.4.1</span> Relative Selection Strength<a class="anchor" aria-label="anchor" href="#relative-selection-strength-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>This is where Relative Selection Strength (RSS) comes in. Avgar et al (2017)
+<p>This is where Relative Selection Strength (RSS) comes in. Avgar et al <span class="citation">(<a href="references.html#ref-Avgar2017" role="doc-biblioref">2017</a>)</span>
 derived various equations to calculate RSS depending on if variables are on
 their own, interacted with others, log-transformed, etc. However, since then
 Brian Smith has determined that using the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function can achieve the
 same outcome (see proof <a href="https://bsmity13.github.io/log_rss/">Smith 2020</a>).
 But this is all the mathematical details.
-What RSSs are really doing is comparing the selection strength for a habitat 1 (H1)
-compared to habitat 2 (H2).So, say an animal is not in a forest, are they relatively
+What RSSs are really doing is comparing the selection strength for habitat at location 1 (H1) compared to location 2 (H2).So, say an animal is not in a forest, are they relatively
 more likely to select to be in a forest or avoid the forest? Then the RSS shows
-the strength of selection or avoidance over a range of availability of that
+the strength of selection or avoidance over a range of habitat values of that
 habitat type.</p>
 <p>In the targets-issa workflow, we predict H1, and H2 for forest using
 the following functions:</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/predict_h1_forest.R</span>
 <span class="va">predict_h1_forest</span></code></pre></div>
 <pre><code>## function (DT, model) 
@@ -865,7 +1169,7 @@ the following functions:</p>
 ##     new_data[, `:=`(x, seq(from = 0, to = 1, length.out = N)), 
 ##         by = id]
 ## }</code></pre>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># R/predict_h2.R</span>
 <span class="va">predict_h2</span></code></pre></div>
 <pre><code>## function (DT, model) 
@@ -875,7 +1179,7 @@ the following functions:</p>
 ##         indiv_step_id = NA), by = id]
 ##     new_data[, `:=`(h2, predict(model, .SD, type = "link", re.form = NULL))]
 ## }</code></pre>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Then we can calculate RSS for forest as H1 - H2:</span>
 
 <span class="co"># R/calc_rss.R</span>
@@ -888,11 +1192,11 @@ the following functions:</p>
 ##     log_rss[, `:=`(rss, h1 - h2), env = list(h1 = h1_col, h2 = h2_col)]
 ## }</code></pre>
 <p>And finally, the plots with the <code>plot_rss</code> function.</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_rss_forest</span><span class="op">)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
+<pre><code>## `geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="book_files/figure-html/rss_forest_plot-1.png" width="672"></div>
-<p>JWT comment: I personally find it weird and hard to wrap my head around RSSs for
+<p>JWT comment: I personally find it hard to wrap my head around RSSs for
 categorical variables, and I don’t have a great way of explaining it for others
 like me who didn’t get it. The closest I can describe is, say, looking at this
 plot, the individual starts not in forest, is their next step more likely to go
@@ -902,9 +1206,9 @@ proportional value of ‘no forest’ = 0 and ‘all forest’ = 1, and the midd
 estimate based on the model. It’s not perfect, but that’s the best I’ve been
 able to come to terms with it. :shrug: #OverlyHonestMethods</p>
 <p>We can then do the same thing to determine the RSS for distance to water.</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_rss_water</span><span class="op">)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
+<pre><code>## `geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="book_files/figure-html/RSS_water_ex-1.png" width="672"></div>
 <!-- #TODO insert description of the output graphs -->
 <p>RSSs have to be done one habitat at a time. That being said, interactions can be
@@ -931,10 +1235,36 @@ mean estimated speed is shape parameter multiplied by the scale parameter from
 the gamma distribution. However, the shape is modified by the movement variables
 in the iSSA itself. So this calculation becomes</p>
 <p><span class="math inline">\(\text{mean estimated speed} = (shape + logSL.beta + logSLintx.beta*mean(what.interacted.with))*scale\)</span></p>
-<p>So, from our toy example, this would be done as</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#TODO create target calc</span>
-<span class="co">#TODO create plot</span></code></pre></div>
+<p>So, from our toy example, this could be done as below. Here, we can pick which
+covariate we want to vary to estimate speed to see how speed is impacted by what
+it is interacted with. <code>seq</code> represents the range of values we’re looking over.</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># R/calc_speed.R</span>
+<span class="va">calc_speed</span></code></pre></div>
+<pre><code>## function (DT, covariate, seq) 
+## {
+##     if (covariate == "forest") 
+##         DT[, `:=`(spd = list(list((shape + `I(log(sl_))` + `I(log(sl_)):forest` * 
+##             seq + `I(log(sl_)):disturbed` + `I(log(dist_to_water + 1)):I(log(sl_))` * 
+##             median.water) * (scale))), x = list(list(seq))), 
+##             by = .(id)]
+##     if (covariate == "disturbed") 
+##         DT[, `:=`(spd = list(list((shape + `I(log(sl_))` + `I(log(sl_)):forest` + 
+##             `I(log(sl_)):disturbed` * seq + `I(log(dist_to_water + 1)):I(log(sl_))` * 
+##             median.water) * (scale))), x = list(list(seq))), 
+##             by = .(id)]
+##     if (covariate == "dist_to_water") 
+##         DT[, `:=`(spd = list(list((shape + `I(log(sl_))` + `I(log(sl_)):forest` + 
+##             `I(log(sl_)):disturbed` + `I(log(dist_to_water + 1)):I(log(sl_))` * 
+##             seq) * (scale))), x = list(list(seq))), by = .(id)]
+##     move &lt;- DT[, .(spd = unlist(spd), x = unlist(x)), by = .(id)]
+##     move
+## }
+## &lt;bytecode: 0x555a9ba2a3a0&gt;</code></pre>
+<p>Let’s see how fishers’ speed changes in areas without anthropogenic disturbance vs areas that are disturbed (<code>seq = 0:1</code>)</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tar_read</span><span class="op">(</span><span class="va">plot_speed_disturbed</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="book_files/figure-html/plot_speed-1.png" width="672"></div>
 
 </div>
 </div>
@@ -979,7 +1309,7 @@ in the iSSA itself. So this calculation becomes</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-11.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

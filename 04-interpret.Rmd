@@ -25,8 +25,7 @@ not recommended for presentations or the sole means of presenting results.
 
 
 ```{r interpret_table}
-broom.mixed::tidy(tar_read(model_forest)) %>%
-	filter(effect == 'fixed')
+broom.mixed::tidy(tar_read(model_forest), effects = 'fixed')
 ```
 
 #### Box plots
@@ -36,7 +35,7 @@ categories - time of day, seasons. It is useful to take note of outlying
 individuals here then investigate their movement and availability
 
 ```{r interpret_box_plot}
-# > ggplot code
+tar_read(plot_boxplot)
 ```
 
 ## Effect Sizes
@@ -48,9 +47,9 @@ Calculated for an animal selecting one spatial location (x1) over another (x2) w
 
 <!-- TODO: need RSS formula --> 
 
-- Common RSS expressions in Avgar et al. 2017, formulation depends on the covariates of interest in model
-- Can use the `predict` function: https://rdrr.io/cran/amt/man/log_rss.html in amt or JWT code
-- Fieberg ‘How-to’ goes through the RSS maths
+- Common RSS expressions in Avgar et al. [-@Avgar2017], formulation depends on the covariates of interest in model
+- Can use the `predict` function: https://rdrr.io/cran/amt/man/log_rss.html in amt or JWT code (see [Full workflow] for an example)
+- Fieberg ‘How-to’ goes through the RSS maths [@Fieberg_2021]
 
 
 <!-- TODO: [JWT] edits/clarify here --> 
@@ -102,8 +101,8 @@ Available steps are drawn from a gamma distribution of step lengths (shape, scal
 Extract basal parameters: 
 
 ```{r basal_params}
-# sl_distr_params(mod)
-# ta_distr_params(mod)
+# sl_distr_params(track)
+# ta_distr_params(track)
 ```
 
 The calculation for Mean Step Length is shape multiplied by scale:\
@@ -138,7 +137,7 @@ rate is inverse scale, and shape is one. The equations work out to be the same.
 
 See Julie's snail code [here](https://github.com/wildlifeevoeco/SnailPace/blob/master/R/predict.R#L96-L141=). 
 
-See other distributions in the iSSA webinar files (Avgar and Smith 2022)
+See other distributions in the iSSA webinar files ([Avgar and Smith 2022](https://github.com/eco4cast/Statistical-Methods-Seminar-Series/tree/main/avgar-smith_issa))
 
 
 #### Directionality

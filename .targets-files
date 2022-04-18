@@ -1,7 +1,9 @@
 .targets-files
 .targets-runs/
 _bookdown_files/book_files/figure-html/RSS_water_ex-1.png
+_bookdown_files/book_files/figure-html/interpret_box_plot-1.png
 _bookdown_files/book_files/figure-html/plot_dist_sl-1.png
+_bookdown_files/book_files/figure-html/plot_speed-1.png
 _bookdown_files/book_files/figure-html/plot_ta_dist-1.png
 _bookdown_files/book_files/figure-html/rss-1.png
 _bookdown_files/book_files/figure-html/rss_forest_plot-1.png
@@ -13,6 +15,7 @@ _targets/meta/process
 _targets/meta/progress
 _targets/objects/avail_lc
 _targets/objects/book
+_targets/objects/calc_speed_disturbed
 _targets/objects/dist_parameters_328decce
 _targets/objects/dist_parameters_5b8a1304
 _targets/objects/dist_parameters_bcf8feb4
@@ -39,6 +42,7 @@ _targets/objects/dist_ta_plots_cdeaeca0
 _targets/objects/dist_ta_plots_d793a891
 _targets/objects/elev
 _targets/objects/generate_bib
+_targets/objects/indiv_summary
 _targets/objects/lc
 _targets/objects/legend
 _targets/objects/locs_prep
@@ -48,12 +52,15 @@ _targets/objects/model_check_lc
 _targets/objects/model_forest
 _targets/objects/model_lc
 _targets/objects/model_prep
+_targets/objects/plot_boxplot
 _targets/objects/plot_rss_forest
 _targets/objects/plot_rss_water
+_targets/objects/plot_speed_disturbed
 _targets/objects/popdens
 _targets/objects/pred_h1_forest
 _targets/objects/pred_h1_water
 _targets/objects/pred_h2
+_targets/objects/prep_speed
 _targets/objects/rss_forest
 _targets/objects/rss_water
 _targets/objects/split_key
@@ -79,7 +86,9 @@ _targets/objects/tracks_resampled_ff26430e
 _targets/objects/water
 docs/404.html
 docs/book_files/figure-html/RSS_water_ex-1.png
+docs/book_files/figure-html/interpret_box_plot-1.png
 docs/book_files/figure-html/plot_dist_sl-1.png
+docs/book_files/figure-html/plot_speed-1.png
 docs/book_files/figure-html/plot_ta_dist-1.png
 docs/book_files/figure-html/rss-1.png
 docs/book_files/figure-html/rss_forest_plot-1.png
