@@ -25,7 +25,7 @@ not recommended for presentations or the sole means of presenting results.
 
 
 ```{r interpret_table}
-broom.mixed::tidy(tar_read(model_forest), effect == 'fixed')
+broom.mixed::tidy(tar_read(model_forest), effects == 'fixed')
 ```
 
 #### Box plots
