@@ -125,11 +125,22 @@ See [Choosing covariates] for more info
 #### Example extraction
 
 For example, here we are creating random steps and extracting information about
-what landcover class an individual selects for (at the end of each step) and how
-time of day (day or night at the start of the step) influences their movement.
+what landcover class and the distance from water an individual selects (at the end of each step) and 
+time of day (day or night at the start of the step) at the time of each step.
 This will create a dataset that includes step length, turn angle, whether it's
-day or night at the star of the step, and what land class an animal is on at the
+day or night at the start of the step, and what land class an animal is on at the
 end of their step.
+
+*NOTE: In the `targets` workflow, we have created out own extraction functions
+instead of using `amt`'s `extract_covariate` and `time_of_day` functions. This
+is for several reasons - more flexibility - `amt` isn't functional with `terra`
+yet (coming soon) - `time_of_day` is good for day vs night, but if you want dawn
+or dusk, it's not great at larger fixrates. For instance, if you have a 2 hour
+fixrate, it rarely includes dawn or dusk because those time frames are narrow in
+the default `maptools` function that `time_of_day` wraps around. In this
+circumstance, we have created our own time of day extractions as needed by
+location. However, for our fisher example here with a 30 minute fixrate,
+including default crepuscule times should be fine.*
 
 If you have multiple hypotheses that would benefit from know information from
 both the beginning and the end of the step, you can input`"both"` instead of
