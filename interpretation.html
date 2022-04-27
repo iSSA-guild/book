@@ -399,19 +399,6 @@ you actually want a validation of the extent of your study area.</p>
 </h4>
 <div class="inline-figure"><img src="https://badgen.net/badge/status/WIP/orange"></div>
 <p>A correct discrimination index for case-control models is concordance (Brentnall et al. 2015). With an r package! <a href="https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf" class="uri">https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf</a></p>
-<p>Concordance is ranked between 0 and 1 and you calculate discrimination either within or out of sample.</p>
-<ol style="list-style-type: decimal">
-<li>Cluster - predict all steps (Can also renormalize, divide predictions by sum of predictions across cluster)</li>
-<li>Take difference between used and available steps</li>
-<li>Collect those differences across all steps. Is the distribution different from zero? If you have a poor model then it would be zero, if not it would be close to 1 or statistically different from 0.</li>
-</ol>
-<p>Another approach that is closer to Fortin 2009.</p>
-<ol style="list-style-type: decimal">
-<li>Predict cluster step, divide each prediction by within cluster sum, same scale.</li>
-<li>Keep value for used step, then you get the distribution of normalized kernels</li>
-<li>Bin into equal range bins (no zeros in bins)</li>
-<li>Then you do frequency in each of those bins and do the correlation.</li>
-</ol>
 </div>
 <div id="habitat-calibration" class="section level4">
 <h4>
@@ -469,7 +456,7 @@ you actually want a validation of the extent of your study area.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-18.</p>
+    <p>"<strong>How-To iSSA</strong>" was written by Julie W. Turner, Christina M. Prokopenko, Alec L. Robitaille. It was last built on 2022-04-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
