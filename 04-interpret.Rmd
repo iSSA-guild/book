@@ -222,18 +222,7 @@ Two alternative and recommended options are discrimination or habitat calibratio
 
 A correct discrimination index for case-control models is concordance (Brentnall et al. 2015). With an r package! https://cran.r-project.org/web/packages/survival/vignettes/concordance.pdf
 
-Concordance is ranked between 0 and 1 and you calculate discrimination either within or out of sample.
 
-1. Cluster - predict all steps (Can also renormalize, divide predictions by sum of predictions across cluster)
-2. Take difference between used and available steps
-3. Collect those differences across all steps. Is the distribution different from zero? If you have a poor model then it would be zero, if not it would be close to 1 or statistically different from 0.
-
-Another approach that is closer to Fortin 2009. 
-
-1. Predict cluster step, divide each prediction by within cluster sum, same scale.
-2. Keep value for used step, then you get the distribution of normalized kernels
-3. Bin into equal range bins (no zeros in bins)
-4. Then you do frequency in each of those bins and do the correlation.
     
 #### Habitat calibration
 
